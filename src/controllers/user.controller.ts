@@ -8,6 +8,7 @@ import {
 import {
   IUserAllSchema,
   IUserIdSchema,
+  IUserUpdateMeSchema,
   IUserUpdateSchema,
 } from '../schemas/user.schema';
 import { defaultOrderParams } from '../utils/order';
@@ -20,31 +21,33 @@ export class UserController {
     res.ok({ message: 'success', data: req.user });
   }
 
-  public async updateMe(
-    req: ParsedRequest<IUserUpdateSchema>,
-    res: Response,
-    next: NextFunction,
-  ) {
-    const updateBody = req.valid.body;
+  public updateMe = asyncHandler(
+    async (
+      req: ParsedRequest<IUserUpdateMeSchema>,
+      res: Response,
+      next: NextFunction,
+    ) => {
+      const updateBody = req.valid.body;
 
-    if (updateBody.email) {
-      existRecord(
-        await userRepository.exists(updateBody.email),
-        new ConflictError('User already exist'),
-      );
-    }
+      if (updateBody.email) {
+        existRecord(
+          await userRepository.exists(updateBody.email),
+          new ConflictError('User already exist'),
+        );
+      }
 
-    if (updateBody.name) {
-      existRecord(
-        await userRepository.existsName(updateBody.name),
-        new ConflictError('User already exist'),
-      );
-    }
+      if (updateBody.name) {
+        existRecord(
+          await userRepository.existsName(updateBody.name),
+          new ConflictError('User already exist'),
+        );
+      }
 
-    const data = await userRepository.patchById(req.user.id, updateBody);
+      const data = await userRepository.patchById(req.user.id, updateBody);
 
-    res.ok({ message: 'User has been updated', data });
-  }
+      res.ok({ message: 'User has been updated', data });
+    },
+  );
 
   public deleteMe = asyncHandler(
     async (req: ParsedRequest<void>, res: Response, next: NextFunction) => {
@@ -64,6 +67,7 @@ export class UserController {
         filter: {
           dateFrom: req.valid.query.dateFrom,
           dateTo: req.valid.query.dateTo,
+          role: req.user.role,
         },
 
         order: defaultOrderParams(
@@ -105,19 +109,10 @@ export class UserController {
     ) => {
       const updateBody = req.valid.body;
 
-      const us67b9fc1028797df7a5b4ea23er = needRecord(
-        await userRepository.findById(req.valid.params.id),
+      const data = needRecord(
+        await userRepository.patchById(req.user.id, updateBody),
         new NotFoundError('user not found'),
       );
-
-      if (updateBody.email) {
-        existRecord(
-          await userRepository.exists(updateBody.email),
-          new ConflictError('User already exist'),
-        );
-      }
-
-      const data = await userRepository.patchById(req.user.id, updateBody);
 
       res.ok({ message: 'User has been updated', data });
     },

@@ -68,16 +68,16 @@ export class UserRoutes {
     // DELETE ME
     this.router.delete('/me', userController.deleteMe);
 
-    // only for admins
-    this.router.use(restrict(RoleCode.ADMIN));
-    this.router.use(authorizationMiddleware.authorization);
-
     // Get All Users
     this.router.get(
       '/',
       validator({ query: userSchema.userAll }),
       userController.get,
     );
+
+    // only for admins
+    this.router.use(restrict(RoleCode.ADMIN));
+    this.router.use(authorizationMiddleware.authorization);
 
     // Get User BY ID
     this.router.get(

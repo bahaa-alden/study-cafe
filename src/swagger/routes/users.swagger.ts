@@ -153,10 +153,10 @@
  *           schema:
  *             type: object
  *             properties:
- *               role:
+ *               status:
  *                 type: string
  *             example:
- *               role: ADMIN
+ *               status: active
  *     responses:
  *       "200":
  *         description: OK

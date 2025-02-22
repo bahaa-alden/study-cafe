@@ -2,6 +2,7 @@ import { BaseRepository, FindOptions } from './base.repository';
 import { OrderDirection, OrderOptions } from '../../utils/order';
 import { FilterQuery } from 'mongoose';
 import User, { IUser } from '../models/user.model';
+import { RoleCode } from '../../utils/enum';
 
 export interface UserOrderOptions extends OrderOptions {
   column: string;
@@ -11,6 +12,7 @@ export interface UserOrderOptions extends OrderOptions {
 export interface UserFilterOptions {
   dateFrom?: Date;
   dateTo?: Date;
+  role?: RoleCode;
 }
 
 export interface FindUserOptions extends FindOptions<UserFilterOptions> {
@@ -33,6 +35,10 @@ export class UserRepository extends BaseRepository<IUser> {
       if (filter.dateTo) {
         query.createdAt.$lte = filter.dateTo;
       }
+    }
+
+    if (filter?.role === RoleCode.USER) {
+      query.role = RoleCode.USER;
     }
 
     if (search) {
