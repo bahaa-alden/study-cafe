@@ -207,7 +207,7 @@ module.exports = {
                     type: 'select',
                     name: 'type',
                     message: 'Property type',
-                    choices: ['string', 'number', 'boolean'],
+                    choices: ['string', 'number', 'boolean', 'date'],
                   });
               }),
             );
@@ -280,7 +280,7 @@ module.exports = {
       )
       .then(
         collectPromisesResults((values) => {
-          if (values.kind === 'primitive')
+          if (values.kind === 'primitive' && values.type !== 'date')
             return prompter.prompt({
               type: 'input',
               name: 'example',

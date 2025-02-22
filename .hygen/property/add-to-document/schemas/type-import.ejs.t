@@ -7,4 +7,6 @@ skip_if: <% if (kind === 'enum') { -%>import { <%= enumType %><% } else { -%><%=
 ---
 <% if (kind === 'enum') { -%>
   import { <%= EnumType %> } from './../utils/enum';
+<% } else if (type === 'date' && isAddToValidation) { -%>
+  import { stringToDate } from './common'
 <% } -%>

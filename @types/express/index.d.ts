@@ -1,6 +1,6 @@
-import { ZodIssue } from "zod";
-import IUser from "../../src/models/user.model";
-import { RoleCode } from "../../src/utils/enum";
+import { ZodIssue } from 'zod';
+import { IUser } from '../../src/database/models/user.model';
+import { RoleCode } from '../../src/utils/enum';
 
 export type HeaderObject = {
   [key: string]: string;
@@ -24,7 +24,7 @@ export type ResponsePayload = {
   message: string;
 };
 
-declare module "express" {
+declare module 'express' {
   interface Request {
     body: BodyObject;
     user: IUser;

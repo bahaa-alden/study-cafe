@@ -61,7 +61,7 @@ export class UserRoutes {
     // UPDATE ME
     this.router.patch(
       '/me',
-      validator({ body: userSchema.updateUser }),
+      validator({ body: userSchema.updateMeSchema }),
       userController.updateMe,
     );
 

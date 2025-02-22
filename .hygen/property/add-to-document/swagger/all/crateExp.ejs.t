@@ -4,10 +4,13 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
 after: // create property example
 ---
 <% if(!hiddenSwagger){ -%>
+<% if (kind === 'primitive' && type === 'date') { -%>
+<%= property %>: <% if ( isArray) { -%>[<% } -%>'2024-11-24T16:35:04.438Z'<% if ( isArray) { -%>]<% } -%>,
+<% } -%>
 <% if (kind === 'primitive' && type === 'string') { -%>
 <%= property %>: <% if ( isArray) { -%>[<% } -%>'<%= example %>'<% if ( isArray) { -%>]<% } -%>,
 <% } -%>
-<% if (kind === 'primitive' && type !== 'string') { -%>
+<% if (kind === 'primitive' && type !== 'string' && type !=='date') { -%>
 <%= property %>: <% if ( isArray) { -%>[<% } -%><%= example %><% if ( isArray) { -%>]<% } -%>,
 <% } -%>
 <% if (kind === 'enum') { -%>

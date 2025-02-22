@@ -218,12 +218,14 @@ export const signUp = {
   ],
   properties: {
     //  property signup
+
     name: { type: 'string' },
     email: { type: 'string' },
     password: { type: 'string' },
   },
   example: {
     // create property example
+
     name: 'Adel Seirafi',
     email: 'user@gmail.com',
     password: '123454321',

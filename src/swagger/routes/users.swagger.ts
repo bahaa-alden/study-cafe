@@ -13,7 +13,7 @@
  *     description: Only admins can create other users.
  *     tags: [Users]
  *     security:
- *       - bearerAuth: []
+ *       - Bearer: []
  *     requestBody:
  *       required: true
  *       content:
@@ -105,7 +105,7 @@
  *     description: Logged in users can fetch only their own user information. Only admins can fetch other users.
  *     tags: [Users]
  *     security:
- *       - bearerAuth: []
+ *       - Bearer: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -138,7 +138,7 @@
  *     description: Only admins can update other users.
  *     tags: [Users]
  *     security:
- *       - bearerAuth: []
+ *       - Bearer: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -182,7 +182,7 @@
  *     description: Only admins can delete other users.
  *     tags: [Users]
  *     security:
- *       - bearerAuth: []
+ *       - Bearer: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -241,7 +241,7 @@
 
 /**
  * @swagger
- * /users/deleteMe:
+ * /users/me:
  *   delete:
  *     summary: unactive your account
  *     description: Logged in users can delete only themselves.
@@ -265,58 +265,19 @@
 
 /**
  * @swagger
- * /users/updateMe:
+ * /users/me:
  *   patch:
  *     summary: Update yor account
  *     description: Logged in users can only update their own information
  *     tags: [Users]
  *     security:
- *       - bearerAuth: []
+ *       - Bearer: []
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             $ref: '#/components/schemas/updateMe'
- *     responses:
- *       "200":
- *         description: OK
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: success
- *                 doc:
- *                   $ref: '#/components/schemas/User'
- *       "400":
- *         $ref: '#/components/responses/DuplicateEmail'
- *       "401":
- *         $ref: '#/components/responses/Unauthorized'
- *       "403":
- *         $ref: '#/components/responses/Forbidden'
- */
-
-/**
- * @swagger
- * /users/updateMeAndUpload:
- *   patch:
- *     summary: Update yor account
- *     description: Logged in users can only update their own information
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         multipart/form-data:
- *           schema:
- *             type: object
- *             properties:
- *               photo:
- *                 type: file
  *     responses:
  *       "200":
  *         description: OK
@@ -347,8 +308,7 @@ export const User = {
     email: { type: 'string', format: 'email' },
     name: { type: 'string' },
     role: { type: 'string', enum: Object.values(RoleCode) },
-    photo: { type: 'string' },
-    active: { type: 'string' },
+    status: { type: 'string' },
   },
   example: {
     id: '5ebac534954b54139806c112',
@@ -356,8 +316,7 @@ export const User = {
     email: 'user@gmail.com',
     name: 'adel seirafi',
     role: 'USER',
-    photo: './public/img/dafult.jpg',
-    active: 'true',
+    status: 'true',
   },
 };
 export const createUser = {
@@ -367,7 +326,6 @@ export const createUser = {
     name: { type: 'string' },
     email: { type: 'string' },
     password: { type: 'string' },
-    photo: { type: 'string' },
     role: { type: 'string', enum: Object.values(RoleCode) },
   },
   example: {
@@ -375,7 +333,6 @@ export const createUser = {
     name: 'Mohammed Seirafi',
     email: 'adel@gmail.com',
     password: '123454321',
-    photo: './public/img/users/dafult.jpg',
     role: 'USER',
   },
 };
@@ -384,14 +341,13 @@ export const updateMe = {
   type: 'object',
   properties: {
     // update property
+
     name: { type: 'string' },
     email: { type: 'string' },
-    photo: { type: 'string' },
   },
   example: {
     // update property example
     name: 'Mohammed Seirafi',
     email: 'adel@gmail.com',
-    photo: './public/img/users/dafult.jpg',
   },
 };

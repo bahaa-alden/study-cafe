@@ -34,6 +34,13 @@ export class UserController {
       );
     }
 
+    if (updateBody.name) {
+      existRecord(
+        await userRepository.existsName(updateBody.name),
+        new ConflictError('User already exist'),
+      );
+    }
+
     const data = await userRepository.patchById(req.user.id, updateBody);
 
     res.ok({ message: 'User has been updated', data });
@@ -54,7 +61,11 @@ export class UserController {
       next: NextFunction,
     ): Promise<void> => {
       const options: FindUserOptions = {
-        filter: {},
+        filter: {
+          dateFrom: req.valid.query.dateFrom,
+          dateTo: req.valid.query.dateTo,
+        },
+
         order: defaultOrderParams(
           req.valid.query.orderColumn,
           req.valid.query.orderDirection,
@@ -94,7 +105,7 @@ export class UserController {
     ) => {
       const updateBody = req.valid.body;
 
-      const user = needRecord(
+      const us67b9fc1028797df7a5b4ea23er = needRecord(
         await userRepository.findById(req.valid.params.id),
         new NotFoundError('user not found'),
       );

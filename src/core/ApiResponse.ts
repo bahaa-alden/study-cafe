@@ -87,7 +87,12 @@ export class UnprocessableEntityResponse extends ApiResponse {
 
 export class BadRequestResponse extends ApiResponse {
   constructor(message = 'Bad Parameters', errors?: ZodIssue[]) {
-    super(StatusCode.FAILURE, ResponseStatus.BAD_REQUEST, message, errors);
+    super(
+      StatusCode.FAILURE,
+      ResponseStatus.BAD_REQUEST,
+      message,
+      errors?.length ? errors : undefined,
+    );
   }
 }
 
@@ -128,10 +133,7 @@ export class FailureMsgResponse extends ApiResponse {
 }
 
 export class SuccessResponse<T> extends ApiResponse {
-  constructor(
-    message: string,
-    private data: T,
-  ) {
+  constructor(message: string, private data: T) {
     super(StatusCode.SUCCESS, ResponseStatus.SUCCESS, message);
   }
 
@@ -141,10 +143,7 @@ export class SuccessResponse<T> extends ApiResponse {
 }
 
 export class CreatedResponse<T> extends ApiResponse {
-  constructor(
-    message: string,
-    private data: T,
-  ) {
+  constructor(message: string, private data: T) {
     super(StatusCode.CREATED, ResponseStatus.CREATED, message);
   }
 

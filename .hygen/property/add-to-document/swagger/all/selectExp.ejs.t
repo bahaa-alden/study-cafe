@@ -3,6 +3,9 @@ inject: true
 to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
 after: // property example
 ---
+<% if (kind === 'primitive' && type === 'date') { -%>
+<%= property %>: <% if ( isArray) { -%>[<% } -%>'2024-11-24T16:35:04.438Z'<% if ( isArray) { -%>]<% } -%>,
+<% } -%>
 <% if (kind === 'primitive' && type === 'string') { -%>
 <%= property %>: <% if ( isArray) { -%>[<% } -%>'<%= example %>'<% if ( isArray) { -%>]<% } -%>,
 <% } -%>

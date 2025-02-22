@@ -40,8 +40,10 @@ after:  \<creating\-property\-schema \/\>
       type: Number,
     <% } else if (type === 'boolean') { -%>
       type: Boolean,
-      <% } -%>
-      <% }-%>
+    <% } else if (type === 'date') { -%>
+          type: Date,
+    <% } -%>
+   <% }-%>
     }
     <% if (isArray) {-%>] <% }-%>
     ,

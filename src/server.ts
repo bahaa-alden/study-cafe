@@ -1,3 +1,5 @@
+import { sessionRoutes } from './routes/session.routes';
+import { organizationRoutes } from './routes/organization.routes';
 import * as express from 'express';
 import * as mongoose from 'mongoose';
 import * as compression from 'compression';
@@ -25,6 +27,10 @@ class Server {
   }
 
   public routes(): void {
+    this.app.use('/api/v1/sessions', sessionRoutes.router);
+
+    this.app.use('/api/v1/organizations', organizationRoutes.router);
+
     this.app.use('/api/v1/users', userRoutes.router);
     this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
     // Docs in JSON format

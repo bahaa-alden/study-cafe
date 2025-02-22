@@ -15,6 +15,8 @@ after:  \<creating\-property\-interface \/\>
   <%= property %><% if (!isAddToValidation || isOptional) { -%>?<% } -%>: <%= EnumType %><% if (isArray) {-%> [ ]<% }-%> <% if (isNullable) { -%> | null<% } -%>;
 <% } else if (kind === 'object') { -%>
   <%= property %><% if (!isAddToValidation || isOptional) { -%>?<% } -%>: I<%= Property %><% if (isArray) {-%> [ ]<% }-%> <% if (isNullable) { -%> | null<% } -%>;
-<% } else  { -%>
+<% } else if(type === 'date') { -%>
+  <%= property %><% if (!isAddToValidation || isOptional) { -%>?<% } -%>: Date<% if (isArray) {-%>[]<% }-%><% if (isNullable) { -%> | null<% } -%>
+<% } else { -%>
   <%= property %><% if (!isAddToValidation || isOptional) { -%>?<% } -%>: <%= type %><% if (isArray) {-%> [ ]<% }-%> <% if (isNullable) { -%> | null<% } -%>;
 <% } -%>

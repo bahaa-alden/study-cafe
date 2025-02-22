@@ -30,8 +30,9 @@ export class <%= Name %>Controller {
     ): Promise<void> => {
       const options: <%= Name %>FindOptions = {
         filter: {
-          search: req.valid.query.search,
+        // filters
         },
+        search: req.valid.query.search,
         order: defaultOrderParams(
           req.valid.query.orderColumn,
           req.valid.query.orderDirection,

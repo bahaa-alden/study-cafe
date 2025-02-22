@@ -7,7 +7,9 @@ import { OrderDirection, type OrderOptions } from '../../utils/order'
 import { BaseRepository, type FindOptions } from './base.repository'
 import <%= Name %>, { type I<%= Name %> } from '../models/<%= nameDash %>.model'
 
-export interface <%= Name %>FilterOptions {}
+export interface <%= Name %>FilterOptions {
+  //filters
+}
 
 export interface <%= Name %>FindOptions extends FindOptions<<%= Name %>FilterOptions> {
   order: OrderOptions
@@ -31,7 +33,7 @@ export class <%= Name %>Repository extends BaseRepository<I<%= Name %>> {
       [order.column]: order.direction === OrderDirection.asc ? 1 : -1,
     })
       .limit(pagination.pageSize)
-      .skip(pagination.page * pagination.pageSize)
+      .skip((pagination.page - 1) * pagination.pageSize)
 
     return { results, total }
   }

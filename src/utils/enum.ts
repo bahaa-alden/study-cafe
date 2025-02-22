@@ -17,3 +17,15 @@ export enum Env {
   test = 'test',
 }
 // <creating-enum-type />
+
+export enum SessionStatus {
+  started = 'started',
+  ended = 'ended',
+  cancelled = 'cancelled',
+}
+
+export enum OrgStatus {
+  approved = 'approved',
+  refused = 'refused',
+  pending = 'pending',
+}

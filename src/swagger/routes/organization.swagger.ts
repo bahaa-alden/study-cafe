@@ -1,20 +1,17 @@
----
-to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
----
 /**
  * @swagger
  * tags:
- *   name: <%= h.inflection.pluralize(Name) %>
- *   description: <%= Name %> management and retrieval
+ *   name: Organizations
+ *   description: Organization management and retrieval
  */
 
 /**
  * @swagger
- * /<%= h.inflection.pluralize(name) %>:
+ * /organizations:
  *   post:
- *     summary: Create a <%= name %>
- *     description: <%= rolePost %> can create <%= name %>.
- *     tags: [<%= h.inflection.pluralize(Name) %>]
+ *     summary: Create a organization
+ *     description: USER can create organization.
+ *     tags: [Organizations]
  *     security:
  *       - Bearer: []
  *     requestBody:
@@ -22,7 +19,7 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/create<%= Name %>'
+ *             $ref: '#/components/schemas/createOrganization'
  *     responses:
  *       "201":
  *         description: Created
@@ -35,7 +32,7 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
  *                   type: string
  *                   example: success
  *                 data:
- *                     $ref: '#/components/schemas/<%= Name %>'
+ *                     $ref: '#/components/schemas/Organization'
  *       "400":
  *         $ref: '#/components/responses/DuplicateEmail'
  *       "401":
@@ -44,9 +41,9 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
  *         $ref: '#/components/responses/Forbidden'
  *
  *   get:
- *     summary: Get all <%= h.inflection.pluralize(name) %>
- *     description: <%= roleGet %> can retrieve all <%= h.inflection.pluralize(name) %>.
- *     tags: [<%= h.inflection.pluralize(Name) %>]
+ *     summary: Get all organizations
+ *     description: USER,ADMIN can retrieve all organizations.
+ *     tags: [Organizations]
  *     security:
  *       - Bearer: []
  *     parameters:
@@ -68,7 +65,7 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
  *           type: integer
  *           minimum: 1
  *         default: 10
- *         description: Maximum number of <%= h.inflection.pluralize(name) %>
+ *         description: Maximum number of organizations
  *       - in: query
  *         name: search
  *         schema:
@@ -93,7 +90,7 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
  *                 data:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/<%= Name %>'
+ *                     $ref: '#/components/schemas/Organization'
  *       "401":
  *         $ref: '#/components/responses/Unauthorized'
  *       "403":
@@ -102,11 +99,11 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
 
 /**
  * @swagger
- * /<%= h.inflection.pluralize(name) %>/{id}:
+ * /organizations/{id}:
  *   get:
- *     summary: Get a <%= name %>
- *     description: <%= roleGet %> can use this router.
- *     tags: [<%= h.inflection.pluralize(Name) %>]
+ *     summary: Get a organization
+ *     description: USER,ADMIN can use this router.
+ *     tags: [Organizations]
  *     security:
  *       - Bearer: []
  *     parameters:
@@ -115,7 +112,7 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
  *         required: true
  *         schema:
  *           type: string
- *         description: <%= Name %> id
+ *         description: Organization id
  *     responses:
  *       "200":
  *         description: OK
@@ -128,7 +125,7 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
  *                   type: string
  *                   example: success
  *                 data:
- *                     $ref: '#/components/schemas/<%= Name %>'
+ *                     $ref: '#/components/schemas/Organization'
  *       "401":
  *         $ref: '#/components/responses/Unauthorized'
  *       "403":
@@ -137,9 +134,9 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
  *         $ref: '#/components/responses/NotFound'
  *
  *   patch:
- *     summary: Update a <%= name %>
- *     description: <%= roleUpdate %> can use this router.
- *     tags: [<%= h.inflection.pluralize(Name) %>]
+ *     summary: Update a organization
+ *     description: USER,ADMIN can use this router.
+ *     tags: [Organizations]
  *     security:
  *       - Bearer: []
  *     parameters:
@@ -148,13 +145,13 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
  *         required: true
  *         schema:
  *           type: string
- *         description: <%= Name %> id
+ *         description: Organization id
  *     requestBody:
  *         required: true
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/update<%= Name %>'
+ *               $ref: '#/components/schemas/updateOrganization'
  *     responses:
  *       "200":
  *         description: OK
@@ -167,7 +164,7 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
  *                   type: string
  *                   example: success
  *                 data:
- *                     $ref: '#/components/schemas/<%= Name %>'
+ *                     $ref: '#/components/schemas/Organization'
  *       "401":
  *         $ref: '#/components/responses/Unauthorized'
  *       "403":
@@ -176,9 +173,9 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
  *         $ref: '#/components/responses/NotFound'
  *
  *   delete:
- *     summary: Delete a  <%= name %>.
- *     description: <%= roleDelete %> can use this router.
- *     tags: [<%= h.inflection.pluralize(Name) %>]
+ *     summary: Delete a  organization.
+ *     description: ADMIN can use this router.
+ *     tags: [Organizations]
  *     security:
  *       - Bearer: []
  *     parameters:
@@ -187,7 +184,7 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
  *         required: true
  *         schema:
  *           type: string
- *         description: <%= Name %> id
+ *         description: Organization id
  *     responses:
  *       "200":
  *         description: OK
@@ -210,40 +207,166 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
  *         $ref: '#/components/responses/NotFound'
  */
 
+/**
+ * @swagger
+ * /organizations/{id}/approve:
+ *   post:
+ *     summary: Approve a organization
+ *     description: ADMIN can use this router.
+ *     tags: [Organizations]
+ *     security:
+ *       - Bearer: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Organization id
+ *     responses:
+ *       "200":
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: success
+ *       "401":
+ *         $ref: '#/components/responses/Unauthorized'
+ *       "403":
+ *         $ref: '#/components/responses/Forbidden'
+ *       "404":
+ *         $ref: '#/components/responses/NotFound'
+ */
 
-export const <%= Name %> = {
+/**
+ * @swagger
+ * /organizations/{id}/refuse:
+ *   post:
+ *     summary: Refuse a organization
+ *     description: ADMIN can use this router.
+ *     tags: [Organizations]
+ *     security:
+ *       - Bearer: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Organization id
+ *     responses:
+ *       "200":
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: success
+ *       "401":
+ *         $ref: '#/components/responses/Unauthorized'
+ *       "403":
+ *         $ref: '#/components/responses/Forbidden'
+ *       "404":
+ *         $ref: '#/components/responses/NotFound'
+ */
+
+export const Organization = {
   type: 'object',
   properties: {
     id: { type: 'string' },
-// property
+    // property
+    status: { type: 'string', enum: ['approved', 'refused', 'pending'] },
+    user: { type: 'string' },
+    sessionHourlyRate: { type: 'number' },
+    name: { type: 'string' },
   },
   example: {
     id: '5ebac534954b54139806c112',
-// property example
-   createdAt: "2024-11-24T16:35:04.438Z",
-   updatedAt: "2024-11-24T16:35:04.438Z"
-  },
-};
-export const create<%= Name %> = {
-  type: 'object',
-  properties: {
-// create property
-  },
-  example: {
-// create property example
-  },
-  required:[
-// required property
-  ]
-};
-export const update<%= Name %> = {
-  type: 'object',
-  properties: {
-// update property
-  },
-  example: {
-// update property example
- 
+    // property example
+    status: 'approved',
+
+    userId: '673c40cd59e293827f79e398',
+
+    sessionHourlyRate: 2000,
+
+    name: 'sunlight',
+
+    createdAt: '2024-11-24T16:35:04.438Z',
+    updatedAt: '2024-11-24T16:35:04.438Z',
   },
 };
 
+export const createOrganization = {
+  type: 'object',
+  properties: {
+    // create property
+    userId: { type: 'string' },
+    sessionHourlyRate: { type: 'number' },
+    name: { type: 'string' },
+  },
+  example: {
+    // create property example
+
+    sessionHourlyRate: 2000,
+
+    name: 'sunlight',
+  },
+  required: [
+    // required property
+
+    'name',
+  ],
+};
+
+export const updateOrganization = {
+  type: 'object',
+  properties: {
+    // update property
+    sessionHourlyRate: { type: 'number' },
+    name: { type: 'string' },
+  },
+  example: {
+    // update property example
+
+    sessionHourlyRate: 2000,
+
+    name: 'sunlight',
+  },
+};
+
+export const approveOrganization = {
+  type: 'object',
+  properties: {},
+  example: {
+    // approve property example
+    status: 'approved',
+
+    userId: '673c40cd59e293827f79e398',
+
+    sessionHourlyRate: 2000,
+
+    name: 'sunlight',
+  },
+};
+
+export const refuseOrganization = {
+  type: 'object',
+  properties: {},
+  example: {
+    // refuse property example
+    status: 'refused',
+
+    userId: '673c40cd59e293827f79e398',
+
+    sessionHourlyRate: 2000,
+
+    name: 'sunlight',
+  },
+};

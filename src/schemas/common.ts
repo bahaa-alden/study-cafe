@@ -44,3 +44,5 @@ export const localStringSchema = z.object({
   ar: z.string().optional(),
   en: z.string().optional(),
 });
+
+export const stringToDate = z.string().transform<Date>((el) => new Date(el));

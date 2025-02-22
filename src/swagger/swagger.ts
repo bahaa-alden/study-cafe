@@ -1,4 +1,17 @@
 import * as swaggerJsdoc from 'swagger-jsdoc';
+import {
+  Session,
+  createSession,
+  endSession,
+  updateSession,
+} from './routes/session.swagger';
+import {
+  Organization,
+  approveOrganization,
+  createOrganization,
+  refuseOrganization,
+  updateOrganization,
+} from './routes/organization.swagger';
 import { signUp } from './routes/auth.swagger';
 import { env_vars } from '../config';
 import {
@@ -27,6 +40,15 @@ const options = {
     ],
     components: {
       schemas: {
+        Session,
+        createSession,
+        updateSession,
+        endSession,
+        Organization,
+        createOrganization,
+        updateOrganization,
+        refuseOrganization,
+        approveOrganization,
         signUp,
         createUser,
         updateMe,

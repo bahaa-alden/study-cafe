@@ -30,22 +30,22 @@ const userSchema = new Schema<IUser>(
     status: {
       type: String,
       enum: Object.values(UserStatus),
+      default: UserStatus.active,
     },
     name: {
       type: String,
       trim: true,
       maxlength: 200,
       required: true,
+      unique: true,
     },
     email: {
       type: String,
       trim: true,
-      required: true,
     },
     password: {
       type: String,
       select: false,
-      required: true,
     },
     role: {
       type: String,
@@ -106,4 +106,5 @@ userSchema.methods.comparePassword = function (
     },
   );
 };
+
 export default model<IUser>('User', userSchema);
