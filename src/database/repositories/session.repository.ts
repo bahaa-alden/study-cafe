@@ -1,8 +1,10 @@
-import { type FilterQuery } from 'mongoose';
+import { Types, type FilterQuery } from 'mongoose';
 import { type PaginatedList } from '../../utils/pagination';
 import { OrderDirection, type OrderOptions } from '../../utils/order';
 import { BaseRepository, type FindOptions } from './base.repository';
 import Session, { type ISession } from '../models/session.model';
+import { startOfDay, endOfDay, subDays } from 'date-fns';
+import { SessionStatus } from '../../utils/enum';
 
 export interface SessionFilterOptions {
   //filters
@@ -10,6 +12,23 @@ export interface SessionFilterOptions {
   dateTo?: Date;
 
   organizationId: string;
+}
+
+interface OrganizationStatistics {
+  totalSessions: number;
+  sessionsByStatus: Record<string, number>;
+  revenueByDay: Array<{
+    date: string;
+    totalRevenue: number;
+  }>;
+  dessertsByDay: Array<{
+    date: string;
+    desserts: Array<{
+      name: string;
+      totalSold: number;
+      totalRevenue: number;
+    }>;
+  }>;
 }
 
 export interface SessionFindOptions extends FindOptions<SessionFilterOptions> {
@@ -72,6 +91,102 @@ export class SessionRepository extends BaseRepository<ISession> {
       .populate(['user', 'desserts.dessert']);
 
     return { results, total };
+  }
+
+  async getOrganizationStatistics(
+    organizationId: string,
+    fromDate?: Date,
+    toDate?: Date,
+  ) {
+    const now = new Date();
+    fromDate = fromDate ? startOfDay(fromDate) : startOfDay(subDays(now, 7));
+    toDate = toDate ? endOfDay(toDate) : endOfDay(now);
+
+    // Get sessions statistics
+    const sessions = await sessionRepository.model.aggregate([
+      {
+        $match: {
+          $expr: {
+            $and: [
+              { $gte: ['$createdAt', fromDate] },
+              { $lte: ['$createdAt', toDate] },
+              { $eq: ['$deletedAt', null] },
+              { $eq: ['$organizationId', new Types.ObjectId(organizationId)] },
+            ],
+          },
+        },
+      },
+      { $group: { _id: '$status', count: { $sum: 1 } } },
+    ]);
+
+    const revenueByDay = await sessionRepository.model.aggregate([
+      {
+        $match: {
+          $expr: {
+            $and: [
+              { $gte: ['$createdAt', fromDate] },
+              { $lte: ['$createdAt', toDate] },
+              { $eq: ['$status', SessionStatus.ended] },
+              { $eq: ['$deletedAt', null] },
+              { $eq: ['$organizationId', new Types.ObjectId(organizationId)] },
+            ],
+          },
+        },
+      },
+      {
+        $group: {
+          _id: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } },
+          revenue: { $sum: '$totalCost' },
+        },
+      },
+      { $sort: { _id: 1 } },
+    ]);
+
+    // Get desserts statistics
+    const dessertsStats = await sessionRepository.model.aggregate([
+      {
+        $match: {
+          $expr: {
+            $and: [
+              { $gte: ['$createdAt', fromDate] },
+              { $lte: ['$createdAt', toDate] },
+              { $eq: ['$deletedAt', null] },
+              { $eq: ['$organizationId', new Types.ObjectId(organizationId)] },
+            ],
+          },
+        },
+      },
+      { $unwind: '$desserts' },
+      {
+        $lookup: {
+          from: 'Dessert',
+          localField: 'desserts.dessertId',
+          foreignField: '_id',
+          as: 'dessertInfo',
+        },
+      },
+      { $unwind: '$dessertInfo' },
+      {
+        $group: {
+          _id: {
+            date: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } },
+            name: '$dessertInfo.name',
+          },
+          count: { $sum: '$desserts.count' },
+          revenue: {
+            $sum: { $multiply: ['$desserts.count', '$dessertInfo.price'] },
+          },
+        },
+      },
+      { $sort: { '_id.date': 1 } },
+    ]);
+
+    return {
+      totalSessions: sessions.reduce((sum, s) => sum + s.count, 0),
+      sessionsByStatus: sessions,
+      revenueByDay,
+      dessertsStats,
+    };
   }
 }
 

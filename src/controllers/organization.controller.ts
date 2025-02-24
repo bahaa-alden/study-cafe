@@ -11,11 +11,14 @@ import {
   IOrganizationIdSchema,
   IOrganizationCreateSchema,
   IOrganizationUpdateSchema,
+  IOrganizationHeaderSchema,
+  IOrganizationStatisticsSchema,
 } from '../schemas/organization.schema';
 import { defaultOrderParams } from '../utils/order';
 import { defaultPaginationParams } from '../utils/pagination';
 import { needRecord } from '../utils/record';
 import { OrgStatus, RoleCode } from '../utils/enum';
+import { sessionRepository } from '../database/repositories/session.repository';
 
 export class OrganizationController {
   // Get all Organizations by author
@@ -167,6 +170,26 @@ export class OrganizationController {
       });
 
       res.ok({ message: 'Organization has been refused' });
+    },
+  );
+
+  public statistics = asyncHandler(
+    async (
+      req: ParsedRequest<
+        void,
+        IOrganizationStatisticsSchema,
+        void,
+        IOrganizationHeaderSchema
+      >,
+      res: Response,
+    ): Promise<void> => {
+      const data = await sessionRepository.getOrganizationStatistics(
+        req.valid.headers['organization-id'],
+        req.valid.query.fromDate,
+        req.valid.query.toDate,
+      );
+
+      res.ok({ message: 'ok', data });
     },
   );
 }

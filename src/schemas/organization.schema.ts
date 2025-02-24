@@ -17,6 +17,15 @@ const organizationIdSchema = object({
 
 export type IOrganizationIdSchema = TypeOf<typeof organizationIdSchema>;
 
+const organizationStatisticsSchema = object({
+  fromDate: stringToDate.optional(),
+  toDate: stringToDate.optional(),
+});
+
+export type IOrganizationStatisticsSchema = TypeOf<
+  typeof organizationStatisticsSchema
+>;
+
 const organizationAllSchema = object({
   page,
   pageSize,
@@ -65,4 +74,5 @@ export default {
   organizationCreate: organizationCreateSchema,
   organizationUpdate: organizationUpdateSchema,
   organizationHeader: organizationHeaderSchema,
+  organizationStatistics: organizationStatisticsSchema,
 };

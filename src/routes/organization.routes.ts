@@ -9,6 +9,7 @@ import authSchema from '../schemas/auth.schema';
 import { authMiddleware } from '../middlewares/authJwt';
 import paymentSchema from '../schemas/payment.schema';
 import { paymentController } from '../controllers/payment.controller';
+import { checkSubscriptionMiddleware } from '../middlewares/check-subscription';
 const { USER, ADMIN } = RoleCode;
 
 export class OrganizationRoutes {
@@ -35,13 +36,17 @@ export class OrganizationRoutes {
       organizationController.getOrganizations,
     );
 
-    // GET ORGANIZATION BY ID
+    // GET ALL ORGANIZATIONS
     this.router.get(
-      '/:id',
-      restrict(USER, ADMIN),
+      '/statistics',
+      restrict(USER),
       authorizationMiddleware.authorization,
-      validator({ params: organizationSchema.organizationId }),
-      organizationController.getOrganization,
+      validator({
+        headers: organizationSchema.organizationHeader,
+        query: organizationSchema.organizationStatistics,
+      }),
+      checkSubscriptionMiddleware,
+      organizationController.statistics,
     );
 
     // CREATE ORGANIZATION
@@ -85,6 +90,15 @@ export class OrganizationRoutes {
         params: organizationSchema.organizationId,
       }),
       paymentController.getPayments,
+    );
+
+    // GET ORGANIZATION BY ID
+    this.router.get(
+      '/:id',
+      restrict(USER, ADMIN),
+      authorizationMiddleware.authorization,
+      validator({ params: organizationSchema.organizationId }),
+      organizationController.getOrganization,
     );
 
     // UPDATE ORGANIZATION BY ID

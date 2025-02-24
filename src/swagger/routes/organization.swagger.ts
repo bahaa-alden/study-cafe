@@ -99,6 +99,52 @@
 
 /**
  * @swagger
+ * /organizations/statistics:
+ *   get:
+ *     summary: Get organization statistics
+ *     description: USER can retrieve organization statistics.
+ *     tags: [Organizations]
+ *     security:
+ *       - Bearer: []
+ *     parameters:
+ *       - in: query
+ *         name: fromDate
+ *         schema:
+ *           type: string
+ *         description: from date
+ *       - in: query
+ *         name: toDate
+ *         schema:
+ *           type: string
+ *         description: to date
+ *       - in: header
+ *         name: organization-id
+ *         schema:
+ *           type: string
+ *         required: true
+ *     responses:
+ *       "200":
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: success
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Statistics'
+ *       "401":
+ *         $ref: '#/components/responses/Unauthorized'
+ *       "403":
+ *         $ref: '#/components/responses/Forbidden'
+ */
+
+/**
+ * @swagger
  * /organizations/{id}:
  *   get:
  *     summary: Get a organization
@@ -337,6 +383,72 @@
  *       "404":
  *         $ref: '#/components/responses/NotFound'
  */
+
+export const Statistics = {
+  type: 'object',
+  properties: {
+    totalSessions: { type: 'number' },
+    sessionsByStatus: {
+      type: 'object',
+      additionalProperties: { type: 'number' },
+    },
+    revenueByDay: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          date: { type: 'string', format: 'date' },
+          totalRevenue: { type: 'number' },
+        },
+      },
+    },
+    dessertsByDay: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          date: { type: 'string', format: 'date' },
+          desserts: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                name: { type: 'string' },
+                totalSold: { type: 'number' },
+                totalRevenue: { type: 'number' },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  example: {
+    totalSessions: 120,
+    sessionsByStatus: {
+      started: 50,
+      cancelled: 10,
+      ended: 30,
+    },
+    revenueByDay: [
+      { date: '2024-02-17', totalRevenue: 50000 },
+      { date: '2024-02-18', totalRevenue: 48000 },
+    ],
+    dessertsByDay: [
+      {
+        date: '2024-02-17',
+        desserts: [
+          { name: 'Chocolate Cake', totalSold: 15, totalRevenue: 45000 },
+          { name: 'Ice Cream', totalSold: 10, totalRevenue: 20000 },
+        ],
+      },
+      {
+        date: '2024-02-18',
+        desserts: [{ name: 'Brownie', totalSold: 12, totalRevenue: 36000 }],
+      },
+    ],
+  },
+};
 
 export const Organization = {
   type: 'object',
