@@ -27,14 +27,14 @@ export class SessionRepository extends BaseRepository<ISession> {
   ): Promise<ISession | null> {
     return this.model
       .findOne({ _id: id, organizationId, deletedAt: null })
-      .populate('organization');
+      .populate(['organization', 'desserts.dessert', 'user']);
   }
 
   findById(id: string): Promise<ISession | null> {
     return this.model
       .findById(id)
       .where({ deletedAt: null })
-      .populate('organization');
+      .populate(['organization', 'desserts.dessert', 'user']);
   }
 
   async findForAdmin(
@@ -68,7 +68,8 @@ export class SessionRepository extends BaseRepository<ISession> {
         [order.column]: order.direction === OrderDirection.asc ? 1 : -1,
       })
       .limit(pagination.pageSize)
-      .skip((pagination.page - 1) * pagination.pageSize);
+      .skip((pagination.page - 1) * pagination.pageSize)
+      .populate(['user', 'desserts.dessert']);
 
     return { results, total };
   }

@@ -260,12 +260,55 @@
  *           type: string
  *         required: true
  *         description: The ID of the organization the session belongs to.
+ *     responses:
+ *       "200":
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: success
+ *                 data:
+ *                   $ref: '#/components/schemas/Session'
+ *       "401":
+ *         $ref: '#/components/responses/Unauthorized'
+ *       "403":
+ *         $ref: '#/components/responses/Forbidden'
+ *       "404":
+ *         $ref: '#/components/responses/NotFound'
+ */
+
+/**
+ * @swagger
+ * /sessions/{id}/desserts:
+ *   post:
+ *     summary: Add a dessert to a session
+ *     description: USER can add a dessert to a session.
+ *     tags: [Sessions]
+ *     security:
+ *       - Bearer: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Session ID
+ *       - in: header
+ *         name: organization-id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the organization the session belongs to.
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/endSession'
+ *             $ref: '#/components/schemas/addDessert'
  *     responses:
  *       "200":
  *         description: OK
@@ -292,10 +335,17 @@ export const Session = {
   properties: {
     id: { type: 'string' },
     // property
+    desserts: {
+      type: 'array',
+      properties: {
+        dessertId: { type: 'string' },
+        count: { type: 'number' },
+      },
+    },
     status: { type: 'string', enum: ['started', 'ended', 'cancelled'] },
     subtotal: { type: 'number' },
     additionalCost: { type: 'number' },
-    organization: { type: 'string' },
+    organizationId: { type: 'string' },
     user: { type: 'string' },
     totalCost: { type: 'number' },
     endTime: { type: 'date' },
@@ -305,6 +355,8 @@ export const Session = {
   example: {
     id: '5ebac534954b54139806c112',
     // property example
+    desserts: [{ dessertId: '673c40cd59e293827f79e399', count: 2 }],
+
     status: 'started',
 
     subtotal: 100,
@@ -331,14 +383,17 @@ export const createSession = {
   type: 'object',
   properties: {
     // create property
+
     username: { type: 'string' },
   },
   example: {
     // create property example
+
     username: 'mo_ali',
   },
   required: [
     // required property
+
     'username',
   ],
 };
@@ -347,6 +402,13 @@ export const updateSession = {
   type: 'object',
   properties: {
     // update property
+    desserts: {
+      type: 'array',
+      properties: {
+        dessertId: { type: 'string' },
+        count: { type: 'number' },
+      },
+    },
     status: { type: 'string', enum: ['started', 'ended', 'cancelled'] },
     subtotal: { type: 'number' },
     additionalCost: { type: 'number' },
@@ -355,6 +417,8 @@ export const updateSession = {
   },
   example: {
     // update property example
+    desserts: [{ dessertId: '673c40cd59e293827f79e399', count: 2 }],
+
     status: 'started',
 
     subtotal: 100,
@@ -367,14 +431,16 @@ export const updateSession = {
   },
 };
 
-export const endSession = {
+export const addDessert = {
   type: 'object',
   properties: {
     // end property
-    additionalCost: { type: 'number' },
+    dessertId: { type: 'string' },
+    count: { type: 'number' },
   },
   example: {
     // end property example
-    additionalCost: 0,
+    dessertId: '673c40cd59e293827f79e398',
+    count: 3,
   },
 };

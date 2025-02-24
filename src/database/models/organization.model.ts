@@ -1,3 +1,5 @@
+import { ISubscription } from './subscription.model';
+
 import { OrgStatus } from './../../utils/enum';
 
 import { IUser } from './user.model';
@@ -10,6 +12,9 @@ import { omit } from 'lodash';
 export interface IOrganization extends MongooseDocument {
   id: string;
   // <creating-property-interface />
+  recentSubscriptionId?: ISubscription['_id'];
+  recentSubscription?: ISubscription;
+
   status?: OrgStatus;
 
   userId?: IUser['_id'];
@@ -27,6 +32,11 @@ export interface IOrganization extends MongooseDocument {
 const organizationSchema: Schema = new Schema<IOrganization>(
   {
     // <creating-property-schema />
+    recentSubscriptionId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Subscription',
+    },
+
     status: {
       type: String,
       enum: Object.values(OrgStatus),
@@ -58,5 +68,21 @@ const organizationSchema: Schema = new Schema<IOrganization>(
     },
   },
 );
+
+organizationSchema.virtual('user', {
+  localField: 'userId',
+  foreignField: '_id',
+  ref: 'User',
+  justOne: true,
+  match: { deletedAt: null },
+});
+
+organizationSchema.virtual('recentSubscription', {
+  localField: 'recentSubscriptionId',
+  foreignField: '_id',
+  ref: 'Subscription',
+  justOne: true,
+  match: { deletedAt: null },
+});
 
 export default model<IOrganization>('Organization', organizationSchema);

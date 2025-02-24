@@ -1,8 +1,24 @@
 import * as swaggerJsdoc from 'swagger-jsdoc';
 import {
+  Dessert,
+  createDessert,
+  updateDessert,
+} from './routes/dessert.swagger';
+import {
+  Payment,
+  createPayment,
+  updatePayment,
+} from './routes/payment.swagger';
+import { Plan, createPlan, updatePlan } from './routes/plan.swagger';
+import {
+  Subscription,
+  createSubscription,
+  updateSubscription,
+} from './routes/subscription.swagger';
+import {
   Session,
   createSession,
-  endSession,
+  addDessert,
   updateSession,
 } from './routes/session.swagger';
 import {
@@ -40,10 +56,22 @@ const options = {
     ],
     components: {
       schemas: {
+        Dessert,
+        createDessert,
+        updateDessert,
+        Payment,
+        createPayment,
+        updatePayment,
+        Plan,
+        createPlan,
+        updatePlan,
+        Subscription,
+        createSubscription,
+        updateSubscription,
         Session,
         createSession,
         updateSession,
-        endSession,
+        addDessert,
         Organization,
         createOrganization,
         updateOrganization,

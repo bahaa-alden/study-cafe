@@ -10,12 +10,14 @@ before: export default
     foreignField: '_id',
     ref: '<%= Type %>',
     justOne: true,
+    match: { deletedAt: null },
   });
   <% } else if (referenceType === 'oneToMany' || referenceType === 'manyToMany') { -%>
   <%= name %>Schema.virtual('<%= h.inflection.pluralize(property) %>', {
-    localField: '<%= property %>Ids',
+    localField: '<%= h.inflection.camelize(h.inflection.singularize(property), true) %>Ids',
     foreignField: '_id',
     ref: '<%= Type %>',
+    match: { deletedAt: null },
   });
   <% } -%>
 <% } -%>

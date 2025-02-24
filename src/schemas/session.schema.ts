@@ -26,6 +26,7 @@ export type ISessionAllSchema = TypeOf<typeof sessionAllSchema>;
 
 const sessionCreateSchema = object({
   // <creating-property-create-schema />
+
   username: z.string(),
 }).strict();
 
@@ -42,17 +43,17 @@ const sessionUpdateSchema = object({
 
 export type ISessionUpdateSchema = TypeOf<typeof sessionUpdateSchema>;
 
-const sessionEndSchema = object({
-  // <creating-property-create-schema />
-  additionalCost: z.number().optional(),
+const sessionAddDessertSchema = object({
+  dessertId: objectId,
+  count: z.number(),
 }).strict();
 
-export type ISessionEndSchema = TypeOf<typeof sessionEndSchema>;
+export type ISessionAddDessertSchema = TypeOf<typeof sessionAddDessertSchema>;
 
 export default {
   sessionId: sessionIdSchema,
   sessionAll: sessionAllSchema,
   sessionCreate: sessionCreateSchema,
   sessionUpdate: sessionUpdateSchema,
-  sessionEnd: sessionEndSchema,
+  sessionAddDessert: sessionAddDessertSchema,
 };

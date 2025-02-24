@@ -1,7 +1,7 @@
 ---
 inject: true
 to: src/controllers/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>.controller.ts
-after:  filter
+after:  filters
 ---
   <% if (kind === 'reference') { -%>
     <%= h.inflection.camelize(h.inflection.singularize(property), true) %>Id: req.valid.query.<%= h.inflection.camelize(h.inflection.singularize(property), true) %>Id,

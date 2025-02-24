@@ -15,7 +15,7 @@ import {
   ISessionIdSchema,
   ISessionCreateSchema,
   ISessionUpdateSchema,
-  ISessionEndSchema,
+  ISessionAddDessertSchema,
 } from '../schemas/session.schema';
 import { defaultOrderParams } from '../utils/order';
 import { defaultPaginationParams } from '../utils/pagination';
@@ -24,6 +24,8 @@ import { organizationRepository } from '../database/repositories/organization.re
 import { userRepository } from '../database/repositories/user.repository';
 import { IOrganizationHeaderSchema } from '../schemas/organization.schema';
 import { SessionStatus } from '../utils/enum';
+import { calculateCost } from '../services/internal/sessions/cost';
+import { dessertRepository } from '../database/repositories/dessert.repository';
 
 export class SessionController {
   // Get all Sessions by author
@@ -200,39 +202,68 @@ export class SessionController {
   public endSession = asyncHandler(
     async (
       req: ParsedRequest<
-        ISessionEndSchema,
+        void,
         void,
         ISessionIdSchema,
         IOrganizationHeaderSchema
       >,
       res: Response,
     ): Promise<void> => {
+      let session = needRecord(
+        await sessionRepository.findByIdWithOrg(
+          req.valid.params.id,
+          req.valid.headers['organization-id'],
+        ),
+        new NotFoundError(`Session not found`),
+      );
+      if (session.status !== SessionStatus.started) {
+        throw new BadRequestError(`Session is already ${session.status}`);
+      }
+
+      // BadRequestErrorIf session is not free, calculate the cost
+      if (session.totalCost === null) {
+        session = await calculateCost(
+          session,
+          session.organization.sessionHourlyRate,
+        );
+      } else {
+        session.totalCost = session.additionalCost;
+        await session.save({ validateBeforeSave: false });
+      }
+      res.ok({ data: session, message: 'done' });
+    },
+  );
+
+  public addDessert = asyncHandler(
+    async (
+      req: ParsedRequest<
+        ISessionAddDessertSchema,
+        void,
+        ISessionIdSchema,
+        IOrganizationHeaderSchema
+      >,
+      res: Response,
+    ): Promise<void> => {
+      const dessertId = req.valid.body.dessertId;
       const session = needRecord(
         await sessionRepository.findByIdWithOrg(
           req.valid.params.id,
           req.valid.headers['organization-id'],
         ),
+        new NotFoundError(`Session not found`),
       );
-      if (session.status !== SessionStatus.started) {
-        throw new BadRequestError(`Session is already ${session.status}`);
-      }
-      session.endTime = new Date();
-      session.status = SessionStatus.ended;
-      session.additionalCost = req.valid.body.additionalCost ?? 0;
 
+      const dessert = needRecord(
+        await dessertRepository.findByIdWithOrg(
+          dessertId,
+          req.valid.headers['organization-id'],
+        ),
+        new NotFoundError(`Dessert with id: ${dessertId} not found`),
+      );
+
+      session.desserts.push({ dessert, ...req.valid.body });
       await session.save({ validateBeforeSave: false });
 
-      // BadRequestErrorIf session is not free, calculate the cost
-      if (session.totalCost === null) {
-        const cost = session.calculateCost(
-          session.organization.sessionHourlyRate,
-        );
-        session.totalCost = cost.total;
-        session.subtotal = cost.subtotal;
-      } else {
-        session.totalCost = session.additionalCost;
-      }
-      await session.save({ validateBeforeSave: false });
       res.ok({ data: session, message: 'done' });
     },
   );

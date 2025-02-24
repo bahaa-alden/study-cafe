@@ -4,7 +4,14 @@ to: ./src/swagger/routes/<%=  nameDash %>.swagger.ts
 after: // update property
 ---
 <% if(!hiddenSwagger){ -%>
-<%= property %>: { type: <% if ( isArray) {-%>
+<% if (kind === 'reference' ) { -%>
+<% if (referenceType === 'oneToOne' || referenceType === 'manyToOne') { -%>
+<%= property %>Id
+<% } -%>
+<% if (referenceType === 'oneToMany' || referenceType === 'manyToMany') { -%>
+<%= h.inflection.camelize(h.inflection.singularize(property), true) %>Ids
+<% } -%>
+<% } else{-%><%= property %><% }-%>: { type: <% if ( isArray) {-%>
 'array',items: {type:<% } -%>
 <% if (kind === 'primitive') { -%>'<%= type %>',<% 
 }else if (kind !== 'object'){-%>'string',<% } -%>

@@ -8,7 +8,7 @@ after:  // <creating-property-create-schema />
     <% if (referenceType === 'oneToOne' || referenceType === 'manyToOne') { -%>
     <%= property %>Id: objectId<% if (isOptional) { -%>.optional()<% } -%><% if (isNullable) { -%>.nullable()<% } -%>,
     <% } else if (referenceType === 'oneToMany' || referenceType === 'manyToMany') { -%>
-    <%= property %>Ids: objectId.array()<% if (isOptional) { -%>.optional()<% } -%><% if (isNullable) { -%>.nullable()<% } -%>,
+    <%= h.inflection.camelize(h.inflection.singularize(property), true) %>Ids: objectId.array()<% if (isOptional) { -%>.optional()<% } -%><% if (isNullable) { -%>.nullable()<% } -%>,
     <% } -%>
   <% } else if (kind === 'enum') { -%>
     <%= property %>: z<% if (isArray) {-%>.array( z<% }-%>.nativeEnum(<%= EnumType %>)<% if (isArray) {-%>) <% }-%><% if (isOptional) { -%>.optional()<% } -%><% if (isNullable) { -%>.nullable()<% } -%>,

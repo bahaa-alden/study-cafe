@@ -8,6 +8,7 @@ import { sessionController } from '../controllers/session.controller';
 import authSchema from '../schemas/auth.schema';
 import { authMiddleware } from '../middlewares/authJwt';
 import organizationSchema from '../schemas/organization.schema';
+import { checkSubscriptionMiddleware } from '../middlewares/check-subscription';
 const { USER, ADMIN } = RoleCode;
 
 export class SessionRoutes {
@@ -21,8 +22,17 @@ export class SessionRoutes {
   routes() {
     // PROTECTED ROUTES
     this.router.use(
-      validator({ headers: authSchema.auth }),
+      validator({
+        headers: authSchema.auth,
+      }),
       authMiddleware.authenticateJWT,
+    );
+
+    this.router.use(
+      validator({
+        headers: organizationSchema.organizationHeader,
+      }),
+      checkSubscriptionMiddleware,
     );
 
     // GET ALL SESSIONS
@@ -67,11 +77,22 @@ export class SessionRoutes {
       restrict(USER),
       authorizationMiddleware.authorization,
       validator({
-        body: sessionSchema.sessionEnd,
         params: sessionSchema.sessionId,
         headers: organizationSchema.organizationHeader,
       }),
       sessionController.endSession,
+    );
+
+    this.router.post(
+      '/:id/desserts',
+      restrict(USER),
+      authorizationMiddleware.authorization,
+      validator({
+        params: sessionSchema.sessionId,
+        headers: organizationSchema.organizationHeader,
+        body: sessionSchema.sessionAddDessert,
+      }),
+      sessionController.addDessert,
     );
 
     // UPDATE SESSION BY ID

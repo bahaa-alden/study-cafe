@@ -1,3 +1,7 @@
+import { dessertRoutes } from './routes/dessert.routes';
+import { paymentRoutes } from './routes/payment.routes';
+import { planRoutes } from './routes/plan.routes';
+import { subscriptionRoutes } from './routes/subscription.routes';
 import { sessionRoutes } from './routes/session.routes';
 import { organizationRoutes } from './routes/organization.routes';
 import * as express from 'express';
@@ -15,6 +19,7 @@ import customResponses from './middlewares/custom.middleware';
 import Logger from './core/Logger';
 import swaggerSpec from './swagger/swagger';
 import { NotFoundError } from './core/ApiError';
+import { join } from 'path';
 class Server {
   public app: express.Application;
 
@@ -27,12 +32,30 @@ class Server {
   }
 
   public routes(): void {
+    this.app.use('/api/v1/desserts', dessertRoutes.router);
+
+    this.app.use('/api/v1/payments', paymentRoutes.router);
+
+    this.app.use('/api/v1/plans', planRoutes.router);
+
+    this.app.use('/api/v1/subscriptions', subscriptionRoutes.router);
+
     this.app.use('/api/v1/sessions', sessionRoutes.router);
 
     this.app.use('/api/v1/organizations', organizationRoutes.router);
 
     this.app.use('/api/v1/users', userRoutes.router);
-    this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+    this.app.use(express.static(join(__dirname, '..', 'public')));
+
+    this.app.use(
+      '/docs',
+      swaggerUi.serve,
+      swaggerUi.setup(swaggerSpec, {
+        swaggerOptions: { persistAuthorization: true },
+      }),
+    );
+
     // Docs in JSON format
     this.app.get(
       '/docs.json',

@@ -212,6 +212,7 @@ export const signUp = {
   type: 'object',
   required: [
     // required property
+
     'name',
     'email',
     'password',

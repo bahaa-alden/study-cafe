@@ -10,7 +10,7 @@ after: // \<creating\-property\-object\-<%= object %> \/\>
       ref: '<%= Type %>',
     },
   <% } else if (referenceType === 'oneToMany' || referenceType === 'manyToMany') { -%>
-    <%= property %>Ids: {
+    <%= h.inflection.camelize(h.inflection.singularize(property), true) %>Ids: {
       type: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: '<%= Type %>',

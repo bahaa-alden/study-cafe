@@ -33,6 +33,7 @@ export type IOrganizationAllSchema = TypeOf<typeof organizationAllSchema>;
 
 const organizationCreateSchema = object({
   // <creating-property-create-schema />
+
   userId: objectId.optional(),
 
   sessionHourlyRate: z.number().optional(),
@@ -44,6 +45,7 @@ export type IOrganizationCreateSchema = TypeOf<typeof organizationCreateSchema>;
 
 const organizationUpdateSchema = object({
   // <creating-property-update-schema />
+
   sessionHourlyRate: z.number().optional().optional(),
 
   name: z.string().optional(),

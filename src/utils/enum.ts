@@ -16,7 +16,32 @@ export enum Env {
   development = 'development',
   test = 'test',
 }
+
 // <creating-enum-type />
+
+export enum DessertType {
+  drink = 'drink',
+  meal = 'meal',
+}
+
+export enum PaymentStatus {
+  failed = 'failed',
+  pending = 'pending',
+  success = 'success',
+}
+
+export enum SubscriptionStatus {
+  pending = 'pending',
+  active = 'active',
+  expired = 'expired',
+  cancelled = 'cancelled',
+}
+
+export enum PlanDuration {
+  month = 'month',
+  year = 'year',
+  free = 'free',
+}
 
 export enum SessionStatus {
   started = 'started',

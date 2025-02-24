@@ -1,3 +1,5 @@
+import { IDessert } from './dessert.model';
+
 import { SessionStatus } from './../../utils/enum';
 
 import { IOrganization } from './organization.model';
@@ -12,11 +14,17 @@ import { omit } from 'lodash';
 export interface ISession extends MongooseDocument {
   id: string;
   // <creating-property-interface />
+  desserts: Array<{
+    dessertId: IDessert['_id'];
+    dessert: IDessert;
+    count: number;
+  }>;
+
   status?: SessionStatus;
 
   subtotal?: number;
 
-  additionalCost?: number;
+  additionalCost: number;
 
   organizationId: IOrganization['_id'];
   organization: IOrganization;
@@ -25,8 +33,8 @@ export interface ISession extends MongooseDocument {
 
   totalCost?: number;
 
-  endTime?: Date;
-  startTime?: Date;
+  endTime: Date;
+  startTime: Date;
   username?: string;
 
   createdAt: Date;
@@ -42,6 +50,21 @@ export interface ISession extends MongooseDocument {
 const sessionSchema: Schema = new Schema<ISession>(
   {
     // <creating-property-schema />
+    desserts: {
+      type: [
+        {
+          dessertId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Dessert',
+          },
+          count: {
+            type: Number,
+          },
+          _id: false,
+        },
+      ],
+      default: [],
+    },
     status: {
       type: String,
       enum: Object.values(SessionStatus),
@@ -53,6 +76,7 @@ const sessionSchema: Schema = new Schema<ISession>(
     },
     additionalCost: {
       type: Number,
+      default: 0,
     },
     organizationId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -94,21 +118,12 @@ const sessionSchema: Schema = new Schema<ISession>(
   },
 );
 
-sessionSchema.methods.calculateCost = function (
-  organizationHourlyRate: number,
-): { total: number; subtotal: number } {
-  const durationInHours =
-    (this.endTime.getTime() - this.startTime.getTime()) / (1000 * 3600);
-  const subtotal = durationInHours * organizationHourlyRate;
-  const total = subtotal + this.additionalCost;
-  return { total, subtotal };
-};
-
 sessionSchema.virtual('user', {
   localField: 'userId',
   foreignField: '_id',
   ref: 'User',
   justOne: true,
+  match: { deletedAt: null },
 });
 
 sessionSchema.virtual('organization', {
@@ -116,6 +131,15 @@ sessionSchema.virtual('organization', {
   foreignField: '_id',
   ref: 'Organization',
   justOne: true,
+  match: { deletedAt: null },
+});
+
+sessionSchema.virtual('desserts.dessert', {
+  localField: 'desserts.dessertId',
+  foreignField: '_id',
+  ref: 'Dessert',
+  justOne: true,
+  match: { deletedAt: null },
 });
 
 export default model<ISession>('Session', sessionSchema);

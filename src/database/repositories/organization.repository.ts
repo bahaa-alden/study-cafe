@@ -25,12 +25,30 @@ export class OrganizationRepository extends BaseRepository<IOrganization> {
     super(Organization);
   }
 
+  async findById(id: string) {
+    return await this.model
+      .findOne({
+        _id: id,
+        deletedAt: null,
+      })
+      .populate([
+        { path: 'recentSubscription', populate: { path: 'plan' } },
+        'user',
+      ]);
+  }
+
   async findByIdWithUser(id: string, userId: string) {
-    return await this.findOneBy({
-      _id: id,
-      userId,
-      status: OrgStatus.approved,
-    });
+    return await this.model
+      .findOne({
+        _id: id,
+        userId,
+        status: OrgStatus.approved,
+        deletedAt: null,
+      })
+      .populate([
+        { path: 'recentSubscription', populate: { path: 'plan' } },
+        'user',
+      ]);
   }
 
   async findForAdmin(
@@ -69,7 +87,11 @@ export class OrganizationRepository extends BaseRepository<IOrganization> {
         [order.column]: order.direction === OrderDirection.asc ? 1 : -1,
       })
       .limit(pagination.pageSize)
-      .skip((pagination.page - 1) * pagination.pageSize);
+      .skip((pagination.page - 1) * pagination.pageSize)
+      .populate([
+        { path: 'recentSubscription', populate: { path: 'plan' } },
+        'user',
+      ]);
 
     return { results, total };
   }

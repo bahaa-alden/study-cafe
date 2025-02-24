@@ -7,6 +7,8 @@ import { authorizationMiddleware } from '../auth/authorization';
 import { organizationController } from '../controllers/organization.controller';
 import authSchema from '../schemas/auth.schema';
 import { authMiddleware } from '../middlewares/authJwt';
+import paymentSchema from '../schemas/payment.schema';
+import { paymentController } from '../controllers/payment.controller';
 const { USER, ADMIN } = RoleCode;
 
 export class OrganizationRoutes {
@@ -71,6 +73,18 @@ export class OrganizationRoutes {
         params: organizationSchema.organizationId,
       }),
       organizationController.refuse,
+    );
+
+    // GET ALL PAYMENTS
+    this.router.get(
+      '/:id/payments',
+      restrict(USER, ADMIN),
+      authorizationMiddleware.authorization,
+      validator({
+        query: paymentSchema.paymentAll,
+        params: organizationSchema.organizationId,
+      }),
+      paymentController.getPayments,
     );
 
     // UPDATE ORGANIZATION BY ID
