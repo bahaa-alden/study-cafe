@@ -1,0 +1,14 @@
+{
+  "navLink": {
+    "organizations": "المنظمات",
+    "users": "المستخدمين",
+    "categories": "الأصناف",
+    "cities": "المدن",
+    "warehouses": "المستودعات",
+    "employees": "الموظّفين",
+    "admins": "المشرفين",
+    "settings": "الإعدادات",
+    "about": "حول التطبيق",
+    "policy": "السياسات والخصوصية"
+  }
+}
