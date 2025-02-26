@@ -7,18 +7,25 @@ import { APIList } from "types/api";
 interface PaginationTableProps {
   data?: InfiniteData<APIList<unknown>>;
   page: number;
-  handleChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => void;
+  handleChangePage: (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => void;
 }
 
-const PaginationButtons = ({ data, page, handleChangePage }: PaginationTableProps) => {
+const PaginationButtons = ({
+  data,
+  page,
+  handleChangePage,
+}: PaginationTableProps) => {
   const isDisabled = !data;
   const { t } = useTranslation();
   return (
     <TablePagination
-      rowsPerPageOptions={[data?.pages[0].data.length ?? 0]}
+      rowsPerPageOptions={[data?.pages[0].results.length ?? 0]}
       labelDisplayedRows={(info) => t("pagination", { ...info })}
       component="div"
-      count={data?.pages[0].totalDataCount ?? 0}
+      count={data?.pages[0].total ?? 0}
       rowsPerPage={PAGE_SIZE}
       page={page}
       onPageChange={handleChangePage}

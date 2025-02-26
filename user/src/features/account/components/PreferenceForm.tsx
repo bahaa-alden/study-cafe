@@ -109,7 +109,7 @@ export const PreferenceForm: FC<PreferenceFormProps> = ({}) => {
 };
 export function formToBody(form: Form): FavoriteUpdate {
   return {
-    favoriteCategories: form.favoriteCategories.map((category) => category._id),
-    favoriteCities: form.favoriteCities.map((city) => city._id),
+    favoriteCategories: form.favoriteCategories.map((category) => category.id),
+    favoriteCities: form.favoriteCities.map((city) => city.id),
   };
 }

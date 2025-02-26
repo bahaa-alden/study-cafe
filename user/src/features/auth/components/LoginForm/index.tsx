@@ -39,7 +39,7 @@ export const LoginForm = () => {
           data.data.user
         );
 
-        navigate("/");
+        navigate("/my-organizations");
       },
       onError: parseResponseError({ setError, snackbar }),
     });

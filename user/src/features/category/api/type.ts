@@ -5,7 +5,7 @@ export type CategoryAction = {
   description: string;
 };
 export type Category = {
-  _id: string;
+  id: string;
   name: string;
   description: string;
   createdAt: string;
@@ -14,4 +14,4 @@ export type Category = {
 export type CategoryAllParams = APIListParams;
 export type CategoryAddPayload = Payload<undefined, CategoryAction>;
 export type CategoryEditPayload = CategoryAddPayload;
-export type CategorySelect = Pick<Category, "_id" | "name">;
+export type CategorySelect = Pick<Category, "id" | "name">;

@@ -6,7 +6,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { Stack } from "@mui/system";
-import OptionalLink from "components/links/OptionalLink";
+import { RouterButton } from "components/links/RouterButton";
+import RouterLink from "components/links/RouterLink";
 import { SideBarItem } from "constants/sideBarItems";
 import { FC, Fragment } from "react";
 import { useTranslation } from "react-i18next";
@@ -42,14 +43,13 @@ export const SideBarListItem: FC<SideBarListItemProps> = ({
   const indent = 2.5 + level * Number(sideBarIsOpen) * 1.5;
   return (
     <Fragment key={data.href}>
-      <OptionalLink
-        withLink={!data.children}
+      <RouterLink
         sx={{
           textDecoration: "none !important",
           color: "#000",
           "&:hover": { color: "primary.main" },
         }}
-        href={data.href}
+        to={data.href}
       >
         <Tooltip
           title={
@@ -110,7 +110,7 @@ export const SideBarListItem: FC<SideBarListItemProps> = ({
             </ListItemButton>
           </ListItem>
         </Tooltip>
-      </OptionalLink>
+      </RouterLink>
       <Collapse in={activeItem[0] && activeItem[1] === data.href}>
         <List component="div" disablePadding>
           {data.children?.map((sideBarItem) => (

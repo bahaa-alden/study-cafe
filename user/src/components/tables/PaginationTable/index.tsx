@@ -1,4 +1,10 @@
-import { Box, TableBody, TableCell, TableContainer, TableHeadProps } from "@mui/material";
+import {
+  Box,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHeadProps,
+} from "@mui/material";
 import Paper, { PaperProps } from "@mui/material/Paper";
 import { Stack } from "@mui/system";
 import { UseInfiniteQueryResult } from "@tanstack/react-query";
@@ -21,8 +27,18 @@ type Props = {
   tableHead: ReactElement<TableHeadProps>;
 } & PaperProps &
   (
-    | { skeleton?: true; cellCount: number; rowCount?: number; skeletonProps?: SkeletonProps }
-    | { skeleton?: false; cellCount?: undefined; rowCount?: undefined; skeletonProps?: undefined }
+    | {
+        skeleton?: true;
+        cellCount: number;
+        rowCount?: number;
+        skeletonProps?: SkeletonProps;
+      }
+    | {
+        skeleton?: false;
+        cellCount?: undefined;
+        rowCount?: undefined;
+        skeletonProps?: undefined;
+      }
   );
 const PaginationTable: FC<Props> = ({
   infiniteQuery,
@@ -35,25 +51,41 @@ const PaginationTable: FC<Props> = ({
   rowCount,
   ...props
 }) => {
-  const { fetchNextPage, fetchPreviousPage, data, isLoading, isSuccess, isError } = infiniteQuery;
+  const {
+    fetchNextPage,
+    fetchPreviousPage,
+    data,
+    isLoading,
+    isSuccess,
+    isError,
+  } = infiniteQuery;
   const handlePageChange = useHandlePageChange({
     fetchNextPage,
     fetchPreviousPage,
     pages: [],
   });
 
-  const noData = !data?.pages[0].data.length && isSuccess;
+  const noData = !data?.pages[0].results.length && isSuccess;
 
   return (
-    <Paper {...props} sx={{ borderRadius: 2, mb: 6, overflow: "hidden", ...props.sx }}>
+    <Paper
+      {...props}
+      sx={{ borderRadius: 2, mb: 6, overflow: "hidden", ...props.sx }}
+    >
       <Stack>
         <TableContainer>
           <Table>
             {tableHead}
             {isSuccess && children}
             {isLoading && skeleton && (
-              <RepeatELement repeat={rowCount ?? PAGE_SIZE} container={<TableBody />}>
-                <RepeatELement repeat={cellCount} container={<TableRowStriped />}>
+              <RepeatELement
+                repeat={rowCount ?? PAGE_SIZE}
+                container={<TableBody />}
+              >
+                <RepeatELement
+                  repeat={cellCount}
+                  container={<TableRowStriped />}
+                >
                   <TableCell>
                     <Skeleton
                       widthRange={{ min: 20, max: 40 }}
@@ -83,8 +115,12 @@ const PaginationTable: FC<Props> = ({
             <SomethingWentWrong />
           </Box>
         )}
-        {data?.pages[0].totalDataCount !== 0 && (
-          <PaginationButtons page={pageNumber} handleChangePage={handlePageChange} data={data} />
+        {data?.pages[0].total !== 0 && (
+          <PaginationButtons
+            page={pageNumber}
+            handleChangePage={handlePageChange}
+            data={data}
+          />
         )}
       </Stack>
     </Paper>

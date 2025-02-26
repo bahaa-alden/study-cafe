@@ -23,7 +23,11 @@ export const CountCard: FC<CountCardProps> = ({
 }) => {
   const isLoading = count === undefined;
   return (
-    <Fade in={true} timeout={500 * index + 500}>
+    <Fade
+      style={{ width: "100%", textAlign: "left" }}
+      in={true}
+      timeout={500 * index + 500}
+    >
       <Card elevation={1} sx={{ px: 3, pt: 2, pb: 1, borderRadius: 2 }}>
         <Stack direction="row" gap={3} justifyContent={"space-between"}>
           <Stack pl={1}>

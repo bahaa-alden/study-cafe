@@ -14,15 +14,20 @@ const TextFieldStyled = styled(MuiTextField, {
     color: theme.palette.error.main,
   },
 }));
-export type TextFieldProps<controlled extends boolean = false> = MuiTextFieldProps &
-  (controlled extends true
-    ? {
-        name: string;
-        control: Control<any>;
-      }
-    : { control?: undefined });
+export type TextFieldProps<controlled extends boolean = false> =
+  MuiTextFieldProps &
+    (controlled extends true
+      ? {
+          name: string;
+          control: Control<any>;
+        }
+      : { control?: undefined });
 
-export const TextField = ({ control, name, ...props }: TextFieldProps<true | false>) => {
+export const TextField = ({
+  control,
+  name,
+  ...props
+}: TextFieldProps<true | false>) => {
   if (control) {
     return (
       <Controller
@@ -35,6 +40,11 @@ export const TextField = ({ control, name, ...props }: TextFieldProps<true | fal
             helperText={error && error.message}
             {...field}
             {...props}
+            onChange={(e) => {
+              field.onChange(
+                e.target.type === "number" ? +e.target.value : e.target.value
+              );
+            }}
           />
         )}
       />

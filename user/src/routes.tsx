@@ -1,7 +1,7 @@
 import SomethingWentWrong from "components/feedback/SomethingWentWrong";
 import AuthenticatedRoute from "components/routes/AuthenticatedRoute";
 import NotAuthenticatedRoute from "components/routes/NotAuthenticatedRoute";
-import HomePage from "pages";
+import MyOrganizations from "pages/organizations";
 import { CategoriesPage } from "pages/categories";
 import { ForgotPasswordPage } from "pages/forgot-password";
 import { LoginPage } from "pages/login";
@@ -30,8 +30,8 @@ export default createBrowserRouter(
         <Route path="reset-password" element={<ResetPasswordPage />} />{" "}
       </Route>
       <Route element={<AuthenticatedRoute />}>
-        <Route element={<Layout />}>
-          <Route path="" element={<HomePage />} />
+        <Route path="my-organizations" element={<MyOrganizations />} />
+        <Route path="organizations" element={<Layout />}>
           <Route path="categories" element={<CategoriesPage />} />
           <Route path="*" element={<SomethingWentWrong />} />
         </Route>

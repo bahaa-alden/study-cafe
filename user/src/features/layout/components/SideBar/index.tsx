@@ -1,43 +1,41 @@
 import { Toolbar, useMediaQuery, useTheme } from "@mui/material";
-import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import { CSSObject, Theme, styled } from "@mui/material/styles";
 import { createSideBarItems } from "constants/sideBarItems";
 import { FC, Fragment, ReactNode, useState } from "react";
-import { storage } from "utils/storage";
 import SideBarListItem from "./SideBarListItem";
 
 const drawerWidth = 240;
 
-type Props = { open: boolean; setOpen: React.Dispatch<React.SetStateAction<boolean>> };
+type Props = {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 const Sidebar: FC<Props> = ({ open, setOpen }) => {
   const [activeItem, setActiveItem] = useState<[boolean, string]>([false, ""]);
   const small = useMediaQuery(useTheme().breakpoints.down("sm"));
-  const sideBarListItems = createSideBarItems(storage.getRole());
+  const sideBarListItems = createSideBarItems();
   return (
     <ResponsiveDrawer open={open}>
       <Toolbar />
-      {sideBarListItems.map((section, index) => (
-        <Fragment key={index}>
-          <Divider />
-          <List disablePadding>
-            {section.map((sideBarItem) => {
-              return (
-                <SideBarListItem
-                  onClick={() => small && setOpen(false)}
-                  activeItem={activeItem}
-                  setActiveItem={setActiveItem}
-                  data={sideBarItem}
-                  sideBarIsOpen={open}
-                  key={sideBarItem.href}
-                  level={0}
-                />
-              );
-            })}
-          </List>
-        </Fragment>
-      ))}
+      <List disablePadding>
+        {sideBarListItems.map((sideBarItem, index) => {
+          return (
+            <Fragment key={index}>
+              <SideBarListItem
+                onClick={() => small && setOpen(false)}
+                activeItem={activeItem}
+                setActiveItem={setActiveItem}
+                data={sideBarItem}
+                sideBarIsOpen={open}
+                key={sideBarItem.href}
+                level={0}
+              />
+            </Fragment>
+          );
+        })}
+      </List>
     </ResponsiveDrawer>
   );
 };
@@ -45,10 +43,13 @@ const Sidebar: FC<Props> = ({ open, setOpen }) => {
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
   "&, .fade, .fade *": {
-    transition: theme.transitions.create(["width", "opacity", "margin", "padding"], {
-      easing: theme.transitions.easing.easeInOut,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+    transition: theme.transitions.create(
+      ["width", "opacity", "margin", "padding"],
+      {
+        easing: theme.transitions.easing.easeInOut,
+        duration: theme.transitions.duration.leavingScreen,
+      }
+    ),
   },
 
   overflowX: "hidden",
@@ -56,10 +57,13 @@ const openedMixin = (theme: Theme): CSSObject => ({
 
 const closedMixin = (theme: Theme, iconOnly: boolean): CSSObject => ({
   "&, .fade, .fade *": {
-    transition: theme.transitions.create(["width", "opacity", "margin", "padding"], {
-      easing: theme.transitions.easing.easeInOut,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+    transition: theme.transitions.create(
+      ["width", "opacity", "margin", "padding"],
+      {
+        easing: theme.transitions.easing.easeInOut,
+        duration: theme.transitions.duration.leavingScreen,
+      }
+    ),
   },
   overflowX: "hidden",
   ...(iconOnly && {

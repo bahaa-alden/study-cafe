@@ -1,7 +1,7 @@
 import { APIListParams } from "types/api";
 
 export type User = {
-  _id: string;
+  id: string;
   name: string;
   email: string;
   photo: string;
@@ -17,7 +17,7 @@ export type User = {
 };
 
 export type Wallet = {
-  _id: string;
+  id: string;
   user: string;
   total: number;
   pending: number;

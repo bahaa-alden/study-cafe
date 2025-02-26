@@ -5,7 +5,6 @@ import Submit from "components/buttons/Submit";
 import DialogTitle from "components/forms/DialogTitle";
 import TextField from "components/inputs/TextField";
 import { useSnackbar } from "context/snackbarContext";
-import { CategoryAction, categoryQueries } from "features/category";
 import { queryStore } from "features/shared";
 import useEditSearchParams from "hooks/useEditSearchParams";
 import useSuccessSnackbar from "hooks/useSuccessSnackbar";
@@ -13,31 +12,34 @@ import { FC, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { parseResponseError } from "utils/apiHelpers";
-import { categoryDefaultForm, categorySchema } from "./validation";
+import { organizationDefaultForm, organizationSchema } from "./validation";
+import { organizationQueries } from "..";
+import { OrganizationAction } from "../api/type";
 export type EditFormProps = {};
 export const EditForm: FC<EditFormProps> = ({}) => {
   const { isActive, clearEditParams, id = "" } = useEditSearchParams();
-  const { t } = useTranslation("category");
-  const query = categoryQueries.useDetails(id);
-  const { control, reset, handleSubmit, setError } = useForm<CategoryAction>({
-    resolver: zodResolver(categorySchema),
+  const { t } = useTranslation("organization");
+  const query = organizationQueries.useDetails(id);
+  const { control, reset, handleSubmit, setError } =
+    useForm<OrganizationAction>({
+      resolver: zodResolver(organizationSchema),
 
-    defaultValues: query.data ?? categoryDefaultForm,
-  });
+      defaultValues: query.data ?? organizationDefaultForm,
+    });
   const queryClient = useQueryClient();
   const successSnackbar = useSuccessSnackbar();
   const snackbar = useSnackbar();
-  const mutation = categoryQueries.useEdit();
+  const mutation = organizationQueries.useEdit();
   const handleClose = () => {
     clearEditParams();
-    reset(categoryDefaultForm);
+    reset(organizationDefaultForm);
   };
-  const onSubmit = async (body: CategoryAction) => {
+  const onSubmit = async (body: OrganizationAction) => {
     mutation.mutate(
       { id, ...body },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries(queryStore.category.all._def);
+          queryClient.invalidateQueries(queryStore.organizations.all._def);
           queryClient.invalidateQueries(queryStore.category.details(id));
           handleClose();
           successSnackbar(t("message.success.edit"));
@@ -77,9 +79,10 @@ export const EditForm: FC<EditFormProps> = ({}) => {
               <Grid item xs={12}>
                 <TextField
                   control={control}
-                  name="description"
-                  label={t(`form.description`)}
+                  name="sessionHourlyRate"
+                  label={t(`form.sessionHourlyRate`)}
                   required
+                  type="number"
                 />
               </Grid>
               <Grid item xs={12} justifyContent="center" display="flex" mt={3}>

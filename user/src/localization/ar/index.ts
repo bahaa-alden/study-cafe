@@ -10,7 +10,10 @@ import user from "./user.json";
 import validation from "./validation.json";
 import warehouse from "./warehouse.json";
 import auth from "./auth.json";
+import organization from "./organization.json";
+
 const language = {
+  organization,
   common,
   validation,
   layout,

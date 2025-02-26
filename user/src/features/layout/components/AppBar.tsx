@@ -37,7 +37,7 @@ type Props = {
   onDrawerOpen: () => void;
   onDrawerClose: () => void;
 };
-const AppBar: FC<Props> = ({ open, onDrawerOpen, onDrawerClose }) => {
+export const AppBar: FC<Props> = ({ open, onDrawerOpen, onDrawerClose }) => {
   const { t } = useTranslation("layout");
   let pageTitle = useLocation().pathname.split("/")[1];
   pageTitle = pageTitle ? pageTitle : "organizations";

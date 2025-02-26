@@ -23,14 +23,14 @@ export const CategoryAutocomplete: FC<Props> = ({
   return (
     <AutocompleteControl control={control} label={label} name={name}>
       <Autocomplete
-        isOptionEqualToValue={(option, value) => option._id === value._id}
+        isOptionEqualToValue={(option, value) => option.id === value.id}
         {...props}
         loading={isLoading}
         options={data ?? []}
         getOptionLabel={(option) => option.name}
         renderInput={() => null}
         renderOption={(props, option) => (
-          <li {...props} key={option._id}>
+          <li {...props} key={option.id}>
             {option.name}
           </li>
         )}

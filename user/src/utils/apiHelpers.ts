@@ -42,9 +42,10 @@ export function parseResponseError(feedbacks?: Feedbacks) {
   };
 }
 export function paginateParams(params: APIListParams) {
-  return { pageSize: PAGE_SIZE, ...params, page: (params.page ?? 0) + 1 };
+  return { pageSize: PAGE_SIZE, ...params, page: params.page ?? 1 };
 }
+
 type Data<T> = InfiniteData<APIList<T>> | undefined;
 export function getPage<T>(data: Data<T>, pageNumber: number) {
-  return data?.pages[(data?.pageParams[pageNumber] as any) ?? 0]?.results ?? [];
+  return data?.pages[pageNumber - 1]?.results ?? [];
 }

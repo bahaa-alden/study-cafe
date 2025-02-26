@@ -1,4 +1,3 @@
-import { Role } from "features/admin";
 import { refreshAxiosToken } from "lib/axios";
 
 export const storage = {
@@ -19,10 +18,10 @@ export const storage = {
   getLanguage() {
     return localStorage.getItem("language");
   },
-  setRole(role: Role) {
-    localStorage.setItem("role", role);
+  setOrg(orgId: string) {
+    localStorage.setItem("orgId", orgId);
   },
-  getRole(): Role {
-    return localStorage.getItem("role") as Role;
+  getOrg(): string {
+    return localStorage.getItem("orgId") as string;
   },
 };

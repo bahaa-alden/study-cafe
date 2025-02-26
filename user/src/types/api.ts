@@ -17,7 +17,7 @@ export type Payload<Params, Body = undefined> = (Params extends undefined
   (Body extends undefined ? {} : { body: Body });
 
 export type WithId<T> = {
-  _id: string;
+  id: string;
 } & T;
 export interface APIList<T> {
   total: number;

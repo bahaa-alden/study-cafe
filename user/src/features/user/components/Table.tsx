@@ -20,7 +20,9 @@ import { getPage } from "utils/apiHelpers";
 import { priceFormatter } from "utils/transforms";
 import { User, userQueries } from "..";
 import useTableHeader from "../hooks/useTableHeaders";
-type Props = { setUserToDeposit: React.Dispatch<React.SetStateAction<User | null>> };
+type Props = {
+  setUserToDeposit: React.Dispatch<React.SetStateAction<User | null>>;
+};
 export const Table: FC<Props> = ({ setUserToDeposit }) => {
   const search = useQuerySearchParam();
   const page = usePageNumberSearchParam();
@@ -48,7 +50,9 @@ export const Table: FC<Props> = ({ setUserToDeposit }) => {
               <TableCell
                 key={cellHeader}
                 sx={{
-                  ...(index === 0 && { "&.MuiTableCell-root": { pl: 9, textAlign: "start" } }),
+                  ...(index === 0 && {
+                    "&.MuiTableCell-root": { pl: 9, textAlign: "start" },
+                  }),
                 }}
               >
                 {cellHeader}
@@ -63,7 +67,7 @@ export const Table: FC<Props> = ({ setUserToDeposit }) => {
     >
       <TableBody>
         {currentPage.map((row) => (
-          <TableRowStriped key={row._id}>
+          <TableRowStriped key={row.id}>
             <TableCell>
               <Stack direction="row" alignItems={"center"} gap={3}>
                 <Avatar>
@@ -75,8 +79,12 @@ export const Table: FC<Props> = ({ setUserToDeposit }) => {
               </Stack>
             </TableCell>
             <TableCell>{row.email}</TableCell>
-            <TableCell>{row.wallet && priceFormatter.format(row.wallet.available)}</TableCell>
-            <TableCell>{row.wallet && priceFormatter.format(row.wallet.pending)}</TableCell>
+            <TableCell>
+              {row.wallet && priceFormatter.format(row.wallet.available)}
+            </TableCell>
+            <TableCell>
+              {row.wallet && priceFormatter.format(row.wallet.pending)}
+            </TableCell>
             <TableCell>
               <LTR>{dayjs(row.createdAt).format("YYYY/MM/DD hh:mm A")}</LTR>
             </TableCell>
@@ -87,8 +95,8 @@ export const Table: FC<Props> = ({ setUserToDeposit }) => {
                     <AddCardIcon sx={{ color: "secondary.main" }} />
                   </IconButton>
                 </Tooltip>
-                <ShowIconButton onClick={() => details(row._id)} />
-                <RemoveIconButton onClick={() => remove(row._id)} />
+                <ShowIconButton onClick={() => details(row.id)} />
+                <RemoveIconButton onClick={() => remove(row.id)} />
               </ButtonsStack>
             </TableCell>
           </TableRowStriped>

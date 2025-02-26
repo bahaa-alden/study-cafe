@@ -35,14 +35,14 @@ export const SignupForm = () => {
   const onSubmit = async (body: UserSignupBody) => {
     signup.mutate(body, {
       onSuccess: (data) => {
-        storage.setToken(data.token);
+        storage.setToken(data.data.token);
         queryClient.setQueryData(
           queryStore.account.profile.queryKey,
-          data.user
+          data.data.user
         );
-        navigate("/");
+        navigate("/my-organizations");
       },
-      onError: parseResponseError({ setFormError: setError, snackbar }),
+      onError: parseResponseError({ setError: setError, snackbar }),
     });
   };
   return (

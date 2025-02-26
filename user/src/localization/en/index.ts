@@ -9,6 +9,8 @@ import city from "./city.json";
 import employee from "./employee.json";
 import home from "./home.json";
 import user from "./user.json";
+import organization from "./organization.json";
+
 import warehouse from "./warehouse.json";
 const language = {
   common,
@@ -23,5 +25,6 @@ const language = {
   home,
   user,
   warehouse,
+  organization,
 } as const;
 export default language;

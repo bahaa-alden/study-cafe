@@ -1,0 +1,21 @@
+{
+  "add": "Adding a new organization",
+  "edit": "Modification of the organization \"{{name}}\"",
+  "remove": "Remove organization",
+
+  "table": {
+    "name": "Name",
+    "sessionHourlyRate": "Session hourly rate"
+  },
+  "form": {
+    "name": "Name",
+    "sessionHourlyRate": "Session hourly rate"
+  },
+  "message": {
+    "success": {
+      "edit": "The organization has been modified successfully",
+      "add": "The organization has been added successfully",
+      "remove": "The organization has been removed successfully"
+    }
+  }
+}
