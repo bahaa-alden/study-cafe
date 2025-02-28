@@ -68,6 +68,7 @@ export const AddForm: FC<AddFormProps> = ({ isActive, setIsActive }) => {
                 name="numberOfPersons"
                 label={t(`form.numberOfPersons`)}
                 required
+                type="number"
               />
             </Grid>
             <Grid item xs={12} justifyContent="center" display="flex" mt={3}>

@@ -222,15 +222,11 @@ export class SessionController {
       }
 
       // BadRequestErrorIf session is not free, calculate the cost
-      if (session.totalCost === null) {
-        session = await calculateCost(
-          session,
-          session.organization.sessionHourlyRate,
-        );
-      } else {
-        session.totalCost = session.additionalCost;
-        await session.save({ validateBeforeSave: false });
-      }
+      session = await calculateCost(
+        session,
+        session.organization.sessionHourlyRate,
+      );
+
       res.ok({ data: session, message: 'done' });
     },
   );

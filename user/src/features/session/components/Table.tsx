@@ -20,21 +20,18 @@ import usePageNumberSearchParam from "hooks/usePageNumberSearchParam";
 import useQuerySearchParam from "hooks/useQuerySearchParam";
 import { EndForm } from "./EndForm";
 import { getCurrencySign } from "utils/transforms";
+import { isThereNext } from "constants/apiList";
 
 type Props = {};
 
 export const SessionTable: FC<Props> = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
-
   const search = useQuerySearchParam();
   const page = usePageNumberSearchParam();
   const query = sessionQueries.useAll({ search, page });
-
-  const { data, isError, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    query;
-
+  const { data } = query;
   const currentPage = getPage(data, page);
-
+  
   // Convert API data into card format
   const dataCard = useMemo(
     () =>
@@ -103,16 +100,20 @@ export const SessionTable: FC<Props> = () => {
         Price: {item.price} {getCurrencySign("SYP")}
       </Typography>
 
-      <Stack direction="row" spacing={2} justifyContent="center" sx={{ mt: 3 }}>
+      <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        sx={{ mt: 3, p: 2 }}
+      >
         <Box title="End Session">
-          <EndForm id={item.id}  />
+          <EndForm id={item.id} status={item.status} />
         </Box>
-
         <Tooltip title="Add Dessert">
           <Button
             variant="contained"
             sx={{
-              width: "100px",
+              width: "110px",
               height: "40px",
               fontSize: "14px",
               fontWeight: "bold",
@@ -192,12 +193,11 @@ export const SessionTable: FC<Props> = () => {
       {/* Dynamic Session Cards */}
       <CardTable
         title="Study Café Sessions"
-        data={dataCard || []}
+        pageData={dataCard || []}
         renderCardContent={renderCardContent}
-        isError={isError}
-        isFetchingNextPage={isFetchingNextPage}
-        fetchNextPage={fetchNextPage}
-        hasNextPage={hasNextPage}
+        infiniteQuery={query}
+        pageNumber={page}
+        isThereNext={isThereNext(data?.pages[0].total ?? 0, page)}
       />
     </Stack>
   );

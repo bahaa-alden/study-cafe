@@ -2,7 +2,7 @@ import WebIcon from "@mui/icons-material/Web";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { Avatar, Stack, Tooltip, Typography } from "@mui/material";
+import { Avatar, CardContent, Stack, Tooltip, Typography } from "@mui/material";
 import useEventSearchParams from "hooks/useEventSearchParams";
 import usePageNumberSearchParam from "hooks/usePageNumberSearchParam";
 import useQuerySearchParam from "hooks/useQuerySearchParam";
@@ -12,11 +12,11 @@ import { organizationQueries } from "..";
 import { CardTable } from "components/tables/CardTable";
 import { pink, green, red } from "@mui/material/colors";
 import { Link } from "react-router-dom"; // Ensure to import Link correctly
-WebIcon
 import EditIconButton from "components/buttons/EditIconButton";
 import ButtonsStack from "components/layout/ButtonsStack";
 import { storage } from "utils/storage";
 import { diffInDays } from "utils/transforms";
+import { isThereNext } from "constants/apiList";
 
 type Props = {};
 
@@ -25,12 +25,10 @@ export const OrganizationTable: FC<Props> = () => {
   const page = usePageNumberSearchParam();
   const { edit } = useEventSearchParams();
   const query = organizationQueries.useAll({ search, page });
-  const { data, isError, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    query;
+  const { data } = query;
 
   const currentPage = getPage(data, page);
 
-  // Process data into card format
   const dataCard = useMemo(
     () =>
       currentPage?.map((e) => ({
@@ -45,7 +43,7 @@ export const OrganizationTable: FC<Props> = () => {
   );
 
   const renderCardContent = (item: any) => (
-    <>
+    <CardContent>
       <Link
         to={`${item.id}/sessions`}
         style={{
@@ -98,18 +96,17 @@ export const OrganizationTable: FC<Props> = () => {
       <ButtonsStack>
         <EditIconButton onClick={() => edit(item.id)} />
       </ButtonsStack>
-    </>
+    </CardContent>
   );
 
   return (
     <CardTable
       title="Organization Subscriptions"
-      data={dataCard || []}
+      pageData={dataCard || []}
       renderCardContent={renderCardContent}
-      isError={isError}
-      isFetchingNextPage={isFetchingNextPage}
-      fetchNextPage={fetchNextPage}
-      hasNextPage={hasNextPage}
+      infiniteQuery={query}
+      pageNumber={page}
+      isThereNext={isThereNext(data?.pages[0].total ?? 0, page)}
     />
   );
 };

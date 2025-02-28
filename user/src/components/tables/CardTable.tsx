@@ -1,33 +1,42 @@
-import { Box, Card, Stack, Typography, Button } from "@mui/material";
+import { Box, Button, Card, Stack, Typography } from "@mui/material";
+import { UseInfiniteQueryResult } from "@tanstack/react-query";
 import SomethingWentWrong from "components/feedback/SomethingWentWrong";
-import { SessionStatus } from "constants/enums";
+import { useHandlePageChange } from "./PaginationTable/useHandlePageChange";
+import NoData from "components/feedback/NoData";
+import { APIList } from "types/api";
 
 type CardTableProps<T> = {
   title: string;
-  data: Array<T & { id: string; status: SessionStatus }>;
-  renderCardContent: (
-    item: T & { id: string; status: SessionStatus }
-  ) => JSX.Element;
-  isError: boolean;
-  isFetchingNextPage: boolean;
-  fetchNextPage: () => void;
-  hasNextPage?: boolean;
+  infiniteQuery: UseInfiniteQueryResult<APIList<unknown>, unknown>;
+  renderCardContent: (item: T & { id: string }) => JSX.Element;
+  pageData: Array<T & { id: string }>;
+  pageNumber: number;
+  isThereNext: boolean;
 };
 
 export const CardTable = <T,>({
   title,
-  data,
+  infiniteQuery,
   renderCardContent,
-  isError,
-  isFetchingNextPage, // Set a fixed height
-  fetchNextPage,
-  hasNextPage,
+  pageData,
+  pageNumber,
+  isThereNext,
 }: CardTableProps<T>) => {
-  // Determine if cards should have a fixed height based on the status
-  const isAllNotEnded = data.every(
-    (item) => item.status !== SessionStatus.ended
-  );
-
+  const {
+    fetchNextPage,
+    fetchPreviousPage,
+    data,
+    isSuccess,
+    isError,
+    isFetchingNextPage,
+  } = infiniteQuery;
+  console.log(data?.pages);
+  const handlePageChange = useHandlePageChange({
+    fetchNextPage,
+    fetchPreviousPage,
+    pages: [],
+  });
+  const noData = !data?.pages[0].results.length && isSuccess;
   return (
     <Box sx={{ p: 4, width: "100%", fontFamily: "MontserratArabic" }}>
       <Typography
@@ -41,7 +50,11 @@ export const CardTable = <T,>({
       >
         {title}
       </Typography>
-
+      {noData && (
+        <Box sx={{ mx: "auto", my: 2 }}>
+          <NoData />
+        </Box>
+      )}
       {/* Error Handling */}
       {isError && (
         <Box display="flex" justifyContent="center">
@@ -61,16 +74,20 @@ export const CardTable = <T,>({
             gap: 2,
           }}
         >
-          {data.map((item) => (
+          {pageData.map((item) => (
             <Card
               key={item["id"]}
               sx={{
                 borderRadius: "25px",
                 boxShadow: "0px 10px 25px rgba(0, 0, 0, 0.1)",
-                padding: "10px",
-                width: { xs: "90%", sm: "100%", md: "25%" }, // Ensures uniform width
-                minHeight: "250px", // Set a base min-height
-                height: isAllNotEnded ? "250px" : "auto", // Ensures equal height if needed
+                padding: "2px",
+                width: { xs: "100%", sm: "65%", md: "300px" }, // Ensures uniform width
+                minHeight: "300px", // Set a base min-height
+                height: {
+                  xs: "250px",
+                  sm: "300px",
+                  md: "300px",
+                }, // Ensures equal height if needed
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -102,23 +119,26 @@ export const CardTable = <T,>({
       )}
 
       {/* Load More Button */}
-      {hasNextPage && (
+      {isThereNext && (
         <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
           <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#D77A61",
-              color: "#fff",
-              borderRadius: "25px",
-              px: 4,
-              py: 1.5,
+            onClick={() => handlePageChange(null, pageNumber + 1)}
+            disabled={isFetchingNextPage}
+            style={{
+              padding: "10px 20px",
               fontSize: "16px",
               fontWeight: "bold",
-              textTransform: "none",
-              "&:hover": { backgroundColor: "#C96C56" },
+              color: "white",
+              backgroundColor: "#5E3B3B",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+              transition: "background 0.3s ease",
+              opacity:
+                !data?.pages[pageNumber + 1] && !infiniteQuery.hasNextPage
+                  ? 0.5
+                  : 1,
             }}
-            onClick={fetchNextPage}
-            disabled={isFetchingNextPage}
           >
             {isFetchingNextPage ? "Loading..." : "Load More"}
           </Button>
