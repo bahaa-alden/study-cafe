@@ -9,3 +9,14 @@ export enum SubscriptionStatus {
   expired = "expired",
   cancelled = "cancelled",
 }
+
+export enum SessionStatus {
+  started = "started",
+  ended = "ended",
+  cancelled = "cancelled",
+}
+
+export enum DessertType {
+  drink = "drink",
+  meal = "meal",
+}

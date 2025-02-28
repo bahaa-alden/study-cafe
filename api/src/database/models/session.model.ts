@@ -14,6 +14,8 @@ import { omit } from 'lodash';
 export interface ISession extends MongooseDocument {
   id: string;
   // <creating-property-interface />
+  numberOfPersons: number;
+
   desserts: Array<{
     dessertId: IDessert['_id'];
     dessert: IDessert;
@@ -50,6 +52,9 @@ export interface ISession extends MongooseDocument {
 const sessionSchema: Schema = new Schema<ISession>(
   {
     // <creating-property-schema />
+    numberOfPersons: {
+      type: Number,
+    },
     desserts: {
       type: [
         {

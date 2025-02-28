@@ -1,16 +1,16 @@
 import { Box, Toolbar, useMediaQuery, useTheme } from "@mui/material";
 import { FC, Suspense, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { TopBarProgressIndicator } from "../../../Wrapper/TopBarProgressProvider";
 import AppBar from "./AppBar";
 import Main from "./Main";
 import Sidebar from "./SideBar";
 export const drawerWidth = 240;
 
-type Props = {};
-const Layout: FC<Props> = ({}) => {
+const Layout: FC = () => {
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("md"));
+  const location = useLocation(); // Get current route
 
   const [open, setOpen] = useState<boolean>(isLargeScreen);
   const handleDrawerOpen = () => {
@@ -19,12 +19,20 @@ const Layout: FC<Props> = ({}) => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  // Hide sidebar when exactly at "/my-organizations"
+  const hideSidebar = location.pathname === "/my-organizations";
+
   return (
     <Box>
-      <AppBar open={open} onDrawerOpen={handleDrawerOpen} onDrawerClose={handleDrawerClose} />
-      <Sidebar open={open} setOpen={setOpen} />
+      <AppBar
+        open={open}
+        onDrawerOpen={handleDrawerOpen}
+        onDrawerClose={handleDrawerClose}
+      />
+      {!hideSidebar && <Sidebar open={open} setOpen={setOpen} />}
       <Toolbar />
-      <Main open={open} sx={{ px: { xs: 1, sm: 5 }, py: 3 }}>
+      <Main open={!hideSidebar && open} sx={{ px: { xs: 1, sm: 5 }, py: 3 }}>
         <Suspense fallback={<TopBarProgressIndicator />}>
           <Outlet />
         </Suspense>
@@ -32,4 +40,5 @@ const Layout: FC<Props> = ({}) => {
     </Box>
   );
 };
+
 export default Layout;

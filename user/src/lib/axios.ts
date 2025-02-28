@@ -9,6 +9,7 @@ axios.interceptors.request.use(
   (config) => {
     if (config.headers) {
       config.headers = {
+        ...config.headers,
         "accept-language": i18n.language,
         Authorization: `Bearer ${token}`,
       };

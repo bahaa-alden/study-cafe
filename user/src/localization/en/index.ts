@@ -10,6 +10,7 @@ import employee from "./employee.json";
 import home from "./home.json";
 import user from "./user.json";
 import organization from "./organization.json";
+import session from "./session.json";
 
 import warehouse from "./warehouse.json";
 const language = {
@@ -26,5 +27,6 @@ const language = {
   user,
   warehouse,
   organization,
+  session
 } as const;
 export default language;

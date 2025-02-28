@@ -26,6 +26,7 @@ export type ISessionAllSchema = TypeOf<typeof sessionAllSchema>;
 
 const sessionCreateSchema = object({
   // <creating-property-create-schema />
+  numberOfPersons: z.number(),
 
   username: z.string(),
 }).strict();
@@ -34,6 +35,8 @@ export type ISessionCreateSchema = TypeOf<typeof sessionCreateSchema>;
 
 const sessionUpdateSchema = object({
   // <creating-property-update-schema />
+  numberOfPersons: z.number().optional(),
+
   status: z.nativeEnum(SessionStatus).optional(),
   subtotal: z.number().optional(),
   additionalCost: z.number().optional(),

@@ -2,7 +2,7 @@ import WebIcon from "@mui/icons-material/Web";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { Avatar, Box, Stack, Tooltip, Typography } from "@mui/material";
+import { Avatar, Stack, Tooltip, Typography } from "@mui/material";
 import useEventSearchParams from "hooks/useEventSearchParams";
 import usePageNumberSearchParam from "hooks/usePageNumberSearchParam";
 import useQuerySearchParam from "hooks/useQuerySearchParam";
@@ -12,14 +12,15 @@ import { organizationQueries } from "..";
 import { CardTable } from "components/tables/CardTable";
 import { pink, green, red } from "@mui/material/colors";
 import { Link } from "react-router-dom"; // Ensure to import Link correctly
-
+WebIcon
 import EditIconButton from "components/buttons/EditIconButton";
 import ButtonsStack from "components/layout/ButtonsStack";
 import { storage } from "utils/storage";
+import { diffInDays } from "utils/transforms";
 
 type Props = {};
 
-export const OblongTable: FC<Props> = () => {
+export const OrganizationTable: FC<Props> = () => {
   const search = useQuerySearchParam();
   const page = usePageNumberSearchParam();
   const { edit } = useEventSearchParams();
@@ -46,17 +47,21 @@ export const OblongTable: FC<Props> = () => {
   const renderCardContent = (item: any) => (
     <>
       <Link
-        to="/organizations"
-        style={{ textDecoration: "none", width: "100%" }}
+        to={`${item.id}/sessions`}
+        style={{
+          textDecoration: "none",
+          display: "inline-block",
+          width: "100%",
+        }}
         onClick={() => storage.setOrg(item.id)}
       >
         <Avatar
           sx={{
-            bgcolor: pink[500],
+            // bgcolor: pink[500],
             width: 56,
             height: 56,
             fontSize: "30px",
-            mb: 2,
+            mb: 1,
           }}
         >
           {item.icon} {/* Replace with dynamic icon */}
@@ -76,8 +81,9 @@ export const OblongTable: FC<Props> = () => {
               <CancelIcon sx={{ color: red[500], fontSize: 24 }} />
             )}
           </Tooltip>
-          <Typography variant="body2" color="text.secondary">
-            Expires: {item.expiresDate}
+          <Typography variant="body2" color="text.secondary" fontSize={16}>
+            Expires after: {diffInDays(item.expiresDate)} day
+            {diffInDays(item.expiresDate) !== 1 ? "s" : ""}
           </Typography>
         </Stack>
 
@@ -88,11 +94,6 @@ export const OblongTable: FC<Props> = () => {
             {item.sessionHourlyRate} LSI/hour
           </Typography>
         </Stack>
-
-        {/* Additional Features (optional) */}
-        <Box sx={{ mt: 2, display: "flex", justifyContent: "space-between" }}>
-          {/* You can add buttons or extra info here */}
-        </Box>
       </Link>
       <ButtonsStack>
         <EditIconButton onClick={() => edit(item.id)} />

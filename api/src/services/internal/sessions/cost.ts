@@ -15,10 +15,11 @@ export const calculateCost = async (
   const durationInHours =
     (session.endTime.getTime() - session.startTime.getTime()) / (1000 * 3600);
 
-  session.subtotal = Math.max(
-    organizationHourlyRate,
-    Math.ceil(durationInHours * organizationHourlyRate),
-  );
+  session.subtotal =
+    Math.max(
+      organizationHourlyRate,
+      Math.ceil(durationInHours * organizationHourlyRate),
+    ) * session.numberOfPersons;
 
   // Total cost including additional cost
   session.totalCost = session.subtotal + session.additionalCost;

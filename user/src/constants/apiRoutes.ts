@@ -16,6 +16,16 @@ let API_ROUTES = {
     EDIT: (id: string) => id,
     DELETE: (id: string) => id,
   },
+  SESSIONS: {
+    root: "sessions",
+    ADD: "",
+    GET_ALL: "",
+    GET: (id: string) => id,
+    EDIT: (id: string) => id,
+    DELETE: (id: string) => id,
+    END: (id: string) => `${id}/end`,
+    ADD_DESSERT: (id: string) => `${id}/desserts`,
+  },
   ORGANIZATIONS: {
     root: "organizations",
     ADD: "",

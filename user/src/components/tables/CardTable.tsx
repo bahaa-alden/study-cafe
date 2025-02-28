@@ -1,10 +1,13 @@
 import { Box, Card, Stack, Typography, Button } from "@mui/material";
 import SomethingWentWrong from "components/feedback/SomethingWentWrong";
+import { SessionStatus } from "constants/enums";
 
 type CardTableProps<T> = {
   title: string;
-  data: Array<T & { id: string }>;
-  renderCardContent: (item: T & { id: string }) => JSX.Element; // A function to render the card content dynamically
+  data: Array<T & { id: string; status: SessionStatus }>;
+  renderCardContent: (
+    item: T & { id: string; status: SessionStatus }
+  ) => JSX.Element;
   isError: boolean;
   isFetchingNextPage: boolean;
   fetchNextPage: () => void;
@@ -16,15 +19,25 @@ export const CardTable = <T,>({
   data,
   renderCardContent,
   isError,
-  isFetchingNextPage,
+  isFetchingNextPage, // Set a fixed height
   fetchNextPage,
   hasNextPage,
 }: CardTableProps<T>) => {
+  // Determine if cards should have a fixed height based on the status
+  const isAllNotEnded = data.every(
+    (item) => item.status !== SessionStatus.ended
+  );
+
   return (
-    <Box sx={{ p: 3, width: "100%" }}>
+    <Box sx={{ p: 4, width: "100%", fontFamily: "MontserratArabic" }}>
       <Typography
         variant="h4"
-        sx={{ mb: 3, textAlign: "center", fontWeight: "bold" }}
+        sx={{
+          mb: 3,
+          textAlign: "center",
+          fontWeight: "bold",
+          color: "#5E3B3B",
+        }}
       >
         {title}
       </Typography>
@@ -43,34 +56,46 @@ export const CardTable = <T,>({
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
-            alignItems: "center",
+            alignItems: "stretch",
             flexDirection: "row",
-            gap: 3,
+            gap: 2,
           }}
         >
           {data.map((item) => (
             <Card
               key={item["id"]}
               sx={{
-                backgroundColor: "#fff",
-                borderRadius: "12px",
-                boxShadow: "0px 10px 15px rgba(0, 0, 0, 0.1)",
-                padding: "20px",
-                width: { xs: "100%", sm: "45%", md: "30%" },
-                minHeight: "250px",
+                borderRadius: "25px",
+                boxShadow: "0px 10px 25px rgba(0, 0, 0, 0.1)",
+                padding: "10px",
+                width: { xs: "90%", sm: "100%", md: "25%" }, // Ensures uniform width
+                minHeight: "250px", // Set a base min-height
+                height: isAllNotEnded ? "250px" : "auto", // Ensures equal height if needed
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                justifyContent: "space-between",
+                justifyContent: "space-between", // Ensures even spacing
                 textAlign: "center",
                 transition: "transform 0.3s ease, box-shadow 0.3s ease",
                 "&:hover": {
-                  transform: "scale(1.05)",
-                  boxShadow: "0px 15px 25px rgba(0, 0, 0, 0.2)",
+                  transform: "scale(1.02)",
+                  boxShadow: "0px 15px 30px rgba(0, 0, 0, 0.2)",
                 },
               }}
             >
-              {renderCardContent(item)}
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "90%",
+                  textAlign: "center",
+                }}
+              >
+                {renderCardContent(item)}
+              </Box>
             </Card>
           ))}
         </Stack>
@@ -82,14 +107,15 @@ export const CardTable = <T,>({
           <Button
             variant="contained"
             sx={{
-              backgroundColor: "#F47560",
+              backgroundColor: "#D77A61",
               color: "#fff",
-              borderRadius: "30px",
+              borderRadius: "25px",
               px: 4,
               py: 1.5,
               fontSize: "16px",
               fontWeight: "bold",
-              "&:hover": { backgroundColor: "#d96050" },
+              textTransform: "none",
+              "&:hover": { backgroundColor: "#C96C56" },
             }}
             onClick={fetchNextPage}
             disabled={isFetchingNextPage}

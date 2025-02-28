@@ -97,7 +97,7 @@ export class SessionController {
       res: Response,
       next: NextFunction,
     ): Promise<void> => {
-      const { username } = req.valid.body;
+      const { username, numberOfPersons } = req.valid.body;
 
       const organization = needRecord(
         await organizationRepository.findByIdWithUser(
@@ -137,6 +137,7 @@ export class SessionController {
         organizationId: organization.id,
         startTime: now,
         totalCost: isFreeSession ? 0 : null,
+        numberOfPersons,
       });
 
       if (session === null) {

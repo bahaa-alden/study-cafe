@@ -1,17 +1,19 @@
 import SomethingWentWrong from "components/feedback/SomethingWentWrong";
 import AuthenticatedRoute from "components/routes/AuthenticatedRoute";
 import NotAuthenticatedRoute from "components/routes/NotAuthenticatedRoute";
-import MyOrganizations from "pages/organizations";
-import { CategoriesPage } from "pages/categories";
+import { SessionAddForm } from "features/session";
 import { ForgotPasswordPage } from "pages/forgot-password";
 import { LoginPage } from "pages/login";
+import OrganizationsPage from "pages/organizations";
 import { RegistrationPage } from "pages/registration";
 import { ResetPasswordPage } from "pages/reset-password";
+import SessionsPage from "pages/sessions";
 import { SignupPage } from "pages/signup";
 import { lazy } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Outlet,
   Route,
   ScrollRestoration,
@@ -22,19 +24,23 @@ const Layout = lazy(() => import("features/layout"));
 export default createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<WithScroll />} errorElement={<ErrorBoundary />}>
+      <Route index element={<Navigate to="/my-organizations" replace />} />
       <Route element={<NotAuthenticatedRoute />}>
         <Route path="registration" element={<RegistrationPage />} />
         <Route path="signup" element={<SignupPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="forgot-password" element={<ForgotPasswordPage />} />
-        <Route path="reset-password" element={<ResetPasswordPage />} />{" "}
+        <Route path="reset-password" element={<ResetPasswordPage />} />
       </Route>
+
       <Route element={<AuthenticatedRoute />}>
-        <Route path="my-organizations" element={<MyOrganizations />} />
-        <Route path="organizations" element={<Layout />}>
-          <Route path="categories" element={<CategoriesPage />} />
-          <Route path="*" element={<SomethingWentWrong />} />
+        <Route path="/my-organizations" element={<Layout />}>
+          <Route path="" element={<OrganizationsPage />} />
+          <Route path=":id/sessions" element={<SessionsPage />} />
+          <Route path=":id/desserts" />
+          <Route path=":id/statistics" />
         </Route>
+        <Route path="*" element={<SomethingWentWrong />} />
       </Route>
     </Route>
   )

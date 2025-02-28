@@ -3,5 +3,6 @@ export {
   queries as organizationQueries,
 } from "./api/queries";
 export { default as Details } from "./components/Details";
-export { OblongTable } from "./components/Table";
+export { OrganizationTable } from "./components/Table";
 export { EditForm as OrganizationEditForm } from "./components/EditForm";
+export * from "./api/type";

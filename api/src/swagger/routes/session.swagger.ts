@@ -335,6 +335,7 @@ export const Session = {
   properties: {
     id: { type: 'string' },
     // property
+    numberOfPersons: { type: 'number' },
     desserts: {
       type: 'array',
       properties: {
@@ -355,6 +356,8 @@ export const Session = {
   example: {
     id: '5ebac534954b54139806c112',
     // property example
+    numberOfPersons: 1,
+
     desserts: [{ dessertId: '673c40cd59e293827f79e399', count: 2 }],
 
     status: 'started',
@@ -383,16 +386,19 @@ export const createSession = {
   type: 'object',
   properties: {
     // create property
+    numberOfPersons: { type: 'number' },
 
     username: { type: 'string' },
   },
   example: {
     // create property example
+    numberOfPersons: 1,
 
     username: 'mo_ali',
   },
   required: [
     // required property
+    'numberOfPersons',
 
     'username',
   ],
@@ -402,6 +408,7 @@ export const updateSession = {
   type: 'object',
   properties: {
     // update property
+    numberOfPersons: { type: 'number' },
     desserts: {
       type: 'array',
       properties: {
@@ -417,6 +424,8 @@ export const updateSession = {
   },
   example: {
     // update property example
+    numberOfPersons: 1,
+
     desserts: [{ dessertId: '673c40cd59e293827f79e399', count: 2 }],
 
     status: 'started',

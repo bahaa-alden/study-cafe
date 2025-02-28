@@ -6,12 +6,12 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { Stack } from "@mui/system";
-import { RouterButton } from "components/links/RouterButton";
 import RouterLink from "components/links/RouterLink";
 import { SideBarItem } from "constants/sideBarItems";
 import { FC, Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import { storage } from "utils/storage";
 const LinkSx: SxProps = {
   display: "block",
   color: "#000",
@@ -49,7 +49,7 @@ export const SideBarListItem: FC<SideBarListItemProps> = ({
           color: "#000",
           "&:hover": { color: "primary.main" },
         }}
-        to={data.href}
+        to={data.withId ? `${storage.getOrg()}/${data.href}` : `/${data.href}`}
       >
         <Tooltip
           title={

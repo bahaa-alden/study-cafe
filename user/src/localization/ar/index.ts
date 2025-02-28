@@ -11,6 +11,7 @@ import validation from "./validation.json";
 import warehouse from "./warehouse.json";
 import auth from "./auth.json";
 import organization from "./organization.json";
+import session from "./session.json";
 
 const language = {
   organization,
@@ -26,5 +27,6 @@ const language = {
   warehouse,
   home,
   auth,
+  session
 } as const;
 export default language;
