@@ -3,15 +3,14 @@ import { Stack } from "@mui/system";
 import { useQueryClient } from "@tanstack/react-query";
 import Submit from "components/buttons/Submit";
 import { useSnackbar } from "context/snackbarContext";
-import { CategoryAutocomplete, CategorySelect } from "features/category";
 import { queryStore } from "features/shared";
 import { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { parseResponseError } from "utils/apiHelpers";
-import { FavoriteUpdate, accountQueries } from "..";
+import { accountQueries } from "..";
 export type Form = {
-  favoriteCategories: CategorySelect[];
+  favoriteCategories: any[];
 };
 export type PreferenceFormProps = {};
 export const PreferenceForm: FC<PreferenceFormProps> = ({}) => {
@@ -38,9 +37,7 @@ export const PreferenceForm: FC<PreferenceFormProps> = ({}) => {
   useEffect(() => {
     if (query.isSuccess && !isLoaded) {
       setIsLoaded(true);
-      reset({
-        favoriteCategories: query.data.favoriteCategories,
-      });
+      reset({});
     }
   }, [isLoaded, query, reset, setIsLoaded]);
   return (
@@ -85,13 +82,6 @@ export const PreferenceForm: FC<PreferenceFormProps> = ({}) => {
                 },
               }}
             >
-              <CategoryAutocomplete
-                disabled={query.isLoading}
-                multiple
-                control={control}
-                name="favoriteCategories"
-                label={t("favoriteCategories")}
-              />
               <Submit
                 saveIcon
                 size="large"
@@ -107,9 +97,8 @@ export const PreferenceForm: FC<PreferenceFormProps> = ({}) => {
     </Box>
   );
 };
-export function formToBody(form: Form): FavoriteUpdate {
+export function formToBody(form: Form) {
   return {
     favoriteCategories: form.favoriteCategories.map((category) => category.id),
-    favoriteCities: form.favoriteCities.map((city) => city.id),
   };
 }

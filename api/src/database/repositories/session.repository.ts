@@ -73,7 +73,7 @@ export class SessionRepository extends BaseRepository<ISession> {
     }
 
     if (search) {
-      query.$or = [];
+      query.$or = [{ username: { $regex: new RegExp(search, 'i') } }];
     }
 
     if (filter?.organizationId) {

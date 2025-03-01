@@ -39,8 +39,8 @@ export const EditForm: FC<EditFormProps> = ({}) => {
       { id, ...body },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries(queryStore.organizations.all._def);
-          queryClient.invalidateQueries(queryStore.category.details(id));
+          queryClient.invalidateQueries(queryStore.organization.all._def);
+          queryClient.invalidateQueries(queryStore.organization.details(id));
           handleClose();
           successSnackbar(t("message.success.edit"));
         },
@@ -53,7 +53,7 @@ export const EditForm: FC<EditFormProps> = ({}) => {
   }, [query.data, reset]);
 
   return (
-    <Dialog open={isActive} onClose={handleClose} fullWidth maxWidth={"xs"}>
+    <Dialog open={isActive} onClose={handleClose} fullWidth maxWidth={"sm"}>
       <Fade in={isActive} timeout={0}>
         <DialogTitle
           onClose={handleClose}

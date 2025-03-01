@@ -42,7 +42,6 @@ export class OrganizationRepository extends BaseRepository<IOrganization> {
       .findOne({
         _id: id,
         userId,
-        status: OrgStatus.approved,
         deletedAt: null,
       })
       .populate([

@@ -26,7 +26,12 @@ export type Session = {
   updatedAt: string;
 };
 
-export type SessionAllParams = APIListParams;
+export type SessionAllParams = APIListParams &
+  Partial<{
+    status: SessionStatus;
+    dateFrom: string;
+    dateTo: string;
+  }>;
 
 export type SessionAction = {
   username: string;

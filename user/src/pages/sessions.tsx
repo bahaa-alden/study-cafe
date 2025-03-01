@@ -1,10 +1,13 @@
 import { Stack } from "@mui/material";
-import { SessionTable } from "features/session";
+import { SessionAddForm, SessionTable } from "features/session";
 
 export default function SessionsPage() {
   return (
-    <Stack gap={1}>
-      <SessionTable />
-    </Stack>
+    <>
+      <Stack gap={1}>
+        <SessionTable />
+        <SessionAddForm />
+      </Stack>
+    </>
   );
 }

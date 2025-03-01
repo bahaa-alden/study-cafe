@@ -5,17 +5,16 @@ import {
   Stack,
   Tooltip,
   Typography,
-  Card,
   CardContent,
   useTheme,
+  Grid,
 } from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CakeIcon from "@mui/icons-material/Cake";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { teal, grey, purple } from "@mui/material/colors";
+import { teal } from "@mui/material/colors";
 import { getPage } from "utils/apiHelpers";
 import { CardTable } from "components/tables/CardTable";
-import { SessionAddForm, sessionQueries } from "..";
+import { sessionQueries } from "..";
 import usePageNumberSearchParam from "hooks/usePageNumberSearchParam";
 import useQuerySearchParam from "hooks/useQuerySearchParam";
 import { EndForm } from "./EndForm";
@@ -23,21 +22,30 @@ import { getCurrencySign } from "utils/transforms";
 import { isThereNext, isTherePrev } from "constants/apiList";
 import { DessertAddForm } from "./DessertAddForm";
 import { useTranslation } from "react-i18next";
+import SearchFilter from "components/inputs/SearchFilter";
+import FilterRow from "components/layout/FilterRow";
+import AddFab from "components/buttons/AddFab";
+import useEventSearchParams from "hooks/useEventSearchParams";
 
 type Props = {};
 
 export const SessionTable: FC<Props> = () => {
-  const [isActive, setIsActive] = useState<boolean>(false);
   const [activeDessertSession, setActiveDessertSession] = useState<
     string | null
   >(null);
 
   const theme = useTheme();
-
   const { t } = useTranslation("session");
+  const { add } = useEventSearchParams();
+
+  // Get query params
   const search = useQuerySearchParam();
   const page = usePageNumberSearchParam();
-  const query = sessionQueries.useAll({ search, page });
+
+  const query = sessionQueries.useAll({
+    search,
+    page,
+  });
   const { data } = query;
   const currentPage = getPage(data, page);
 
@@ -149,73 +157,26 @@ export const SessionTable: FC<Props> = () => {
   );
 
   return (
-    <Stack spacing={3}>
-      {/* Static Card for Creating a New Session */}
-      <Card
-        sx={{
-          p: 3,
-          borderRadius: 4,
-          boxShadow: 3,
-          transition: "all 0.3s ease-in-out",
-          "&:hover": {
-            boxShadow: 7,
-            transform: "scale(1.02)",
-          },
-          textAlign: "center",
-          backgroundColor: grey[50],
-        }}
-      >
-        <CardContent>
-          <Avatar
-            sx={{
-              bgcolor: theme.palette.primary.main,
-              width: 64,
-              height: 64,
-              fontSize: "34px",
-              mb: 2,
-            }}
-          >
-            <AddCircleIcon sx={{ color: "white" }} />
-          </Avatar>
+    <>
+      <Stack spacing={0}>
+        <AddFab hideOnScroll onClick={() => add()} />
+        <FilterRow>
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            <SearchFilter />
+          </Grid>
+        </FilterRow>
 
-          <Typography
-            variant="h5"
-            sx={{ fontWeight: "bold", color: grey[800] }}
-          >
-            Start a New Session
-          </Typography>
-
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-            Click below to create a new session in the Study Café.
-          </Typography>
-
-          <Button
-            variant="contained"
-            sx={{
-              mt: 2,
-              backgroundColor: theme.palette.primary.main,
-              "&:hover": { backgroundColor: purple[800] },
-            }}
-            startIcon={<AddCircleIcon sx={{ color: "white" }} />}
-            onClick={() => setIsActive(!isActive)}
-          >
-            Create Session
-          </Button>
-        </CardContent>
-      </Card>
-      <SessionAddForm isActive={isActive} setIsActive={setIsActive} />
-
-      {/* Dynamic Session Cards */}
-      <CardTable
-        title="Study Café Sessions"
-        pageData={dataCard || []}
-        renderCardContent={renderCardContent}
-        infiniteQuery={query}
-        pageNumber={page}
-        isThereNext={isThereNext(data?.pages[0].total ?? 0, page)}
-        isTherePrev={isTherePrev(page)}
-      />
-    </Stack>
+        <CardTable
+          title="Study Café Sessions"
+          pageData={dataCard || []}
+          renderCardContent={renderCardContent}
+          infiniteQuery={query}
+          pageNumber={page}
+          isThereNext={isThereNext(data?.pages[0].total ?? 0, page)}
+          isTherePrev={isTherePrev(page)}
+        />
+      </Stack>
+    </>
   );
 };
 

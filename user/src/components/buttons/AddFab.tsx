@@ -1,10 +1,12 @@
 import AddIcon from "@mui/icons-material/Add";
 import { Fab, FabProps, Tooltip } from "@mui/material";
+import { OptionalWrap } from "components/layout/OptionalWrap";
+import { HideOnScroll } from "features/layout";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-type Props = FabProps;
-const AddFab: FC<Props> = (props) => {
+type Props = FabProps & { hideOnScroll?: boolean };
+const AddFab: FC<Props> = ({ hideOnScroll = false, ...props }) => {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const handleClick = () => {
@@ -13,14 +15,20 @@ const AddFab: FC<Props> = (props) => {
   };
   return (
     <Tooltip title={t("add")}>
-      <Fab
-        color="primary"
-        onClick={handleClick}
-        sx={{ position: "fixed", bottom: 16, right: 16 }}
-        {...props}
+      <OptionalWrap
+        Element={HideOnScroll}
+        wrap={hideOnScroll}
+        ElementProps={{}}
       >
-        <AddIcon sx={{ color: "white" }} />
-      </Fab>
+        <Fab
+          color="primary"
+          onClick={handleClick}
+          sx={{ position: "fixed", bottom: 16, right: 16 }}
+          {...props}
+        >
+          <AddIcon sx={{ color: "white" }} />
+        </Fab>
+      </OptionalWrap>
     </Tooltip>
   );
 };

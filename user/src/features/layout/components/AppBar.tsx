@@ -39,7 +39,10 @@ type Props = {
 };
 export const AppBar: FC<Props> = ({ open, onDrawerOpen, onDrawerClose }) => {
   const { t } = useTranslation("layout");
-  let pageTitle = useLocation().pathname.split("/")[1];
+  let pageTitle =
+    useLocation().pathname.split("/")[
+      useLocation().pathname.split("/").length - 1
+    ];
   pageTitle = pageTitle ? pageTitle : "organizations";
   const { lang, setLang } = useContext(globalLanguageContext);
   const navigate = useNavigate();

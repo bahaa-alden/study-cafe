@@ -14,11 +14,12 @@ import { parseResponseError } from "utils/apiHelpers";
 import { sessionDefaultForm, sessionSchema } from "./validation";
 import { SessionAction } from "../api/type";
 import { sessionQueries } from "..";
-export type AddFormProps = {
-  isActive: boolean;
-  setIsActive: (value: boolean) => void;
-};
-export const AddForm: FC<AddFormProps> = ({ isActive, setIsActive }) => {
+import useAddSearchParams from "hooks/useAddSearchParams";
+
+export type AddFormProps = {};
+export const AddForm: FC<AddFormProps> = ({}) => {
+  const { isActive, clearAddParams } = useAddSearchParams();
+
   const { t } = useTranslation("session");
   const { control, reset, handleSubmit, setError } = useForm<SessionAction>({
     resolver: zodResolver(sessionSchema),
@@ -31,7 +32,7 @@ export const AddForm: FC<AddFormProps> = ({ isActive, setIsActive }) => {
   const add = sessionQueries.useAdd();
   const handleClose = () => {
     reset(sessionDefaultForm);
-    setIsActive(!isActive);
+    clearAddParams();
   };
   const onSubmit = async (body: SessionAction) => {
     add.mutate(body, {
@@ -45,7 +46,7 @@ export const AddForm: FC<AddFormProps> = ({ isActive, setIsActive }) => {
   };
 
   return (
-    <Dialog open={isActive} onClose={handleClose} fullWidth maxWidth={"xs"}>
+    <Dialog open={isActive} onClose={handleClose} fullWidth maxWidth={"sm"}>
       <Fade in={isActive} timeout={0}>
         <DialogTitle onClose={handleClose} fontSize={30} color="primary">
           {t("add")}

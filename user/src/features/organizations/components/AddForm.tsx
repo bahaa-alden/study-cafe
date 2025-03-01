@@ -5,36 +5,40 @@ import Submit from "components/buttons/Submit";
 import DialogTitle from "components/forms/DialogTitle";
 import TextField from "components/inputs/TextField";
 import { useSnackbar } from "context/snackbarContext";
-import { CategoryAction, categoryQueries } from "features/category";
 import { queryStore } from "features/shared";
-import useAddSearchParams from "hooks/useAddSearchParams";
 import useSuccessSnackbar from "hooks/useSuccessSnackbar";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { parseResponseError } from "utils/apiHelpers";
-import { categoryDefaultForm, categorySchema } from "./validation";
+import { organizationDefaultForm, organizationSchema } from "./validation";
+import { OrganizationAction } from "../api/type";
+import { organizationQueries } from "..";
+import useAddSearchParams from "hooks/useAddSearchParams";
+
 export type AddFormProps = {};
 export const AddForm: FC<AddFormProps> = ({}) => {
   const { isActive, clearAddParams } = useAddSearchParams();
-  const { t } = useTranslation("category");
-  const { control, reset, handleSubmit, setError } = useForm<CategoryAction>({
-    resolver: zodResolver(categorySchema),
-    defaultValues: categoryDefaultForm,
-  });
+
+  const { t } = useTranslation("organization");
+  const { control, reset, handleSubmit, setError } =
+    useForm<OrganizationAction>({
+      resolver: zodResolver(organizationSchema),
+      defaultValues: organizationDefaultForm,
+    });
   const queryClient = useQueryClient();
   const successSnackbar = useSuccessSnackbar();
   const snackbar = useSnackbar();
 
-  const add = categoryQueries.useAdd();
+  const add = organizationQueries.useAdd();
   const handleClose = () => {
+    reset(organizationDefaultForm);
     clearAddParams();
-    reset(categoryDefaultForm);
   };
-  const onSubmit = async (body: CategoryAction) => {
+  const onSubmit = async (body: OrganizationAction) => {
     add.mutate(body, {
       onSuccess: () => {
-        queryClient.invalidateQueries(queryStore.category.all._def);
+        queryClient.invalidateQueries(queryStore.organization.all._def);
         handleClose();
         successSnackbar(t("message.success.add"));
       },
@@ -43,7 +47,7 @@ export const AddForm: FC<AddFormProps> = ({}) => {
   };
 
   return (
-    <Dialog open={isActive} onClose={handleClose} fullWidth maxWidth={"xs"}>
+    <Dialog open={isActive} onClose={handleClose} fullWidth maxWidth={"sm"}>
       <Fade in={isActive} timeout={0}>
         <DialogTitle onClose={handleClose} fontSize={30} color="primary">
           {t("add")}
@@ -53,14 +57,20 @@ export const AddForm: FC<AddFormProps> = ({}) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={1} my={1}>
             <Grid item xs={12}>
-              <TextField control={control} name="name" label={t(`form.name`)} required />
+              <TextField
+                control={control}
+                name="name"
+                label={t(`form.name`)}
+                required
+              />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 control={control}
-                name="description"
-                label={t(`form.description`)}
+                name="sessionHourlyRate"
+                label={t("form.sessionHourlyRate")}
                 required
+                type="number"
               />
             </Grid>
             <Grid item xs={12} justifyContent="center" display="flex" mt={3}>

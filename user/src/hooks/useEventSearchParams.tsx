@@ -1,11 +1,17 @@
 import { useSearchParams } from "react-router-dom";
 
 const useEventSearchParams = ({
+  addKey = "add",
   detailsKey = "details",
   editKey = "edit",
   removeKey = "remove",
 } = {}) => {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const add = () => {
+    searchParams.set("mode", addKey);
+    setSearchParams(searchParams);
+  };
 
   const edit = (id: string) => {
     searchParams.set("id", id);
@@ -23,6 +29,6 @@ const useEventSearchParams = ({
     setSearchParams(searchParams);
   };
 
-  return { edit, details, remove };
+  return { edit, details, remove, add };
 };
 export default useEventSearchParams;

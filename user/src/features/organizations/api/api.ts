@@ -18,6 +18,10 @@ const API = {
     );
     return data.data;
   },
+  add: async (body: OrganizationAction) => {
+    const { data } = await axios.post(API_ROUTES.ORGANIZATIONS.ADD, body);
+    return data;
+  },
   edit: async ({ id, ...body }: WithId<OrganizationAction>) => {
     const { data } = await axios.patch<Organization>(
       API_ROUTES.ORGANIZATIONS.EDIT(id),

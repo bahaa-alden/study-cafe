@@ -138,6 +138,7 @@ export class SessionController {
         startTime: now,
         totalCost: isFreeSession ? 0 : null,
         numberOfPersons,
+        username: user.name,
       });
 
       if (session === null) {
