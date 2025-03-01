@@ -33,6 +33,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.40.0",
     "react-i18next": "^12.1.1",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-router-dom": "^6.4.5",
     "react-timeago": "^7.1.0",
     "stylis": "4.x",

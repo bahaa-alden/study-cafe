@@ -12,6 +12,7 @@ type CardTableProps<T> = {
   pageData: Array<T & { id: string }>;
   pageNumber: number;
   isThereNext: boolean;
+  isTherePrev: boolean;
 };
 
 export const CardTable = <T,>({
@@ -21,6 +22,7 @@ export const CardTable = <T,>({
   pageData,
   pageNumber,
   isThereNext,
+  isTherePrev,
 }: CardTableProps<T>) => {
   const {
     fetchNextPage,
@@ -29,13 +31,14 @@ export const CardTable = <T,>({
     isSuccess,
     isError,
     isFetchingNextPage,
+    isFetchingPreviousPage,
   } = infiniteQuery;
-  console.log(data?.pages);
   const handlePageChange = useHandlePageChange({
     fetchNextPage,
     fetchPreviousPage,
     pages: [],
   });
+  console.log(isTherePrev, isThereNext);
   const noData = !data?.pages[0].results.length && isSuccess;
   return (
     <Box sx={{ p: 4, width: "100%", fontFamily: "MontserratArabic" }}>
@@ -118,12 +121,22 @@ export const CardTable = <T,>({
         </Stack>
       )}
 
-      {/* Load More Button */}
-      {isThereNext && (
+      <Stack
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          alignItems: "stretch",
+          flexDirection: "row",
+          gap: 2,
+        }}
+      >
         <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
           <Button
-            onClick={() => handlePageChange(null, pageNumber + 1)}
-            disabled={isFetchingNextPage}
+            onClick={() => handlePageChange(null, pageNumber - 1)}
+            disabled={
+              !isTherePrev || isFetchingNextPage || isFetchingPreviousPage
+            }
             style={{
               padding: "10px 20px",
               fontSize: "16px",
@@ -135,15 +148,41 @@ export const CardTable = <T,>({
               cursor: "pointer",
               transition: "background 0.3s ease",
               opacity:
-                !data?.pages[pageNumber + 1] && !infiniteQuery.hasNextPage
+                !isTherePrev || isFetchingNextPage || isFetchingPreviousPage
                   ? 0.5
                   : 1,
             }}
           >
-            {isFetchingNextPage ? "Loading..." : "Load More"}
+            {isFetchingPreviousPage ? "Loading..." : "Previous"}
           </Button>
         </Box>
-      )}
+
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+          <Button
+            onClick={() => handlePageChange(null, pageNumber + 1)}
+            disabled={
+              !isThereNext || isFetchingNextPage || isFetchingPreviousPage
+            }
+            style={{
+              padding: "10px 40px",
+              fontSize: "16px",
+              fontWeight: "bold",
+              color: "white",
+              backgroundColor: "#5E3B3B",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+              transition: "background 0.3s ease",
+              opacity:
+                !isThereNext || isFetchingNextPage || isFetchingPreviousPage
+                  ? 0.5
+                  : 1,
+            }}
+          >
+            {isFetchingNextPage ? "Loading..." : "Next"}
+          </Button>
+        </Box>
+      </Stack>
     </Box>
   );
 };

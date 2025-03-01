@@ -20,7 +20,7 @@ import usePageNumberSearchParam from "hooks/usePageNumberSearchParam";
 import useQuerySearchParam from "hooks/useQuerySearchParam";
 import { EndForm } from "./EndForm";
 import { getCurrencySign } from "utils/transforms";
-import { isThereNext } from "constants/apiList";
+import { isThereNext, isTherePrev } from "constants/apiList";
 
 type Props = {};
 
@@ -31,13 +31,13 @@ export const SessionTable: FC<Props> = () => {
   const query = sessionQueries.useAll({ search, page });
   const { data } = query;
   const currentPage = getPage(data, page);
-  
+
   // Convert API data into card format
   const dataCard = useMemo(
     () =>
       currentPage?.map((session) => ({
         id: session.id,
-        icon: <AccessTimeIcon sx={{ fontSize: 50, color: teal[600] }} />,
+        icon: <AccessTimeIcon sx={{ fontSize: 50, color: "white" }} />,
         name: `Session #${session.user?.name}`,
         status: session.status,
         startTime: session.startTime || "Not Started",
@@ -55,7 +55,7 @@ export const SessionTable: FC<Props> = () => {
     <CardContent>
       <Avatar
         sx={{
-          bgcolor: teal[500],
+          bgcolor: "#849a98",
           width: 64,
           height: 64,
           fontSize: "34px",
@@ -198,6 +198,7 @@ export const SessionTable: FC<Props> = () => {
         infiniteQuery={query}
         pageNumber={page}
         isThereNext={isThereNext(data?.pages[0].total ?? 0, page)}
+        isTherePrev={isTherePrev(page)}
       />
     </Stack>
   );

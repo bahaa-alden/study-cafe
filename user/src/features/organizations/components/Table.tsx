@@ -16,7 +16,7 @@ import EditIconButton from "components/buttons/EditIconButton";
 import ButtonsStack from "components/layout/ButtonsStack";
 import { storage } from "utils/storage";
 import { diffInDays } from "utils/transforms";
-import { isThereNext } from "constants/apiList";
+import { isThereNext, isTherePrev } from "constants/apiList";
 
 type Props = {};
 
@@ -107,6 +107,7 @@ export const OrganizationTable: FC<Props> = () => {
       infiniteQuery={query}
       pageNumber={page}
       isThereNext={isThereNext(data?.pages[0].total ?? 0, page)}
+      isTherePrev={isTherePrev(page)}
     />
   );
 };
