@@ -38,7 +38,6 @@ export const CardTable = <T,>({
     fetchPreviousPage,
     pages: [],
   });
-  console.log(isTherePrev, isThereNext);
   const noData = !data?.pages[0].results.length && isSuccess;
   return (
     <Box sx={{ p: 4, width: "100%", fontFamily: "MontserratArabic" }}>

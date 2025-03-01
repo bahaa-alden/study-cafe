@@ -12,6 +12,7 @@ import warehouse from "./warehouse.json";
 import auth from "./auth.json";
 import organization from "./organization.json";
 import session from "./session.json";
+import dessert from "./dessert.json";
 
 const language = {
   organization,
@@ -27,6 +28,7 @@ const language = {
   warehouse,
   home,
   auth,
-  session
+  session,
+  dessert
 } as const;
 export default language;

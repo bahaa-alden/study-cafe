@@ -1,9 +1,10 @@
 import API_ROUTES from "constants/apiRoutes";
 import axios from "lib/axios";
 import { APIList, APIListParams, WithId } from "types/api";
-import { DessertAction, Session, SessionAction } from "./type";
+import { Session, SessionAction } from "./type";
 import { paginateParams } from "utils/apiHelpers";
 import { storage } from "utils/storage";
+import { SessionDessertBody } from "../components/DessertAddForm/type";
 
 const API = {
   getAll: async (params: APIListParams) => {
@@ -45,7 +46,7 @@ const API = {
     );
     return data;
   },
-  addDessert: async ({ id, ...body }: WithId<DessertAction>) => {
+  addDessert: async ({ id, ...body }: WithId<SessionDessertBody>) => {
     const { data } = await axios.post(
       API_ROUTES.SESSIONS.ADD_DESSERT(id),
       body,

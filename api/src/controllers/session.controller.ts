@@ -249,6 +249,9 @@ export class SessionController {
         ),
         new NotFoundError(`Session not found`),
       );
+      if (session.status === SessionStatus.ended) {
+        throw new BadRequestError('Session already ended');
+      }
 
       const dessert = needRecord(
         await dessertRepository.findByIdWithOrg(
@@ -260,7 +263,6 @@ export class SessionController {
 
       session.desserts.push({ dessert, ...req.valid.body });
       await session.save({ validateBeforeSave: false });
-
       res.ok({ data: session, message: 'done' });
     },
   );

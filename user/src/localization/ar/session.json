@@ -2,13 +2,19 @@
   "add": "إضافة جلسة جديد",
   "edit": "التعديل على الجلسة \"{{name}}\"",
   "remove": "إزالة الجلسة",
-
+  "addDessert": "أضافة مشروب أو وجبة",
+  "endSession": "إنهاء الجلسة",
   "table": {
     "username": "اسم الجلسة"
   },
   "form": {
     "username": "الاسم",
-    "numberOfPersons": "عدد الأشخاص"
+    "numberOfPersons": "عدد الأشخاص",
+    "formAddDessert": "إضافة مشروب أو وجبة",
+    "create": "إضافة",
+    "count": "كمية الطلب",
+    "dessert": "مشروب أو وجبة",
+    "end": "إنهاء"
   },
   "message": {
     "success": {

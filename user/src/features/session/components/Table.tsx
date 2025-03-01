@@ -7,12 +7,12 @@ import {
   Typography,
   Card,
   CardContent,
-  Box,
+  useTheme,
 } from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CakeIcon from "@mui/icons-material/Cake";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { cyan, teal, grey } from "@mui/material/colors";
+import { teal, grey, purple } from "@mui/material/colors";
 import { getPage } from "utils/apiHelpers";
 import { CardTable } from "components/tables/CardTable";
 import { SessionAddForm, sessionQueries } from "..";
@@ -21,18 +21,26 @@ import useQuerySearchParam from "hooks/useQuerySearchParam";
 import { EndForm } from "./EndForm";
 import { getCurrencySign } from "utils/transforms";
 import { isThereNext, isTherePrev } from "constants/apiList";
+import { DessertAddForm } from "./DessertAddForm";
+import { useTranslation } from "react-i18next";
 
 type Props = {};
 
 export const SessionTable: FC<Props> = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
+  const [activeDessertSession, setActiveDessertSession] = useState<
+    string | null
+  >(null);
+
+  const theme = useTheme();
+
+  const { t } = useTranslation("session");
   const search = useQuerySearchParam();
   const page = usePageNumberSearchParam();
   const query = sessionQueries.useAll({ search, page });
   const { data } = query;
   const currentPage = getPage(data, page);
 
-  // Convert API data into card format
   const dataCard = useMemo(
     () =>
       currentPage?.map((session) => ({
@@ -47,15 +55,11 @@ export const SessionTable: FC<Props> = () => {
     [currentPage]
   );
 
-  const handleAddDessert = (id: string) => {
-    console.log("Adding dessert to session", id);
-  };
-
   const renderCardContent = (item: any) => (
     <CardContent>
       <Avatar
         sx={{
-          bgcolor: "#849a98",
+          bgcolor: theme.palette.grey[600],
           width: 64,
           height: 64,
           fontSize: "34px",
@@ -65,7 +69,7 @@ export const SessionTable: FC<Props> = () => {
         {item.icon}
       </Avatar>
 
-      <Typography variant="h6" sx={{ fontWeight: "bold", color: grey[800] }}>
+      <Typography variant="h6" sx={{ fontWeight: "bold", color: "black" }}>
         {item.name}
       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
@@ -80,7 +84,7 @@ export const SessionTable: FC<Props> = () => {
         </strong>
       </Typography>
       <Typography variant="body2" color="text.secondary">
-        End:{" "}
+        End:
         <strong>
           {item.endTime !== "Ongoing"
             ? new Date(item.endTime).toLocaleString("en-US", {
@@ -106,10 +110,10 @@ export const SessionTable: FC<Props> = () => {
         justifyContent="center"
         sx={{ mt: 3, p: 2 }}
       >
-        <Box title="End Session">
+        <div>
           <EndForm id={item.id} status={item.status} />
-        </Box>
-        <Tooltip title="Add Dessert">
+        </div>
+        <Tooltip title={t("addDessert")}>
           <Button
             variant="contained"
             sx={{
@@ -119,16 +123,27 @@ export const SessionTable: FC<Props> = () => {
               fontWeight: "bold",
               textTransform: "none",
               borderRadius: "20px",
-              backgroundColor: cyan[600],
-              "&:hover": { backgroundColor: cyan[800] },
+              backgroundColor: theme.palette.grey[600],
+              "&:hover": { backgroundColor: theme.palette.grey[800] },
             }}
-            onClick={() => handleAddDessert(item.id)}
-            startIcon={<CakeIcon />}
+            onClick={() =>
+              setActiveDessertSession(
+                activeDessertSession === item.id ? null : item.id
+              )
+            }
+            startIcon={<CakeIcon sx={{ color: "white" }} />}
             disabled={item.status === "ended"}
           >
-            Dessert
+            {t("form.dessert")}
           </Button>
         </Tooltip>
+        {activeDessertSession === item.id && (
+          <DessertAddForm
+            data={item}
+            isAddDessertActive={!!activeDessertSession}
+            setActiveDessertSession={setActiveDessertSession}
+          />
+        )}
       </Stack>
     </CardContent>
   );
@@ -153,14 +168,14 @@ export const SessionTable: FC<Props> = () => {
         <CardContent>
           <Avatar
             sx={{
-              bgcolor: teal[500],
+              bgcolor: theme.palette.primary.main,
               width: 64,
               height: 64,
               fontSize: "34px",
               mb: 2,
             }}
           >
-            <AddCircleIcon />
+            <AddCircleIcon sx={{ color: "white" }} />
           </Avatar>
 
           <Typography
@@ -178,10 +193,10 @@ export const SessionTable: FC<Props> = () => {
             variant="contained"
             sx={{
               mt: 2,
-              backgroundColor: teal[600],
-              "&:hover": { backgroundColor: teal[800] },
+              backgroundColor: theme.palette.primary.main,
+              "&:hover": { backgroundColor: purple[800] },
             }}
-            startIcon={<AddCircleIcon />}
+            startIcon={<AddCircleIcon sx={{ color: "white" }} />}
             onClick={() => setIsActive(!isActive)}
           >
             Create Session

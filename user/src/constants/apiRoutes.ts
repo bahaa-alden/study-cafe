@@ -26,6 +26,14 @@ let API_ROUTES = {
     END: (id: string) => `${id}/end`,
     ADD_DESSERT: (id: string) => `${id}/desserts`,
   },
+  DESSERTS: {
+    root: "desserts",
+    ADD: "",
+    GET_ALL: "",
+    GET: (id: string) => id,
+    EDIT: (id: string) => id,
+    DELETE: (id: string) => id,
+  },
   ORGANIZATIONS: {
     root: "organizations",
     ADD: "",

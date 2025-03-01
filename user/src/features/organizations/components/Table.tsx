@@ -59,7 +59,7 @@ export const OrganizationTable: FC<Props> = () => {
             width: 56,
             height: 56,
             fontSize: "30px",
-            mb: 1,
+            mb: 2,
           }}
         >
           {item.icon} {/* Replace with dynamic icon */}
@@ -74,9 +74,9 @@ export const OrganizationTable: FC<Props> = () => {
         <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 1 }}>
           <Tooltip title={`Status: ${item.status}`}>
             {item.status === "active" ? (
-              <CheckCircleIcon sx={{ color: green[500], fontSize: 24 }} />
+              <CheckCircleIcon sx={{ color: green[500], fontSize: 21 }} />
             ) : (
-              <CancelIcon sx={{ color: red[500], fontSize: 24 }} />
+              <CancelIcon sx={{ color: red[500], fontSize: 21 }} />
             )}
           </Tooltip>
           <Typography variant="body2" color="text.secondary" fontSize={16}>

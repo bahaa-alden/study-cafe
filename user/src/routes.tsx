@@ -1,7 +1,7 @@
 import SomethingWentWrong from "components/feedback/SomethingWentWrong";
 import AuthenticatedRoute from "components/routes/AuthenticatedRoute";
 import NotAuthenticatedRoute from "components/routes/NotAuthenticatedRoute";
-import { SessionAddForm } from "features/session";
+import { DessertsPage } from "pages/desserts";
 import { ForgotPasswordPage } from "pages/forgot-password";
 import { LoginPage } from "pages/login";
 import OrganizationsPage from "pages/organizations";
@@ -37,7 +37,7 @@ export default createBrowserRouter(
         <Route path="/my-organizations" element={<Layout />}>
           <Route path="" element={<OrganizationsPage />} />
           <Route path=":id/sessions" element={<SessionsPage />} />
-          <Route path=":id/desserts" />
+          <Route path=":id/desserts" element={<DessertsPage />} />
           <Route path=":id/statistics" />
         </Route>
         <Route path="*" element={<SomethingWentWrong />} />

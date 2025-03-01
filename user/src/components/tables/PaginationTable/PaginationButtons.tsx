@@ -1,6 +1,7 @@
 import TablePagination from "@mui/material/TablePagination";
 import { InfiniteData } from "@tanstack/react-query";
 import { PAGE_SIZE } from "constants/apiList";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { APIList } from "types/api";
 
@@ -20,15 +21,18 @@ const PaginationButtons = ({
 }: PaginationTableProps) => {
   const isDisabled = !data;
   const { t } = useTranslation();
+
   return (
     <TablePagination
-      rowsPerPageOptions={[data?.pages[0].results.length ?? 0]}
-      labelDisplayedRows={(info) => t("pagination", { ...info })}
+      rowsPerPageOptions={[PAGE_SIZE]}
+      labelDisplayedRows={({ from, to, count }) =>
+        t("pagination", { from, to, count })
+      }
       component="div"
-      count={data?.pages[0].total ?? 0}
+      count={data?.pages[0]?.total ?? 0}
       rowsPerPage={PAGE_SIZE}
-      page={page}
-      onPageChange={handleChangePage}
+      page={Math.max(page - 1, 0)} // Ensure the page index is not negative
+      onPageChange={(_, newPage) => handleChangePage(null, newPage + 1)}
       SelectProps={{
         disabled: isDisabled,
       }}

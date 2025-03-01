@@ -45,10 +45,3 @@ export type Dessert = {
   createdAt: Date;
   updatedAt: Date;
 };
-
-export type DessertAction = {
-  dessertId: string;
-  count: number;
-};
-
-export type DessertAddPayload = Payload<undefined, DessertAction>;
