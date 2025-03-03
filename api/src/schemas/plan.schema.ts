@@ -27,6 +27,8 @@ export type IPlanAllSchema = TypeOf<typeof planAllSchema>;
 
 const planCreateSchema = object({
   // <creating-property-create-schema />
+  description: z.string(),
+
   duration: z.nativeEnum(PlanDuration),
 
   price: z.number(),
@@ -38,6 +40,8 @@ export type IPlanCreateSchema = TypeOf<typeof planCreateSchema>;
 
 const planUpdateSchema = object({
   // <creating-property-update-schema />
+  description: z.string().optional(),
+
   duration: z.nativeEnum(PlanDuration).optional(),
 
   price: z.number().optional(),

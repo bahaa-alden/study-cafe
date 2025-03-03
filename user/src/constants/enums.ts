@@ -20,3 +20,9 @@ export enum DessertType {
   drink = "drink",
   meal = "meal",
 }
+
+export enum PlanDuration {
+  month = "month",
+  year = "year",
+  free = "free",
+}

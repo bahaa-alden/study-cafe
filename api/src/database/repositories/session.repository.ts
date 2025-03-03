@@ -10,7 +10,7 @@ export interface SessionFilterOptions {
   //filters
   dateFrom?: Date;
   dateTo?: Date;
-
+  status?: string;
   organizationId: string;
 }
 
@@ -70,6 +70,10 @@ export class SessionRepository extends BaseRepository<ISession> {
       if (filter.dateTo) {
         query.createdAt.$lte = filter.dateTo;
       }
+    }
+
+    if (filter?.status) {
+      query.status = filter.status;
     }
 
     if (search) {

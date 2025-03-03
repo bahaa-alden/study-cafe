@@ -4,11 +4,12 @@ import SomethingWentWrong from "components/feedback/SomethingWentWrong";
 import { useHandlePageChange } from "./PaginationTable/useHandlePageChange";
 import NoData from "components/feedback/NoData";
 import { APIList } from "types/api";
+import { FC } from "react";
 
 type CardTableProps<T> = {
   title: string;
   infiniteQuery: UseInfiniteQueryResult<APIList<unknown>, unknown>;
-  renderCardContent: (item: T & { id: string }) => JSX.Element;
+  CardContent: FC<{ item: any }>;
   pageData: Array<T & { id: string }>;
   pageNumber: number;
   isThereNext: boolean;
@@ -18,7 +19,7 @@ type CardTableProps<T> = {
 export const CardTable = <T,>({
   title,
   infiniteQuery,
-  renderCardContent,
+  CardContent,
   pageData,
   pageNumber,
   isThereNext,
@@ -83,13 +84,9 @@ export const CardTable = <T,>({
                 borderRadius: "25px",
                 boxShadow: "0px 10px 25px rgba(0, 0, 0, 0.1)",
                 padding: "2px",
-                width: { xs: "100%", sm: "65%", md: "300px" }, // Ensures uniform width
-                minHeight: "300px", // Set a base min-height
-                height: {
-                  xs: "250px",
-                  sm: "300px",
-                  md: "300px",
-                }, // Ensures equal height if needed
+                width: { xs: "100%", sm: "75%", md: "300px" }, // Ensures uniform width
+                height: "auto", // Makes the height of the card dynamic based on content
+                maxWidth: "100%", // Prevents the card from overflowing
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -113,7 +110,7 @@ export const CardTable = <T,>({
                   textAlign: "center",
                 }}
               >
-                {renderCardContent(item)}
+                {<CardContent item={item} />}
               </Box>
             </Card>
           ))}

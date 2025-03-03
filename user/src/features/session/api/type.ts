@@ -1,4 +1,5 @@
 import { DessertType, SessionStatus } from "constants/enums";
+import { Dayjs } from "dayjs";
 import { Organization } from "features/organizations";
 import { User } from "features/user";
 import { APIListParams, Payload } from "types/api";
@@ -29,8 +30,8 @@ export type Session = {
 export type SessionAllParams = APIListParams &
   Partial<{
     status: SessionStatus;
-    dateFrom: string;
-    dateTo: string;
+    dateFrom: Dayjs;
+    dateTo: Dayjs;
   }>;
 
 export type SessionAction = {

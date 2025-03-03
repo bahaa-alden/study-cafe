@@ -212,6 +212,7 @@ export const Plan = {
   properties: {
     id: { type: 'string' },
     // property
+    description: { type: 'string' },
     duration: { type: 'string', enum: ['month', 'year', 'free'] },
     price: { type: 'number' },
     title: { type: 'string' },
@@ -219,6 +220,8 @@ export const Plan = {
   example: {
     id: '5ebac534954b54139806c112',
     // property example
+    description: 'plan made for small organizations',
+
     duration: 'month',
 
     price: 2000,
@@ -233,12 +236,15 @@ export const createPlan = {
   type: 'object',
   properties: {
     // create property
+    description: { type: 'string' },
     duration: { type: 'string', enum: ['month', 'year', 'free'] },
     price: { type: 'number' },
     title: { type: 'string' },
   },
   example: {
     // create property example
+    description: 'plan made for small organizations',
+
     duration: 'month',
 
     price: 2000,
@@ -247,6 +253,7 @@ export const createPlan = {
   },
   required: [
     // required property
+    'description',
 
     'price',
 
@@ -257,12 +264,15 @@ export const updatePlan = {
   type: 'object',
   properties: {
     // update property
+    description: { type: 'string' },
     duration: { type: 'string', enum: ['month', 'year', 'free'] },
     price: { type: 'number' },
     title: { type: 'string' },
   },
   example: {
     // update property example
+    description: 'plan made for small organizations',
+
     duration: 'month',
 
     price: 2000,

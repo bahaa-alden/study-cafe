@@ -44,6 +44,7 @@ export enum PlanDuration {
 }
 
 export enum SessionStatus {
+  all = '',
   started = 'started',
   ended = 'ended',
   cancelled = 'cancelled',

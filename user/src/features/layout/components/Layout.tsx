@@ -21,7 +21,8 @@ const Layout: FC = () => {
   };
 
   // Hide sidebar when exactly at "/my-organizations"
-  const hideSidebar = location.pathname === "/my-organizations";
+  const hideSidebar =
+    location.pathname === "/my-organizations" || location.pathname === "/plans";
 
   return (
     <Box>
@@ -29,6 +30,7 @@ const Layout: FC = () => {
         open={open}
         onDrawerOpen={handleDrawerOpen}
         onDrawerClose={handleDrawerClose}
+        hideSidebar={hideSidebar}
       />
       {!hideSidebar && <Sidebar open={open} setOpen={setOpen} />}
       <Toolbar />

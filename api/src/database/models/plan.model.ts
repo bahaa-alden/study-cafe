@@ -6,6 +6,8 @@ import { omit } from 'lodash';
 export interface IPlan extends MongooseDocument {
   id: string;
   // <creating-property-interface />
+  description: string;
+
   duration: PlanDuration;
   price: number;
   title: string;
@@ -17,6 +19,9 @@ export interface IPlan extends MongooseDocument {
 const planSchema: Schema = new Schema<IPlan>(
   {
     // <creating-property-schema />
+    description: {
+      type: String,
+    },
     duration: {
       type: String,
       enum: Object.values(PlanDuration),

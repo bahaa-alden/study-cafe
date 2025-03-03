@@ -42,6 +42,7 @@ export class SessionController {
     ): Promise<void> => {
       const options: SessionFindOptions = {
         filter: {
+          status: req.valid.query.status,
           dateFrom: req.valid.query.dateFrom,
           dateTo: req.valid.query.dateTo,
           organizationId: req.valid.headers['organization-id'],

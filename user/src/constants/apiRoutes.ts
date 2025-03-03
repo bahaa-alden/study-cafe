@@ -8,8 +8,8 @@ let API_ROUTES = {
     EDIT: (id: string) => id,
     DELETE: (id: string) => id,
   },
-  CATEGORIES: {
-    root: "categories",
+  PLANS: {
+    root: "plans",
     ADD: "",
     GET_ALL: "",
     GET: (id: string) => id,

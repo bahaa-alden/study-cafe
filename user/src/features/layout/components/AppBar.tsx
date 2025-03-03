@@ -33,11 +33,17 @@ export const AppBarStyled = styled(MuiAppBar, {
   }),
 }));
 type Props = {
+  hideSidebar: boolean;
   open: boolean;
   onDrawerOpen: () => void;
   onDrawerClose: () => void;
 };
-export const AppBar: FC<Props> = ({ open, onDrawerOpen, onDrawerClose }) => {
+export const AppBar: FC<Props> = ({
+  hideSidebar,
+  open,
+  onDrawerOpen,
+  onDrawerClose,
+}) => {
   const { t } = useTranslation("layout");
   let pageTitle =
     useLocation().pathname.split("/")[
@@ -56,13 +62,15 @@ export const AppBar: FC<Props> = ({ open, onDrawerOpen, onDrawerClose }) => {
   return (
     <AppBarStyled position="fixed" open={open} key={pageTitle}>
       <Toolbar>
-        <IconButton
-          color="inherit"
-          onClick={open ? onDrawerClose : onDrawerOpen}
-          edge="start"
-        >
-          <MenuIcon sx={{ color: "white" }} />
-        </IconButton>
+        {!hideSidebar && (
+          <IconButton
+            color="inherit"
+            onClick={open ? onDrawerClose : onDrawerOpen}
+            edge="start"
+          >
+            <MenuIcon sx={{ color: "white" }} />
+          </IconButton>
+        )}
         <Typography variant="h6" noWrap component="div" pl={0.5}>
           {t(`navLink.${pageTitle}`)}
         </Typography>

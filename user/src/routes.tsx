@@ -5,6 +5,7 @@ import { DessertsPage } from "pages/desserts";
 import { ForgotPasswordPage } from "pages/forgot-password";
 import { LoginPage } from "pages/login";
 import OrganizationsPage from "pages/organizations";
+import PlansPage from "pages/plans";
 import { RegistrationPage } from "pages/registration";
 import { ResetPasswordPage } from "pages/reset-password";
 import SessionsPage from "pages/sessions";
@@ -39,6 +40,9 @@ export default createBrowserRouter(
           <Route path=":id/sessions" element={<SessionsPage />} />
           <Route path=":id/desserts" element={<DessertsPage />} />
           <Route path=":id/statistics" />
+        </Route>
+        <Route path="/plans" element={<Layout />}>
+          <Route path="" element={<PlansPage />} />
         </Route>
         <Route path="*" element={<SomethingWentWrong />} />
       </Route>
