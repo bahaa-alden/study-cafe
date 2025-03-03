@@ -1,10 +1,19 @@
-import { Box, Button, Card, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  IconButton,
+  Stack,
+  Tooltip,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { UseInfiniteQueryResult } from "@tanstack/react-query";
 import SomethingWentWrong from "components/feedback/SomethingWentWrong";
 import { useHandlePageChange } from "./PaginationTable/useHandlePageChange";
 import NoData from "components/feedback/NoData";
 import { APIList } from "types/api";
 import { FC } from "react";
+import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 
 type CardTableProps<T> = {
   title: string;
@@ -40,6 +49,7 @@ export const CardTable = <T,>({
     pages: [],
   });
   const noData = !data?.pages[0].results.length && isSuccess;
+  const theme = useTheme();
   return (
     <Box sx={{ p: 4, width: "100%", fontFamily: "MontserratArabic" }}>
       <Typography
@@ -116,68 +126,73 @@ export const CardTable = <T,>({
           ))}
         </Stack>
       )}
-
       <Stack
         sx={{
           display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          alignItems: "stretch",
           flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
           gap: 2,
+          mt: 4,
         }}
       >
-        <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
-          <Button
-            onClick={() => handlePageChange(null, pageNumber - 1)}
-            disabled={
-              !isTherePrev || isFetchingNextPage || isFetchingPreviousPage
-            }
-            style={{
-              padding: "10px 20px",
-              fontSize: "16px",
-              fontWeight: "bold",
-              color: "white",
-              backgroundColor: "#5E3B3B",
-              border: "none",
-              borderRadius: "8px",
-              cursor: "pointer",
-              transition: "background 0.3s ease",
-              opacity:
+        {/* Previous Button */}
+        <Tooltip title="Previous Page">
+          <span>
+            <IconButton
+              onClick={() => handlePageChange(null, pageNumber - 1)}
+              disabled={
                 !isTherePrev || isFetchingNextPage || isFetchingPreviousPage
-                  ? 0.5
-                  : 1,
-            }}
-          >
-            {isFetchingPreviousPage ? "Loading..." : "Previous"}
-          </Button>
-        </Box>
+              }
+              sx={{
+                color: "white",
+                borderRadius: "50%",
+                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  backgroundColor: `${theme.palette.grey.A400}`,
+                },
+                "&.Mui-disabled": {
+                  backgroundColor: "#A1887F",
+                  color: "white", // Ensure text color remains white
+                  opacity: 0.6,
+                  boxShadow: "none",
+                },
+              }}
+            >
+              <ArrowBackIosNew fontSize="small" />
+            </IconButton>
+          </span>
+        </Tooltip>
 
-        <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
-          <Button
-            onClick={() => handlePageChange(null, pageNumber + 1)}
-            disabled={
-              !isThereNext || isFetchingNextPage || isFetchingPreviousPage
-            }
-            style={{
-              padding: "10px 40px",
-              fontSize: "16px",
-              fontWeight: "bold",
-              color: "white",
-              backgroundColor: "#5E3B3B",
-              border: "none",
-              borderRadius: "8px",
-              cursor: "pointer",
-              transition: "background 0.3s ease",
-              opacity:
+        {/* Next Button */}
+        <Tooltip title="Next Page">
+          <span>
+            <IconButton
+              onClick={() => handlePageChange(null, pageNumber + 1)}
+              disabled={
                 !isThereNext || isFetchingNextPage || isFetchingPreviousPage
-                  ? 0.5
-                  : 1,
-            }}
-          >
-            {isFetchingNextPage ? "Loading..." : "Next"}
-          </Button>
-        </Box>
+              }
+              sx={{
+                color: "white",
+                borderRadius: "50%",
+                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  backgroundColor: `${theme.palette.grey.A400}`,
+                },
+                "&.Mui-disabled": {
+                  backgroundColor: "#A1887F",
+                  color: "white", // Ensure text color remains white
+                  opacity: 0.6,
+                  boxShadow: "none",
+                },
+              }}
+            >
+              <ArrowForwardIos fontSize="small" />
+            </IconButton>
+          </span>
+        </Tooltip>
       </Stack>
     </Box>
   );

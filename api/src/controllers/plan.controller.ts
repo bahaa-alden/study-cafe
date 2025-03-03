@@ -14,7 +14,6 @@ import {
 } from '../schemas/plan.schema';
 import { defaultOrderParams } from '../utils/order';
 import { defaultPaginationParams } from '../utils/pagination';
-import { RoleCode } from '../utils/enum';
 import { needRecord } from '../utils/record';
 
 export class PlanController {
@@ -41,7 +40,7 @@ export class PlanController {
       };
       const plans = await planRepository.findForAdmin(options);
 
-      res.ok({ message: 'success', data: plans });
+      res.ok({ message: 'success', data: res.locals.transformLanguage(plans) });
     },
   );
 

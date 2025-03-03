@@ -1,3 +1,5 @@
+import { localString } from './common';
+
 import { PlanDuration } from './../utils/enum';
 
 import { object, z, string, type TypeOf } from 'zod';
@@ -27,26 +29,23 @@ export type IPlanAllSchema = TypeOf<typeof planAllSchema>;
 
 const planCreateSchema = object({
   // <creating-property-create-schema />
-  description: z.string(),
+  description: localString.optional(),
 
+  title: localString,
   duration: z.nativeEnum(PlanDuration),
-
   price: z.number(),
-
-  title: z.string(),
 }).strict();
 
 export type IPlanCreateSchema = TypeOf<typeof planCreateSchema>;
 
 const planUpdateSchema = object({
   // <creating-property-update-schema />
-  description: z.string().optional(),
+  description: localString.optional(),
+
+  title: localString.optional(),
 
   duration: z.nativeEnum(PlanDuration).optional(),
-
   price: z.number().optional(),
-
-  title: z.string().optional(),
 }).strict();
 
 export type IPlanUpdateSchema = TypeOf<typeof planUpdateSchema>;

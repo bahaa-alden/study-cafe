@@ -18,6 +18,11 @@ export type BodyObject = {
   [key: string | symbol]: string;
 };
 
+export type LocalObject = {
+  [key: string | symbol]: string;
+  transformLanguage: (responseData: any) => any;
+};
+
 export type ResponsePayload = {
   data?: any;
   errors?: ZodIssue[];
@@ -35,6 +40,8 @@ declare module 'express' {
   }
 
   interface Response {
+    locals: LocalObject;
+
     ok(payload: ResponsePayload): Response<any, Record<string, any>>;
 
     created(payload: ResponsePayload): Response<any, Record<string, any>>;

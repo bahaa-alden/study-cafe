@@ -6,11 +6,11 @@ import { Star, StarBorder, Diamond } from "@mui/icons-material"; // Use Star and
 export const PlanCard: FC<{ plan: Plan }> = ({ plan }) => {
   const renderPlanIcon = (title: string) => {
     switch (title.toLowerCase()) {
-      case 'silver':
+      case "silver":
         return <StarBorder sx={{ fontSize: 40, color: "#C0C0C0" }} />;
-      case 'gold':
+      case "gold":
         return <Star sx={{ fontSize: 40, color: "#FFD700" }} />;
-      case 'diamond':
+      case "diamond":
         return <Diamond sx={{ fontSize: 40, color: "#00aaff" }} />;
       default:
         return null;
@@ -21,7 +21,7 @@ export const PlanCard: FC<{ plan: Plan }> = ({ plan }) => {
     <Card
       sx={{
         textAlign: "center",
-        p: 3,
+        p: 2,
         borderRadius: 4,
         boxShadow: 4,
         width: "100%",
@@ -32,16 +32,24 @@ export const PlanCard: FC<{ plan: Plan }> = ({ plan }) => {
     >
       <CardContent>
         {renderPlanIcon(plan.title)} {/* Render icon based on plan */}
-        <Typography variant="h5" sx={{ fontWeight: "bold", mt: 2 }}>
+        <Typography variant="h5" sx={{ fontWeight: "bold", mt: 2, pb: 1 }}>
           {plan.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ fontWeight: "600" }}
+        >
           {plan.description}
         </Typography>
-        <Typography variant="h4" sx={{ my: 2, fontWeight: "bold" }}>
+        <Typography variant="h4" sx={{ p: 2, fontWeight: "bold" }}>
           ${plan.price}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ fontWeight: "800", fontSize: "15px" }}
+        >
           {plan.duration}
         </Typography>
         <Button

@@ -7,7 +7,7 @@ import { authorizationMiddleware } from '../auth/authorization';
 import { planController } from '../controllers/plan.controller';
 import authSchema from '../schemas/auth.schema';
 import { authMiddleware } from '../middlewares/authJwt';
-import { authController } from '../controllers/auth.controller';
+import { transformLocalizedFields } from '../middlewares/transform.middleware';
 const { USER, ADMIN } = RoleCode;
 
 export class PlanRoutes {
@@ -23,6 +23,7 @@ export class PlanRoutes {
     this.router.use(
       validator({ headers: authSchema.auth }),
       authMiddleware.authenticateJWT,
+      transformLocalizedFields(['title', 'description']),
     );
 
     // GET ALL PLANS

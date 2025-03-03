@@ -12,7 +12,12 @@ after: // property
 <% } -%>
 <% } else{-%><%= property %><% }-%>: { type: <% if ( isArray) {-%>
 'array',items: {type:<% } -%>
-<% if (kind === 'primitive') { -%>'<%= type %>',<% 
+<% if (kind === 'local')  {-%> 
+    'object',properties: {
+    ar: { type: 'string'},
+    en: { type: 'string'}
+} 
+<% } else if (kind === 'primitive') { -%>'<%= type %>',<% 
 }else if (kind !== 'object'){-%>'string',<% } -%>
 <% if (kind === 'enum') 
 {-%> enum: [<% enumValue.split(" ").forEach(element => {-%>'<%= element %>',<% }) -%>]  <% } -%>

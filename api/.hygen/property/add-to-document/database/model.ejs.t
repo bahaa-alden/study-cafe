@@ -18,6 +18,12 @@ after:  \<creating\-property\-schema \/\>
       }]
     },
   <% } -%>
+<% } else if (kind === 'local') { -%>
+      <%= h.inflection.camelize(property, true) %>: {
+        type: <% if (isArray) {-%>[<% }-%>localStringSchema<% if (isArray) {-%>]<% }-%>,
+        of: String,
+        <% if (isArray) {-%>default: [],<% }-%>
+      },
 <% } else if (kind === 'enum') { -%>
   <%= property %>:<% if (isArray) {-%>[ <% }-%>{
       type: String,

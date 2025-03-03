@@ -11,6 +11,8 @@ after:  \<creating\-property\-interface \/\>
   <%= h.inflection.camelize(h.inflection.singularize(property), true) %>Ids<% if (!isAddToValidation || isOptional) { -%>?<% } -%>: Array<I<%= Type %>['_id']> <% if (isNullable) { -%> | null<% } -%>;
   <%= property %><% if (!isAddToValidation || isOptional) { -%>?<% } -%>: Array<I<%= Type %>> <% if (isNullable) { -%> | null<% } -%>;
   <% } -%>
+<% } else if(kind === 'local') { -%>
+    <%= property %><% if (!isAddToValidation || isOptional) { -%>?<% } -%>: ILocalString<% if (isArray) {-%>[]<% }-%>  <% if (isNullable) { -%> | null<% } -%>
 <% } else if (kind === 'enum') { -%>
   <%= property %><% if (!isAddToValidation || isOptional) { -%>?<% } -%>: <%= EnumType %><% if (isArray) {-%> [ ]<% }-%> <% if (isNullable) { -%> | null<% } -%>;
 <% } else if (kind === 'object') { -%>

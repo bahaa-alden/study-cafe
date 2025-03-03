@@ -40,7 +40,7 @@ export const orderDirection = z
   .optional()
   .default(OrderDirection.desc);
 
-export const localStringSchema = z.object({
+export const localString = z.object({
   ar: z.string().optional(),
   en: z.string().optional(),
 });

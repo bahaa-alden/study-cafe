@@ -10,6 +10,8 @@ after:  // <creating-property-update-schema />
     <% } else if (referenceType === 'oneToMany' || referenceType === 'manyToMany') { -%>
     <%= h.inflection.camelize(h.inflection.singularize(property), true) %>Ids: objectId.array().optional()<% if (isNullable) { -%>.nullable()<% } -%>,
     <% } -%>
+  <% } else if(kind === 'local') { -%>
+    <%= h.inflection.camelize(property, true) %>: localString<% if (isArray) {-%>.array()<% } -%>.optional()<% if (isNullable) { -%>.nullable()<% } -%>,
   <% } else if (kind === 'enum') { -%>
     <%= property %>: z<% if (isArray) {-%>.array( z<% }-%>.nativeEnum(<%= EnumType %>)<% if (isArray) {-%>) <% }-%>.optional()<% if (isNullable) { -%>.nullable()<% } -%>,
   <%} else if (kind === 'object') { -%>

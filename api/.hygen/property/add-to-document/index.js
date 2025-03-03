@@ -93,6 +93,7 @@ module.exports = {
                   message: 'Primitive (string, number, etc)',
                   value: 'primitive',
                 },
+                { message: 'LocalString type', value: 'local' },
                 { message: 'Enum type', value: 'enum' },
                 { message: 'Reference to entity', value: 'reference' },
                 { message: 'Empty object', value: 'object' },

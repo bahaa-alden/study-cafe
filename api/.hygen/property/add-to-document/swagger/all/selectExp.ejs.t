@@ -23,6 +23,12 @@ after: // property example
 <%= h.inflection.camelize(h.inflection.singularize(property), true) %>Ids: ['673c40cd59e293827f79e398','673c40cd59e293827f79e399'],
 <% } -%>
 <% } -%>
+<% if (kind === 'local')  {-%> 
+   <%= property %>: {
+    ar: "",
+    en: ""
+   },
+<% } -%>
 <% if (kind === 'object' ) { -%>
 <%= property %>: <% if ( isArray) { -%>[<% } -%>{
 // property example <%= property %>
