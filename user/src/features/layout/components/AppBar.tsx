@@ -54,7 +54,6 @@ export const AppBar: FC<Props> = ({
   const navigate = useNavigate();
   const handleChangeLanguage = (e: SelectChangeEvent) => {
     setLang(e.target.value);
-    window.location.reload();
   };
   const handleLogout = () => {
     navigate("/login");

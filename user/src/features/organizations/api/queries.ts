@@ -24,4 +24,6 @@ export const queries = {
     }),
   useAdd: () => useMutation(API.add),
   useEdit: () => useMutation(API.edit),
+  useApprove: () => useMutation(API.approve),
+  useRefuse: () => useMutation(API.refuse),
 };

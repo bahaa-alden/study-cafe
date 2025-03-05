@@ -72,7 +72,7 @@ export class OrganizationRepository extends BaseRepository<IOrganization> {
     }
 
     if (search) {
-      query.$or = [];
+      query.$or = [{ name: { $regex: new RegExp(search, 'i') } }];
     }
 
     if (filter?.userId) {

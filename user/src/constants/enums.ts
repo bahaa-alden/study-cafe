@@ -43,3 +43,9 @@ export enum Role {
   admin = "ADMIN",
   user = "USER",
 }
+
+export enum PaymentStatus {
+  failed = "failed",
+  pending = "pending",
+  success = "success",
+}

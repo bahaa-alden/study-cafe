@@ -18,3 +18,8 @@ export const passwordSchema = z
   .regex(passwordRegex, i18n.t(`auth:validation.password`))
   .min(8)
   .max(16);
+
+export const localString = z.object({
+  ar: z.string().optional(),
+  en: z.string().optional(),
+});

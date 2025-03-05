@@ -20,7 +20,7 @@ export const checkSubscriptionMiddleware = asyncHandler(
         status: OrgStatus.approved,
         userId: req.user.id,
       }),
-      new NotFoundError('Organization not found'),
+      new NotFoundError('No active subscription found'),
     );
 
     const subscription = needRecord(

@@ -18,4 +18,5 @@ export const queries = {
   useDetails: (id: string) => useQuery({ ...keys.details(id), enabled: !!id }),
   useEdit: () => useMutation(API.edit),
   useAdd: () => useMutation(API.add),
+  useRemove: () => useMutation(API.remove),
 };

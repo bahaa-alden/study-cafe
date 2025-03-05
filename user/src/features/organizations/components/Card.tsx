@@ -2,12 +2,11 @@ import {
   CardContent,
   Avatar,
   Typography,
-  Box,
   Stack,
   Tooltip,
   IconButton,
 } from "@mui/material";
-import { green, red, pink, grey } from "@mui/material/colors";
+import { green, red, pink } from "@mui/material/colors";
 import EditIconButton from "components/buttons/EditIconButton";
 import ButtonsStack from "components/layout/ButtonsStack";
 import { FC } from "react";
@@ -39,61 +38,30 @@ export const OrganizationCard: FC<{ item: any }> = ({ item }) => {
 
   return (
     <CardContent>
-      {item.expiresDate && !subscriptionExpired ? (
-        <RouterLink
-          to={`${item.id}/sessions`}
-          style={{
-            textDecoration: "none",
-            display: "inline-block",
-            width: "100%",
-          }}
-          onClick={handelLinks}
-        >
-          <Avatar
-            sx={{
-              width: 56,
-              height: 56,
-              fontSize: "30px",
-              mb: 2,
-            }}
-          >
-            {item.icon}
-          </Avatar>
-
-          <Typography variant="h5" sx={{ fontWeight: "bold", color: "#333" }}>
-            {item.name}
-          </Typography>
-        </RouterLink>
-      ) : (
-        <Box
-          style={{
-            textDecoration: "none",
-            display: "inline-block",
-            width: "100%",
-            cursor: "not-allowed",
-            opacity: 0.5,
+      <RouterLink
+        to={`${item.id}/sessions`}
+        style={{
+          textDecoration: "none",
+          display: "inline-block",
+          width: "100%",
+        }}
+        onClick={handelLinks}
+      >
+        <Avatar
+          sx={{
+            width: 56,
+            height: 56,
+            fontSize: "30px",
+            mb: 2,
           }}
         >
-          <Avatar
-            sx={{
-              width: 56,
-              height: 56,
-              fontSize: "30px",
-              mb: 2,
-              backgroundColor: grey[400],
-            }}
-          >
-            {item.icon}
-          </Avatar>
+          {item.icon}
+        </Avatar>
 
-          <Typography
-            variant="h5"
-            sx={{ fontWeight: "bold", color: grey[600] }}
-          >
-            {item.name}
-          </Typography>
-        </Box>
-      )}
+        <Typography variant="h5" sx={{ fontWeight: "bold", color: "#333" }}>
+          {item.name}
+        </Typography>
+      </RouterLink>
 
       {/* Status & Expiry */}
       <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 1 }}>
@@ -124,7 +92,7 @@ export const OrganizationCard: FC<{ item: any }> = ({ item }) => {
         <EditIconButton onClick={() => edit(item.id)} />
         {subscriptionExpired && (
           <Tooltip title="Subscribe to a plan">
-            <RouterLink to="/plans">
+            <RouterLink to="/offers">
               <IconButton onClick={handelLinks}>
                 <NotificationsActiveIcon sx={{ color: "#1834e9" }} />
               </IconButton>

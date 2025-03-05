@@ -5,6 +5,7 @@ import { userKeys } from "features/user";
 import { sessionKeys } from "features/session";
 import { dessertKeys } from "features/dessert";
 import { subscriptionOrderKeys } from "features/subscription-order";
+import { planKeys } from "features/plan";
 
 export const queryStore = mergeQueryKeys(
   sessionKeys,
@@ -12,5 +13,6 @@ export const queryStore = mergeQueryKeys(
   accountKeys,
   userKeys,
   dessertKeys,
-  subscriptionOrderKeys
+  subscriptionOrderKeys,
+  planKeys
 );

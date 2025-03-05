@@ -6,7 +6,7 @@ export type Plan = {
   duration: PlanDuration;
   price: number;
   title: LocalString;
-  description: string;
+  description: LocalString;
   createdAt: string;
   updatedAt: string;
 };
@@ -16,7 +16,8 @@ export type PlanAllParams = APIListParams;
 export type PlanAction = {
   duration: PlanDuration;
   price: number;
-  title: string;
+  title: LocalString;
+  description: LocalString;
 };
 
 export type PlanAddPayload = Payload<undefined, PlanAction>;

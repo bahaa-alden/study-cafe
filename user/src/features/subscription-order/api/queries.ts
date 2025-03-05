@@ -2,7 +2,7 @@ import { createQueryKeys } from "@lukemorales/query-key-factory";
 import API from "./api";
 import { SubscriptionOrderAllParams } from "./type";
 import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
-export const keys = createQueryKeys("subscription-orders", {
+export const keys = createQueryKeys("subscription-order", {
   all: (params: SubscriptionOrderAllParams) => ({
     queryFn: () => API.getAll(params),
     queryKey: [params],

@@ -3,7 +3,13 @@ import { type PaginatedList } from '../../utils/pagination';
 import { OrderDirection, type OrderOptions } from '../../utils/order';
 import { BaseRepository, type FindOptions } from './base.repository';
 import Session, { type ISession } from '../models/session.model';
-import { startOfDay, endOfDay, subDays } from 'date-fns';
+import {
+  startOfDay,
+  endOfDay,
+  subDays,
+  startOfYear,
+  endOfYear,
+} from 'date-fns';
 import { SessionStatus } from '../../utils/enum';
 
 export interface SessionFilterOptions {
@@ -22,6 +28,18 @@ interface OrganizationStatistics {
     totalRevenue: number;
   }>;
   dessertsByDay: Array<{
+    date: string;
+    desserts: Array<{
+      name: string;
+      totalSold: number;
+      totalRevenue: number;
+    }>;
+  }>;
+  revenueByMonth: Array<{
+    date: string;
+    totalRevenue: number;
+  }>;
+  dessertsByMonth: Array<{
     date: string;
     desserts: Array<{
       name: string;
@@ -105,15 +123,21 @@ export class SessionRepository extends BaseRepository<ISession> {
     const now = new Date();
     fromDate = fromDate ? startOfDay(fromDate) : startOfDay(subDays(now, 7));
     toDate = toDate ? endOfDay(toDate) : endOfDay(now);
-
+    const startYear = startOfYear(fromDate);
+    const endYear = endOfYear(fromDate);
     // Get sessions statistics
-    const sessions = await sessionRepository.model.aggregate([
+    const totalRevenue = Math.ceil(
+      (await this.findAll()).reduce(
+        (sum, curr) => sum + (curr.totalCost ?? 0),
+        0,
+      ),
+    );
+
+    const sessions = await this.model.aggregate([
       {
         $match: {
           $expr: {
             $and: [
-              { $gte: ['$createdAt', fromDate] },
-              { $lte: ['$createdAt', toDate] },
               { $eq: ['$deletedAt', null] },
               { $eq: ['$organizationId', new Types.ObjectId(organizationId)] },
             ],
@@ -123,7 +147,7 @@ export class SessionRepository extends BaseRepository<ISession> {
       { $group: { _id: '$status', count: { $sum: 1 } } },
     ]);
 
-    const revenueByDay = await sessionRepository.model.aggregate([
+    const revenueByDay = await this.model.aggregate([
       {
         $match: {
           $expr: {
@@ -149,11 +173,12 @@ export class SessionRepository extends BaseRepository<ISession> {
     ]);
 
     // Get desserts statistics
-    const dessertsStats = await sessionRepository.model.aggregate([
+    const dessertsByDay = await this.model.aggregate([
       {
         $match: {
           $expr: {
             $and: [
+              { $eq: ['$status', SessionStatus.ended] },
               { $gte: ['$createdAt', fromDate] },
               { $lte: ['$createdAt', toDate] },
               { $eq: ['$deletedAt', null] },
@@ -199,14 +224,91 @@ export class SessionRepository extends BaseRepository<ISession> {
       { $sort: { _id: 1 } },
     ]);
 
+    const revenueByMonth = await this.model.aggregate([
+      {
+        $match: {
+          $expr: {
+            $and: [
+              { $gte: ['$createdAt', startYear] },
+              { $lte: ['$createdAt', endYear] },
+              { $eq: ['$status', SessionStatus.ended] },
+              { $eq: ['$deletedAt', null] },
+              { $eq: ['$organizationId', new Types.ObjectId(organizationId)] },
+            ],
+          },
+        },
+      },
+      {
+        $group: {
+          _id: { $dateToString: { format: '%Y-%m', date: '$createdAt' } },
+          revenue: { $sum: '$totalCost' },
+          dessertsRevenue: { $sum: '$additionalCost' },
+          sessionsRevenue: { $sum: '$subtotal' },
+        },
+      },
+      { $sort: { _id: 1 } },
+    ]);
+
+    // Get desserts statistics
+    const dessertsByMonth = await this.model.aggregate([
+      {
+        $match: {
+          $expr: {
+            $and: [
+              { $eq: ['$status', SessionStatus.ended] },
+              { $gte: ['$createdAt', startYear] },
+              { $lte: ['$createdAt', endYear] },
+              { $eq: ['$deletedAt', null] },
+              { $eq: ['$organizationId', new Types.ObjectId(organizationId)] },
+            ],
+          },
+        },
+      },
+      { $unwind: '$desserts' },
+      {
+        $lookup: {
+          from: 'Dessert',
+          localField: 'desserts.dessertId',
+          foreignField: '_id',
+          as: 'dessertInfo',
+        },
+      },
+      { $unwind: '$dessertInfo' },
+      {
+        $group: {
+          _id: {
+            date: { $dateToString: { format: '%Y-%m', date: '$createdAt' } },
+            name: '$dessertInfo.name',
+          },
+          count: { $sum: '$desserts.count' },
+          revenue: {
+            $sum: { $multiply: ['$desserts.count', '$dessertInfo.price'] },
+          },
+        },
+      },
+      {
+        $group: {
+          _id: '$_id.date',
+          data: {
+            $push: {
+              name: '$_id.name',
+              count: '$count',
+              revenue: '$revenue',
+            },
+          },
+        },
+      },
+      { $sort: { _id: 1 } },
+    ]);
+
     return {
       totalSessions: sessions.reduce((sum, s) => sum + s.count, 0),
+      totalRevenue,
       sessionsByStatus: sessions,
       revenueByDay,
-      totalRevenue: Math.ceil(
-        revenueByDay.reduce((sum, s) => sum + s.revenue, 0),
-      ),
-      dessertsStats,
+      revenueByMonth,
+      dessertsByDay,
+      dessertsByMonth,
     };
   }
 }

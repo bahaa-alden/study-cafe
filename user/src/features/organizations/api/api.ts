@@ -29,6 +29,18 @@ const API = {
     );
     return data;
   },
+  approve: async (id: string) => {
+    const { data } = await axios.post<{ message: string }>(
+      API_ROUTES.ORGANIZATIONS.APPROVE(id)
+    );
+    return data;
+  },
+  refuse: async (id: string) => {
+    const { data } = await axios.post<{ message: string }>(
+      API_ROUTES.ORGANIZATIONS.REFUSE(id)
+    );
+    return data;
+  },
 };
 
 export default API;

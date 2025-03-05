@@ -18,10 +18,10 @@ import useSuccessSnackbar from "hooks/useSuccessSnackbar";
 import { useTranslation } from "react-i18next";
 import { Role, SubscriptionOrderStatus } from "constants/enums";
 import { storage } from "utils/storage";
-import i18n from "lib/i18next";
 import { IconButton, Tooltip } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { green } from "@mui/material/colors";
+import { transformFiled } from "utils/transforms";
 
 type Props = {};
 export const Table: FC<Props> = ({}) => {
@@ -56,14 +56,14 @@ export const Table: FC<Props> = ({}) => {
         onSuccess: () => {
           role === Role.admin
             ? queryClient.invalidateQueries(
-                queryStore["subscription-orders"].all._def
+                queryStore["subscription-order"].all._def
               )
             : queryClient.invalidateQueries(
-                queryStore["subscription-orders"].mine._def
+                queryStore["subscription-order"].mine._def
               );
 
           queryClient.invalidateQueries(
-            queryStore["subscription-orders"].details(id)
+            queryStore["subscription-order"].details(id)
           );
           successSnackbar(t("message.success.approve"));
         },
@@ -77,10 +77,10 @@ export const Table: FC<Props> = ({}) => {
       {
         onSuccess: () => {
           queryClient.invalidateQueries(
-            queryStore["subscription-orders"].all._def
+            queryStore["subscription-order"].all._def
           );
           queryClient.invalidateQueries(
-            queryStore["subscription-orders"].details(id)
+            queryStore["subscription-order"].details(id)
           );
           successSnackbar(t("message.success.refuse"));
         },
@@ -99,9 +99,9 @@ export const Table: FC<Props> = ({}) => {
       tableHead={
         <TableHead>
           <TableRow>
-            {tableHeaders.map((cellHeader) => (
+            {tableHeaders.map((cellHeader, index) => (
               <TableCell
-                key={cellHeader}
+                key={index}
                 sx={{
                   "&.MuiTableCell-root": {
                     textAlign: "center",
@@ -123,33 +123,36 @@ export const Table: FC<Props> = ({}) => {
           <TableRowStriped key={row.id}>
             <TableCell>{row.organization.name}</TableCell>
             <TableCell sx={{ textAlign: "center" }}>
-              {i18n.language === "en"
-                ? row.plan.title["en"]
-                : row.plan.title["ar"]}
+              {transformFiled(row.plan.title)}
             </TableCell>
-            <TableCell sx={{ textAlign: "center" }}>{row.plan.price}</TableCell>
             <TableCell sx={{ textAlign: "center" }}>{row.status}</TableCell>
-            {row.status === SubscriptionOrderStatus.pending &&
-              role === Role.admin && (
-                <TableCell>
-                  <ButtonsStack>
-                    <Tooltip title={t("approve")}>
-                      <IconButton
-                        onClick={() => handelApprove(row.id)}
-                        disabled={approve.isLoading}
-                      >
-                        <CheckCircleIcon
-                          sx={{ color: green[500], fontSize: 21 }}
-                        />
-                      </IconButton>
-                    </Tooltip>
-                    <RemoveIconButton
-                      onClick={() => handelRefuse(row.id)}
-                      disabled={refuse.isLoading}
-                    />
-                  </ButtonsStack>
-                </TableCell>
-              )}
+            <TableCell sx={{ textAlign: "center" }}>{row.plan.price}</TableCell>
+            {role === Role.admin && (
+              <TableCell>
+                <ButtonsStack>
+                  <Tooltip title={t("approve")}>
+                    <IconButton
+                      onClick={() => handelApprove(row.id)}
+                      disabled={
+                        approve.isLoading ||
+                        row.status !== SubscriptionOrderStatus.pending
+                      }
+                    >
+                      <CheckCircleIcon
+                        sx={{ color: green[500], fontSize: 21 }}
+                      />
+                    </IconButton>
+                  </Tooltip>
+                  <RemoveIconButton
+                    onClick={() => handelRefuse(row.id)}
+                    disabled={
+                      refuse.isLoading ||
+                      row.status !== SubscriptionOrderStatus.pending
+                    }
+                  />
+                </ButtonsStack>
+              </TableCell>
+            )}
           </TableRowStriped>
         ))}
       </TableBody>

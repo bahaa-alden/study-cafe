@@ -6,6 +6,7 @@ import { subscriptionOrderQueries } from "features/subscription-order";
 import { storage } from "utils/storage";
 import { useTranslation } from "react-i18next";
 import useSuccessSnackbar from "hooks/useSuccessSnackbar";
+import { transformFiled } from "utils/transforms";
 
 export const PlanCard: FC<{ plan: Plan }> = ({ plan }) => {
   const { t } = useTranslation("subscription-order");
@@ -51,16 +52,17 @@ export const PlanCard: FC<{ plan: Plan }> = ({ plan }) => {
       }}
     >
       <CardContent>
-        {renderPlanIcon(plan.title)} {/* Render icon based on plan */}
+        {renderPlanIcon(transformFiled(plan.title))}
+        {/* Render icon based on plan */}
         <Typography variant="h5" sx={{ fontWeight: "bold", mt: 2, pb: 1 }}>
-          {plan.title}
+          {transformFiled(plan.title)}
         </Typography>
         <Typography
           variant="body2"
           color="text.secondary"
           sx={{ fontWeight: "600" }}
         >
-          {plan.description}
+          {transformFiled(plan.description)}
         </Typography>
         <Typography variant="h4" sx={{ p: 2, fontWeight: "bold" }}>
           ${plan.price}

@@ -30,7 +30,6 @@ export class DessertRoutes {
       validator({
         headers: organizationSchema.organizationHeader,
       }),
-      checkSubscriptionMiddleware,
     );
 
     // GET ALL DESSERTS
@@ -44,6 +43,8 @@ export class DessertRoutes {
       }),
       dessertController.getDesserts,
     );
+
+    this.router.use(checkSubscriptionMiddleware);
 
     // GET DESSERT BY ID
     this.router.get(

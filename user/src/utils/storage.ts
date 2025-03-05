@@ -25,10 +25,16 @@ export const storage = {
   getOrg(): string {
     return localStorage.getItem("orgId") as string;
   },
+  clearOrg() {
+    localStorage.setItem("orgId", "");
+  },
   setRole(role: Role) {
     localStorage.setItem("role", role);
   },
   getRole(): Role {
     return localStorage.getItem("role") as Role;
+  },
+  clearRole() {
+    localStorage.setItem("role", "");
   },
 };

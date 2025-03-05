@@ -50,10 +50,11 @@ abstract class ApiResponse {
 
   private static sanitize<T extends ApiResponse>(response: T): T {
     const clone: T = {} as T;
-    if (response.errors) {
-      response.type = 'form';
+    if (!response.status.toString().startsWith('2')) {
+      if (response.errors) {
+        response.type = 'form';
+      } else response.type = 'default';
     }
-    response.type = 'default';
     Object.assign(clone, response);
     // @ts-ignore
     delete clone.status;
@@ -138,10 +139,7 @@ export class FailureMsgResponse extends ApiResponse {
 }
 
 export class SuccessResponse<T> extends ApiResponse {
-  constructor(
-    message: string,
-    private data: T,
-  ) {
+  constructor(message: string, private data: T) {
     super(StatusCode.SUCCESS, ResponseStatus.SUCCESS, message);
   }
 
@@ -151,10 +149,7 @@ export class SuccessResponse<T> extends ApiResponse {
 }
 
 export class CreatedResponse<T> extends ApiResponse {
-  constructor(
-    message: string,
-    private data: T,
-  ) {
+  constructor(message: string, private data: T) {
     super(StatusCode.CREATED, ResponseStatus.CREATED, message);
   }
 

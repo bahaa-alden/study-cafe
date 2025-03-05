@@ -34,6 +34,11 @@ export const createSideBarItems: () => SideBarItem[] = () => {
             icon: <Apps />,
             withId: false,
           },
+          {
+            href: "plans",
+            icon: <Apps />,
+            withId: false,
+          },
         ]
       : []),
 

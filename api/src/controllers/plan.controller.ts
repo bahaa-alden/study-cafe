@@ -40,7 +40,7 @@ export class PlanController {
       };
       const plans = await planRepository.findForAdmin(options);
 
-      res.ok({ message: 'success', data: res.locals.transformLanguage(plans) });
+      res.ok({ message: 'success', data: plans });
     },
   );
 

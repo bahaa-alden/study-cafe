@@ -32,7 +32,6 @@ export class SessionRoutes {
       validator({
         headers: organizationSchema.organizationHeader,
       }),
-      checkSubscriptionMiddleware,
     );
 
     // GET ALL SESSIONS
@@ -46,6 +45,8 @@ export class SessionRoutes {
       }),
       sessionController.getSessions,
     );
+
+    this.router.use(checkSubscriptionMiddleware);
 
     // GET SESSION BY ID
     this.router.get(

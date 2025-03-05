@@ -12,9 +12,11 @@ import user from "./user.json";
 import organization from "./organization.json";
 import session from "./session.json";
 import dessert from "./dessert.json";
+import subscription from "./subscription.json";
 import subscriptionOrder from "./subscription-order.json";
-
 import warehouse from "./warehouse.json";
+import plan from "./plan.json";
+
 const language = {
   common,
   validation,
@@ -31,6 +33,8 @@ const language = {
   organization,
   session,
   dessert,
+  subscription,
+  plan,
   "subscription-order": subscriptionOrder,
 } as const;
 export default language;

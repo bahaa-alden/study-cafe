@@ -1,4 +1,5 @@
 import i18n from "lib/i18next";
+import { LocalString } from "types/api";
 
 export const objectToFormData = (object: { [k: string]: any }) => {
   const formData = new FormData();
@@ -27,3 +28,7 @@ export const priceFormatter = new Intl.NumberFormat(i18n.language, {
 
 export const diffInDays = (date: string) =>
   Math.ceil((new Date(date).getTime() - Date.now()) / (1000 * 60 * 60 * 24));
+
+export const transformFiled = (item: LocalString) => {
+  return item[`${i18n.language as keyof LocalString}`] as string;
+};

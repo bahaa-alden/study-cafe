@@ -16,6 +16,7 @@ import { defaultOrderParams } from '../utils/order';
 import { defaultPaginationParams } from '../utils/pagination';
 import { needRecord } from '../utils/record';
 import { createSubscriptionService } from '../services/internal/subscriptions/create';
+import { IOrganizationHeaderSchema } from '../schemas/organization.schema';
 
 export class SubscriptionController {
   // Get all Subscriptions by author
@@ -116,6 +117,40 @@ export class SubscriptionController {
 
       await subscriptionRepository.deleteById(subscription.id);
       res.noContent({ message: 'Subscription deleted successfully' });
+    },
+  );
+
+  public getMine = asyncHandler(
+    async (
+      req: ParsedRequest<
+        void,
+        ISubscriptionAllSchema,
+        void,
+        IOrganizationHeaderSchema
+      >,
+      res: Response,
+      next: NextFunction,
+    ): Promise<void> => {
+      const options: SubscriptionFindOptions = {
+        filter: {
+          // filters
+          organizationId: req.valid.headers['organization-id'],
+        },
+        search: req.valid.query.search,
+        order: defaultOrderParams(
+          req.valid.query.orderColumn,
+          req.valid.query.orderDirection,
+        ),
+        pagination: defaultPaginationParams(
+          req.valid.query.page,
+          req.valid.query.pageSize,
+        ),
+      };
+      const subscriptions = await subscriptionRepository.findForAdmin(
+        options,
+      );
+
+      res.ok({ message: 'success', data: subscriptions });
     },
   );
 }

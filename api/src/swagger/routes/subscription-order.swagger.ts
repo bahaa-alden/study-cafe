@@ -99,6 +99,72 @@
 
 /**
  * @swagger
+ * /subscription-orders/mine:
+ *   get:
+ *     summary: Get all subscriptionOrders
+ *     description: USER,ADMIN can retrieve all subscriptionOrders.
+ *     tags: [SubscriptionOrders]
+ *     security:
+ *       - Bearer: []
+ *     parameters:
+ *       - in: query
+ *         name: fields
+ *         schema:
+ *           type: string
+ *         description: what fields do you want to show (ex. name,price)
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *           default: 1
+ *         description: Page number
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           minimum: 1
+ *         default: 10
+ *         description: Maximum number of subscriptionOrders
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: key-words you want to search about it
+ *       - in: query
+ *         name: sort
+ *         schema:
+ *           type: string
+ *         description: sort by query in the form of field:desc/asc (ex. name,-price)
+ *       - in: header
+ *         name: organization-id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the organization the session belongs to.
+ *     responses:
+ *       "200":
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: success
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/SubscriptionOrder'
+ *       "401":
+ *         $ref: '#/components/responses/Unauthorized'
+ *       "403":
+ *         $ref: '#/components/responses/Forbidden'
+ */
+
+/**
+ * @swagger
  * /subscription-orders/{id}:
  *   get:
  *     summary: Get a subscriptionOrder

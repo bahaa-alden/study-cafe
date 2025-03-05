@@ -22,7 +22,8 @@ const Layout: FC = () => {
 
   // Hide sidebar when exactly at "/my-organizations"
   const hideSidebar =
-    location.pathname === "/my-organizations" || location.pathname === "/plans";
+    location.pathname === "/my-organizations" ||
+    location.pathname === "/offers";
 
   return (
     <Box>

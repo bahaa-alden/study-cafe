@@ -23,7 +23,7 @@ export class SubscriptionRepository extends BaseRepository<ISubscription> {
     return this.model
       .findById(id)
       .where({ deletedAt: null })
-      .populate(['organization', 'plan']);
+      .populate(['organization', 'plan', 'payment']);
   }
 
   async findForAdmin(
@@ -49,7 +49,7 @@ export class SubscriptionRepository extends BaseRepository<ISubscription> {
       })
       .limit(pagination.pageSize)
       .skip((pagination.page - 1) * pagination.pageSize)
-      .populate(['plan']);
+      .populate(['plan', 'payment', 'organization']);
 
     return { results, total };
   }

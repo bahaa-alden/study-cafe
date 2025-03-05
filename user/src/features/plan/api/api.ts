@@ -26,6 +26,10 @@ const API = {
     const { data } = await axios.post(API_ROUTES.PLANS.ADD, body);
     return data;
   },
+  remove: async (id: string) => {
+    const { data } = await axios.delete(API_ROUTES.PLANS.DELETE(id));
+    return data;
+  },
 };
 
 export default API;

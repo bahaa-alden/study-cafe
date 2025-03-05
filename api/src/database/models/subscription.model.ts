@@ -8,6 +8,7 @@ import mongoose from 'mongoose';
 
 import { model, Schema, type Document as MongooseDocument } from 'mongoose';
 import { omit } from 'lodash';
+import { IPayment } from './payment.model';
 
 export interface ISubscription extends MongooseDocument {
   id: string;
@@ -15,13 +16,11 @@ export interface ISubscription extends MongooseDocument {
   expiresDate: Date;
   startsDate?: Date;
   status: SubscriptionStatus;
-
   planId: IPlan['_id'];
   plan: IPlan;
-
   organizationId: IOrganization['_id'];
   organization: IOrganization;
-
+  payment: IPayment;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date | null;
@@ -78,6 +77,14 @@ subscriptionSchema.virtual('plan', {
   localField: 'planId',
   foreignField: '_id',
   ref: 'Plan',
+  justOne: true,
+  match: { deletedAt: null },
+});
+
+subscriptionSchema.virtual('payment', {
+  localField: '_id',
+  foreignField: 'subscriptionId',
+  ref: 'Payment',
   justOne: true,
   match: { deletedAt: null },
 });

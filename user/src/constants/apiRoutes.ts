@@ -27,6 +27,15 @@ let API_ROUTES = {
     REFUSE: (id: string) => `${id}/refuse`,
     GET_MINE: "mine",
   },
+  SUBSCRIPTIONS: {
+    root: "subscriptions",
+    ADD: "",
+    GET_ALL: "",
+    GET: (id: string) => id,
+    EDIT: (id: string) => id,
+    DELETE: (id: string) => id,
+    GET_MINE: "mine",
+  },
   SESSIONS: {
     root: "sessions",
     ADD: "",
@@ -49,9 +58,12 @@ let API_ROUTES = {
     root: "organizations",
     ADD: "",
     GET_ALL: "",
+    STATISTICS: "statistics",
     GET: (id: string) => id,
     EDIT: (id: string) => id,
     DELETE: (id: string) => id,
+    APPROVE: (id: string) => `${id}/approve`,
+    REFUSE: (id: string) => `${id}/refuse`,
   },
   USERS: {
     root: "users",

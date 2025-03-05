@@ -25,7 +25,7 @@ export class SubscriptionOrderRoutes {
       authMiddleware.authenticateJWT,
     );
 
-    // GET ALL SUBSCRIPTIONORDERS
+    // GET ALL SUBSCRIPTION_ORDERS
     this.router.get(
       '/',
       restrict(USER, ADMIN),
@@ -34,7 +34,7 @@ export class SubscriptionOrderRoutes {
       subscriptionOrderController.getSubscriptionOrders,
     );
 
-    // GET ALL SUBSCRIPTIONORDERS
+    // GET ALL SUBSCRIPTION_ORDERS
     this.router.get(
       '/mine',
       restrict(USER, ADMIN),
@@ -46,7 +46,7 @@ export class SubscriptionOrderRoutes {
       subscriptionOrderController.getMine,
     );
 
-    // GET SUBSCRIPTIONORDER BY ID
+    // GET SUBSCRIPTION_ORDER BY ID
     this.router.get(
       '/:id',
       restrict(USER, ADMIN),
@@ -55,7 +55,7 @@ export class SubscriptionOrderRoutes {
       subscriptionOrderController.getSubscriptionOrder,
     );
 
-    // CREATE SUBSCRIPTIONORDER
+    // CREATE SUBSCRIPTION_ORDER
     this.router.post(
       '/',
       restrict(USER, ADMIN),
@@ -86,7 +86,7 @@ export class SubscriptionOrderRoutes {
       subscriptionOrderController.refuse,
     );
 
-    // UPDATE SUBSCRIPTIONORDER BY ID
+    // UPDATE SUBSCRIPTION_ORDER BY ID
     this.router.patch(
       '/:id',
       restrict(ADMIN),
@@ -98,7 +98,7 @@ export class SubscriptionOrderRoutes {
       subscriptionOrderController.updateSubscriptionOrder,
     );
 
-    // DELETE SUBSCRIPTIONORDER BY ID
+    // DELETE SUBSCRIPTION_ORDER BY ID
     this.router.delete(
       '/:id',
       restrict(ADMIN),

@@ -7,7 +7,7 @@ import { authorizationMiddleware } from '../auth/authorization';
 import { subscriptionController } from '../controllers/subscription.controller';
 import authSchema from '../schemas/auth.schema';
 import { authMiddleware } from '../middlewares/authJwt';
-import { authController } from '../controllers/auth.controller';
+import organizationSchema from '../schemas/organization.schema';
 const { USER, ADMIN } = RoleCode;
 
 export class SubscriptionRoutes {
@@ -32,6 +32,18 @@ export class SubscriptionRoutes {
       authorizationMiddleware.authorization,
       validator({ query: subscriptionSchema.subscriptionAll }),
       subscriptionController.getSubscriptions,
+    );
+
+    // GET ALL SUBSCRIPTIONS
+    this.router.get(
+      '/mine',
+      restrict(USER, ADMIN),
+      authorizationMiddleware.authorization,
+      validator({
+        query: subscriptionSchema.subscriptionAll,
+        headers: organizationSchema.organizationHeader,
+      }),
+      subscriptionController.getMine,
     );
 
     // GET SUBSCRIPTION BY ID

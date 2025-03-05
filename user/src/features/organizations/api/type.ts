@@ -1,4 +1,5 @@
 import { OrganizationStatus, SubscriptionStatus } from "constants/enums";
+import { User } from "features/account";
 import { APIListParams, Payload } from "types/api";
 
 export type Organization = {
@@ -10,6 +11,8 @@ export type Organization = {
     status: SubscriptionStatus;
   };
   status: OrganizationStatus;
+  user: User;
+  userId: User["id"];
   name: string;
   createdAt: string;
   updatedAt: string;

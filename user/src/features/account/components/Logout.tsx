@@ -1,5 +1,11 @@
 import LogoutOutlined from "@mui/icons-material/LogoutOutlined";
-import { Button, Dialog, DialogActions, DialogContent, Stack } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  Stack,
+} from "@mui/material";
 import { useQueryClient } from "@tanstack/react-query";
 import DialogTitle from "components/forms/DialogTitle";
 import { FC } from "react";
@@ -12,6 +18,8 @@ export const Logout: FC<{}> = ({}) => {
   const queryClient = useQueryClient();
   const onSubmit = async () => {
     storage.clearToken();
+    storage.clearRole();
+    storage.clearOrg();
     queryClient.removeQueries([]);
     navigate("/registration");
   };
