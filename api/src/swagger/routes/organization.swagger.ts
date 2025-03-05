@@ -40,7 +40,7 @@
  *       "403":
  *         $ref: '#/components/responses/Forbidden'
  *
- *   get:
+ *   getSubscriptionOrder:
  *     summary: Get all organizations
  *     description: USER,ADMIN can retrieve all organizations.
  *     tags: [Organizations]

@@ -15,6 +15,7 @@ type Props = {
 const Sidebar: FC<Props> = ({ open, setOpen }) => {
   const [activeItem, setActiveItem] = useState<[boolean, string]>([false, ""]);
   const small = useMediaQuery(useTheme().breakpoints.down("sm"));
+
   const sideBarListItems = createSideBarItems();
   return (
     <ResponsiveDrawer open={open}>

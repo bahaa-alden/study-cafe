@@ -33,12 +33,12 @@ export const LoginForm = () => {
   const onSubmit = async (body: UserLoginBody) => {
     login.mutate(body, {
       onSuccess: (data) => {
-        storage.setToken(data.data.token);
+        storage.setToken(data.token);
+        storage.setRole(data.user.role)
         queryClient.setQueryData(
           queryStore.account.profile.queryKey,
-          data.data.user
+          data.user
         );
-
         navigate("/my-organizations");
       },
       onError: parseResponseError({ setError, snackbar }),

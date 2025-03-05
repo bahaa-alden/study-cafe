@@ -26,3 +26,20 @@ export enum PlanDuration {
   year = "year",
   free = "free",
 }
+
+export enum SubscriptionOrderStatus {
+  approved = "approved",
+  refused = "refused",
+  pending = "pending",
+}
+
+export enum OrganizationStatus {
+  approved = "approved",
+  refused = "refused",
+  pending = "pending",
+}
+
+export enum Role {
+  admin = "ADMIN",
+  user = "USER",
+}

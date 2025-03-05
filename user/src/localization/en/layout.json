@@ -2,6 +2,8 @@
   "navLink": {
     "organizations": "organizations",
     "my-organizations": "organizations",
+    "subscriptions": "subscriptions",
+    "subscription-orders": "subscription orders",
     "sessions": "sessions",
     "desserts": "desserts",
     "statistics": "statistics",

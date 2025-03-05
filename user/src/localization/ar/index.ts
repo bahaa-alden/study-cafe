@@ -13,6 +13,7 @@ import auth from "./auth.json";
 import organization from "./organization.json";
 import session from "./session.json";
 import dessert from "./dessert.json";
+import subscriptionOrder from "./subscription-order.json";
 
 const language = {
   organization,
@@ -29,6 +30,7 @@ const language = {
   home,
   auth,
   session,
-  dessert
+  dessert,
+  "subscription-order": subscriptionOrder,
 } as const;
 export default language;

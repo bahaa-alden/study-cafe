@@ -14,19 +14,25 @@ import {
 
 const API = {
   signup: async (body: UserSignupBody) => {
-    const { data } = await axios.post<UserSignup>(API_ROUTES.USERS.SIGNUP, body);
+    const { data } = await axios.post<UserSignup>(
+      API_ROUTES.USERS.SIGNUP,
+      body
+    );
     return data;
   },
   login: async (body: UserLoginBody) => {
     const { data } = await axios.post<UserLogin>(API_ROUTES.USERS.LOGIN, body);
-    return data;
+    return data.data;
   },
   forgotPassword: async (body: UserForgotPasswordBody) => {
     const { data } = await axios.post(API_ROUTES.USERS.FORGOT_PASSWORD, body);
     return data;
   },
   resetPassword: async (body: UserResetPasswordBody) => {
-    const { data } = await axios.patch<UserResetPassword>(API_ROUTES.USERS.RESET_PASSWORD, body);
+    const { data } = await axios.patch<UserResetPassword>(
+      API_ROUTES.USERS.RESET_PASSWORD,
+      body
+    );
     return data;
   },
   updatePassword: async (body: UserUpdatePasswordBody) => {

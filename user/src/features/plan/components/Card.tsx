@@ -2,8 +2,28 @@ import { Card, CardContent, Typography, Button } from "@mui/material";
 import { FC } from "react";
 import { Plan } from "../api/type";
 import { Star, StarBorder, Diamond } from "@mui/icons-material"; // Use Star and Diamond icons
+import { subscriptionOrderQueries } from "features/subscription-order";
+import { storage } from "utils/storage";
+import { useTranslation } from "react-i18next";
+import useSuccessSnackbar from "hooks/useSuccessSnackbar";
 
 export const PlanCard: FC<{ plan: Plan }> = ({ plan }) => {
+  const { t } = useTranslation("subscription-order");
+  const successSnackbar = useSuccessSnackbar();
+
+  const add = subscriptionOrderQueries.useAdd();
+
+  const handelPurchase = async (id: string) => {
+    add.mutate(
+      { planId: id, organizationId: storage.getOrg() },
+      {
+        onSuccess: () => {
+          successSnackbar(t("message.success.add"));
+        },
+      }
+    );
+  };
+
   const renderPlanIcon = (title: string) => {
     switch (title.toLowerCase()) {
       case "silver":
@@ -61,6 +81,8 @@ export const PlanCard: FC<{ plan: Plan }> = ({ plan }) => {
             borderRadius: 3,
             fontSize: "1rem",
           }}
+          onClick={() => handelPurchase(plan.id)}
+          disabled={add.isLoading}
         >
           Purchase
         </Button>

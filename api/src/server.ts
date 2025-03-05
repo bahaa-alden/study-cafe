@@ -1,3 +1,5 @@
+import { subscriptionPlanRoutes } from './routes/subscription-plan.routes';
+import { subscriptionOrderRoutes } from './routes/subscription-order.routes';
 import { dessertRoutes } from './routes/dessert.routes';
 import { paymentRoutes } from './routes/payment.routes';
 import { planRoutes } from './routes/plan.routes';
@@ -32,6 +34,10 @@ class Server {
   }
 
   public routes(): void {
+    this.app.use('/api/v1/subscription-plans', subscriptionPlanRoutes.router);
+
+    this.app.use('/api/v1/subscription-orders', subscriptionOrderRoutes.router);
+
     this.app.use('/api/v1/desserts', dessertRoutes.router);
 
     this.app.use('/api/v1/payments', paymentRoutes.router);

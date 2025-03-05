@@ -15,7 +15,13 @@ export const keys = createQueryKeys("organization", {
 
 export const queries = {
   useAll: (params: OrganizationAllParams) => useInfiniteQuery(keys.all(params)),
-  useDetails: (id: string) => useQuery({ ...keys.details(id), enabled: !!id }),
+  useDetails: (id: string) =>
+    useQuery({
+      ...keys.details(id),
+      enabled: !!id,
+      staleTime: Infinity,
+      refetchOnWindowFocus: false,
+    }),
   useAdd: () => useMutation(API.add),
   useEdit: () => useMutation(API.edit),
 };

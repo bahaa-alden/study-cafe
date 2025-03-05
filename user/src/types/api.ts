@@ -31,3 +31,8 @@ export type APIListParams = Partial<{
   fields: string;
   search: string;
 }>;
+
+export type LocalString = {
+  ar?: string;
+  en?: string;
+};

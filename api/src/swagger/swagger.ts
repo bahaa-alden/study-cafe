@@ -1,5 +1,15 @@
 import * as swaggerJsdoc from 'swagger-jsdoc';
 import {
+  SubscriptionPlan,
+  createSubscriptionPlan,
+  updateSubscriptionPlan,
+} from './routes/subscription-plan.swagger';
+import {
+  SubscriptionOrder,
+  createSubscriptionOrder,
+  updateSubscriptionOrder,
+} from './routes/subscription-order.swagger';
+import {
   Dessert,
   createDessert,
   updateDessert,
@@ -56,6 +66,12 @@ const options = {
     ],
     components: {
       schemas: {
+        SubscriptionPlan,
+        createSubscriptionPlan,
+        updateSubscriptionPlan,
+        SubscriptionOrder,
+        createSubscriptionOrder,
+        updateSubscriptionOrder,
         Dessert,
         createDessert,
         updateDessert,

@@ -16,7 +16,9 @@ import { UserUpdatePasswordBody } from "../../api/type";
 import PasswordInput from "../PasswordInput";
 import changePasswordSchema, { changePasswordDefault } from "./validation";
 export const PasswordChangeForm = () => {
-  const { control, handleSubmit, setError } = useForm<z.infer<typeof changePasswordSchema>>({
+  const { control, handleSubmit, setError } = useForm<
+    z.infer<typeof changePasswordSchema>
+  >({
     resolver: zodResolver(changePasswordSchema),
     defaultValues: changePasswordDefault,
   });
@@ -28,11 +30,15 @@ export const PasswordChangeForm = () => {
   const onSubmit = async (body: UserUpdatePasswordBody) => {
     changePassword.mutate(body, {
       onSuccess: (data) => {
-        storage.setToken(data.token);
-        queryClient.setQueryData(queryStore.account.profile.queryKey, data.user);
+        storage.setToken(data.data.token);
+        storage.setRole(data.data.user.role);
+        queryClient.setQueryData(
+          queryStore.account.profile.queryKey,
+          data.data.user
+        );
         navigate("/settings");
       },
-      onError: parseResponseError({ setFormError: setError, snackbar }),
+      onError: parseResponseError({ setError, snackbar }),
     });
   };
   return (
@@ -50,8 +56,16 @@ export const PasswordChangeForm = () => {
             mx: "auto",
           }}
         >
-          <PasswordInput control={control} name="passwordCurrent" label={t("passwordCurrent")} />
-          <PasswordInput control={control} name="password" label={t("password")} />
+          <PasswordInput
+            control={control}
+            name="passwordCurrent"
+            label={t("passwordCurrent")}
+          />
+          <PasswordInput
+            control={control}
+            name="password"
+            label={t("password")}
+          />
           <Submit
             sx={{ mt: { xs: 3, sm: 5 }, px: 5, alignSelf: "" }}
             isSubmitting={changePassword.isLoading}

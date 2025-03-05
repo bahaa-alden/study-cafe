@@ -15,14 +15,14 @@ export function transformObject(obj: any, lang: string, fields: string[]) {
   }
 
   fields.forEach((field) => {
-    if (
-      transformed[field] &&
-      typeof transformed[field] === 'object' &&
-      (transformed[field].ar || transformed[field].en)
-    ) {
-      // Assign the requested language value
-      transformed[field] =
-        transformed[field][lang] || transformed[field]['en'] || null;
+    if (transformed[field] && typeof transformed[field] === 'object') {
+      if (!transformed[field].ar && !transformed[field].en) {
+        transformed[field] = transformObject(transformed[field], lang, fields);
+      } else {
+        // Assign the requested language value
+        transformed[field] =
+          transformed[field][lang] || transformed[field]['en'] || null;
+      }
     }
   });
 

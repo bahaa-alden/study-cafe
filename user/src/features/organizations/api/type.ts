@@ -1,4 +1,4 @@
-import { SubscriptionStatus } from "constants/enums";
+import { OrganizationStatus, SubscriptionStatus } from "constants/enums";
 import { APIListParams, Payload } from "types/api";
 
 export type Organization = {
@@ -9,6 +9,7 @@ export type Organization = {
     startsDate?: string;
     status: SubscriptionStatus;
   };
+  status: OrganizationStatus;
   name: string;
   createdAt: string;
   updatedAt: string;

@@ -1,3 +1,4 @@
+import { Role } from "constants/enums";
 import { refreshAxiosToken } from "lib/axios";
 
 export const storage = {
@@ -23,5 +24,11 @@ export const storage = {
   },
   getOrg(): string {
     return localStorage.getItem("orgId") as string;
+  },
+  setRole(role: Role) {
+    localStorage.setItem("role", role);
+  },
+  getRole(): Role {
+    return localStorage.getItem("role") as Role;
   },
 };

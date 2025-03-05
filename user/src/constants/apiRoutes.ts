@@ -16,6 +16,17 @@ let API_ROUTES = {
     EDIT: (id: string) => id,
     DELETE: (id: string) => id,
   },
+  SUBSCRIPTION_ORDERS: {
+    root: "subscription-orders",
+    ADD: "",
+    GET_ALL: "",
+    GET: (id: string) => id,
+    EDIT: (id: string) => id,
+    DELETE: (id: string) => id,
+    APPROVE: (id: string) => `${id}/approve`,
+    REFUSE: (id: string) => `${id}/refuse`,
+    GET_MINE: "mine",
+  },
   SESSIONS: {
     root: "sessions",
     ADD: "",

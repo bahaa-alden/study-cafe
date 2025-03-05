@@ -78,18 +78,12 @@ export class UserRepository extends BaseRepository<IUser> {
   }
 
   async findOneById(id: string): Promise<IUser | null> {
-    return await this.model
-      .findById(id)
-      .where({ deletedAt: null })
-      .select('+email +password');
+    return await this.model.findById(id).where({ deletedAt: null });
   }
 
   // find user by email
   async findByEmail(email: string): Promise<IUser | null> {
-    return await this.model
-      .findOne({ email })
-      .where({ deletedAt: null })
-      .select('+email +password +name');
+    return await this.model.findOne({ email }).where({ deletedAt: null });
   }
 
   async findByUsername(name: string): Promise<IUser | null> {

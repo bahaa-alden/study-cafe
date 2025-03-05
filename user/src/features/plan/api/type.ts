@@ -1,11 +1,11 @@
 import { PlanDuration } from "constants/enums";
-import { APIListParams, Payload } from "types/api";
+import { APIListParams, LocalString, Payload } from "types/api";
 
 export type Plan = {
   id: string;
   duration: PlanDuration;
   price: number;
-  title: string;
+  title: LocalString;
   description: string;
   createdAt: string;
   updatedAt: string;

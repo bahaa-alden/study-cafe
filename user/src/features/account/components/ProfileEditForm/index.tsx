@@ -17,7 +17,12 @@ import { useQueryClient } from "@tanstack/react-query";
 import TextField from "components/inputs/TextField";
 import Submit from "components/buttons/Submit";
 import { useSnackbar } from "context/snackbarContext";
-import { ProfilePhoto, User, UserEditBody, accountQueries } from "features/account";
+import {
+  ProfilePhoto,
+  User,
+  UserEditBody,
+  accountQueries,
+} from "features/account";
 import { EmailInput } from "features/auth";
 import { queryStore } from "features/shared";
 import z from "lib/zod";
@@ -29,9 +34,15 @@ import { parseResponseError } from "utils/apiHelpers";
 import profileEditSchema from "./validation";
 export type ProfileEditFormProps = { initial: User | undefined };
 export const ProfileEditForm: FC<ProfileEditFormProps> = ({ initial }) => {
-  const { setValue, control, handleSubmit, setError } = useForm<z.infer<typeof profileEditSchema>>({
+  const { setValue, control, handleSubmit, setError } = useForm<
+    z.infer<typeof profileEditSchema>
+  >({
     resolver: zodResolver(profileEditSchema),
-    defaultValues: { email: initial?.email, name: initial?.name, photo: undefined },
+    defaultValues: {
+      email: initial?.email,
+      name: initial?.name,
+      photo: undefined,
+    },
   });
   const navigate = useNavigate();
   const edit = accountQueries.useEdit();
@@ -51,7 +62,7 @@ export const ProfileEditForm: FC<ProfileEditFormProps> = ({ initial }) => {
         queryClient.setQueryData(queryStore.account.profile.queryKey, data);
         navigate("/settings/profile");
       },
-      onError: parseResponseError({ setFormError: setError, snackbar }),
+      onError: parseResponseError({ setError, snackbar }),
     });
   };
   return (
@@ -111,7 +122,13 @@ export const ProfileEditForm: FC<ProfileEditFormProps> = ({ initial }) => {
           >
             <EditIcon sx={{ fontSize: 20, color: "primary.900" }} />
           </IconButton>
-          <input id={"photo"} accept="image/*" hidden type="file" onChange={handleImageUpload} />
+          <input
+            id={"photo"}
+            accept="image/*"
+            hidden
+            type="file"
+            onChange={handleImageUpload}
+          />
         </Stack>
         <Grid container spacing={1} sx={{ px: 2, my: 2 }}>
           <Grid item xs={12} sm={6}>

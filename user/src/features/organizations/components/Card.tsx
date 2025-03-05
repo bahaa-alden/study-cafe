@@ -11,7 +11,6 @@ import { green, red, pink, grey } from "@mui/material/colors";
 import EditIconButton from "components/buttons/EditIconButton";
 import ButtonsStack from "components/layout/ButtonsStack";
 import { FC } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { storage } from "utils/storage";
 import { diffInDays } from "utils/transforms";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -19,25 +18,36 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive"; // Subscription icon
 import useEventSearchParams from "hooks/useEventSearchParams";
+import { useQueryClient } from "@tanstack/react-query";
+import { queryStore } from "features/shared";
+import RouterLink from "components/links/RouterLink";
 
 export const OrganizationCard: FC<{ item: any }> = ({ item }) => {
   const { edit } = useEventSearchParams();
-  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const subscriptionExpired =
     !item.expiresDate || diffInDays(item.expiresDate) <= 0;
 
+  const handelLinks = () => {
+    storage.setOrg(item.id);
+    queryClient.setQueryData(
+      queryStore.organization.details(item.id).queryKey,
+      item
+    );
+  };
+
   return (
     <CardContent>
       {item.expiresDate && !subscriptionExpired ? (
-        <Link
+        <RouterLink
           to={`${item.id}/sessions`}
           style={{
             textDecoration: "none",
             display: "inline-block",
             width: "100%",
           }}
-          onClick={() => storage.setOrg(item.id)}
+          onClick={handelLinks}
         >
           <Avatar
             sx={{
@@ -53,7 +63,7 @@ export const OrganizationCard: FC<{ item: any }> = ({ item }) => {
           <Typography variant="h5" sx={{ fontWeight: "bold", color: "#333" }}>
             {item.name}
           </Typography>
-        </Link>
+        </RouterLink>
       ) : (
         <Box
           style={{
@@ -114,14 +124,11 @@ export const OrganizationCard: FC<{ item: any }> = ({ item }) => {
         <EditIconButton onClick={() => edit(item.id)} />
         {subscriptionExpired && (
           <Tooltip title="Subscribe to a plan">
-            <IconButton
-              onClick={() => {
-                storage.setOrg(item.id);
-                navigate("/plans");
-              }}
-            >
-              <NotificationsActiveIcon sx={{ color: "#1834e9" }} />
-            </IconButton>
+            <RouterLink to="/plans">
+              <IconButton onClick={handelLinks}>
+                <NotificationsActiveIcon sx={{ color: "#1834e9" }} />
+              </IconButton>
+            </RouterLink>
           </Tooltip>
         )}
       </ButtonsStack>

@@ -24,6 +24,11 @@ export enum Env {
 }
 
 // <creating-enum-type />
+export enum SubscriptionOrderStatus {
+  approved = 'approved',
+  refused = 'refused',
+  pending = 'pending',
+}
 
 export enum DessertType {
   drink = 'drink',

@@ -1,6 +1,6 @@
 import AddIcon from "@mui/icons-material/Add";
 import { Fab, FabProps, Tooltip } from "@mui/material";
-import { OptionalWrap } from "components/layout/OptionalWrap";
+import OptionalWrap from "components/layout/OptionalWrap";
 import { HideOnScroll } from "features/layout";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
@@ -15,20 +15,22 @@ const AddFab: FC<Props> = ({ hideOnScroll = false, ...props }) => {
   };
   return (
     <Tooltip title={t("add")}>
-      <OptionalWrap
-        Element={HideOnScroll}
-        wrap={hideOnScroll}
-        ElementProps={{}}
-      >
-        <Fab
-          color="primary"
-          onClick={handleClick}
-          sx={{ position: "fixed", bottom: 16, right: 16 }}
-          {...props}
+      <span>
+        <OptionalWrap
+          Element={HideOnScroll}
+          wrap={hideOnScroll}
+          ElementProps={{}}
         >
-          <AddIcon sx={{ color: "white" }} />
-        </Fab>
-      </OptionalWrap>
+          <Fab
+            color="primary"
+            onClick={handleClick}
+            sx={{ position: "fixed", bottom: 16, right: 16 }}
+            {...props}
+          >
+            <AddIcon sx={{ color: "white" }} />
+          </Fab>
+        </OptionalWrap>
+      </span>
     </Tooltip>
   );
 };
