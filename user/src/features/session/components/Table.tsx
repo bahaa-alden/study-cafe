@@ -10,6 +10,7 @@ import { isThereNext, isTherePrev } from "constants/apiList";
 import { SessionCard } from "./Card";
 import { SessionStatus } from "constants/enums";
 import { Dayjs } from "dayjs";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   filters: {
@@ -23,6 +24,7 @@ export const SessionTable: FC<Props> = ({ filters }) => {
   // State for filters
   const { dateFrom, dateTo, status } = filters;
   // Get query params
+  const { t: tCommon } = useTranslation();
   const search = useQuerySearchParam();
   const page = usePageNumberSearchParam();
   const query = sessionQueries.useAll({
@@ -39,20 +41,22 @@ export const SessionTable: FC<Props> = ({ filters }) => {
       currentPage?.map((session) => ({
         id: session.id,
         icon: <AccessTimeIcon sx={{ fontSize: 50, color: "white" }} />,
-        name: `Session #${session.user?.name || session.username || "Unknown"}`,
+        name: `${tCommon("Session")} #${
+          session.user?.name || session.username || "Unknown"
+        }`,
         status: session.status,
-        startTime: session.startTime || "Not Started",
+        startTime: session.startTime,
         endTime: session.endTime || "Ongoing",
         price: session.totalCost || "0",
         subtotal: session.subtotal || "0",
         additionalCost: session.additionalCost || "0",
-        organization: session.organization?.name || "N/A",
+        organization: session.organization?.name,
         desserts:
           session.desserts
             ?.map((d) => `${d.dessert.name} x${d.count}`)
-            .join(", ") || "None",
+            .join(", ") || tCommon("None"),
       })) || [],
-    [currentPage]
+    [currentPage, tCommon]
   );
 
   return (

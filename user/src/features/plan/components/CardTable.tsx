@@ -5,10 +5,12 @@ import usePageNumberSearchParam from "hooks/usePageNumberSearchParam";
 import useQuerySearchParam from "hooks/useQuerySearchParam";
 import { Stack, Typography, Grid, Box } from "@mui/material";
 import { PlanCard } from "./Card";
+import { useTranslation } from "react-i18next";
 
 type Props = {};
 
-export const PlanCardTable: FC = () => {
+export const PlanCardTable: FC<Props> = () => {
+  const { t: tCommon } = useTranslation();
   const search = useQuerySearchParam();
   const page = usePageNumberSearchParam();
   const query = planQueries.useAll({ search, page });
@@ -18,7 +20,7 @@ export const PlanCardTable: FC = () => {
   return (
     <Stack spacing={4} alignItems="center" sx={{ width: "100%", py: 4 }}>
       <Typography variant="h4" sx={{ fontWeight: "bold", textAlign: "center" }}>
-        Subscription Plans
+        {tCommon("Subscription Plans")}
       </Typography>
       <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <Grid

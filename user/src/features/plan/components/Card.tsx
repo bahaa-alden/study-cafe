@@ -10,6 +10,7 @@ import { transformFiled } from "utils/transforms";
 
 export const PlanCard: FC<{ plan: Plan }> = ({ plan }) => {
   const { t } = useTranslation("subscription-order");
+  const { t: tCommon } = useTranslation();
   const successSnackbar = useSuccessSnackbar();
 
   const add = subscriptionOrderQueries.useAdd();
@@ -26,16 +27,15 @@ export const PlanCard: FC<{ plan: Plan }> = ({ plan }) => {
   };
 
   const renderPlanIcon = (title: string) => {
-    switch (title.toLowerCase()) {
-      case "silver":
-        return <StarBorder sx={{ fontSize: 40, color: "#C0C0C0" }} />;
-      case "gold":
-        return <Star sx={{ fontSize: 40, color: "#FFD700" }} />;
-      case "diamond":
-        return <Diamond sx={{ fontSize: 40, color: "#00aaff" }} />;
-      default:
-        return null;
-    }
+    title = title.toLowerCase();
+    if (title.includes("silver"))
+      return <StarBorder sx={{ fontSize: 40, color: "#C0C0C0" }} />;
+    if (title.includes("gold"))
+      return <Star sx={{ fontSize: 40, color: "#FFD700" }} />;
+    if (title.includes("diamond"))
+      return <Diamond sx={{ fontSize: 40, color: "#00aaff" }} />;
+
+    return null;
   };
 
   return (
@@ -52,7 +52,7 @@ export const PlanCard: FC<{ plan: Plan }> = ({ plan }) => {
       }}
     >
       <CardContent>
-        {renderPlanIcon(transformFiled(plan.title))}
+        {renderPlanIcon(plan.title.en as string)}
         {/* Render icon based on plan */}
         <Typography variant="h5" sx={{ fontWeight: "bold", mt: 2, pb: 1 }}>
           {transformFiled(plan.title)}
@@ -72,7 +72,7 @@ export const PlanCard: FC<{ plan: Plan }> = ({ plan }) => {
           color="text.secondary"
           sx={{ fontWeight: "800", fontSize: "15px" }}
         >
-          {plan.duration}
+          {tCommon(plan.duration)}
         </Typography>
         <Button
           variant="contained"
@@ -86,7 +86,7 @@ export const PlanCard: FC<{ plan: Plan }> = ({ plan }) => {
           onClick={() => handelPurchase(plan.id)}
           disabled={add.isLoading}
         >
-          Purchase
+          {tCommon("Purchase")}
         </Button>
       </CardContent>
     </Card>

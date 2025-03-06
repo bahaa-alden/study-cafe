@@ -14,8 +14,11 @@ import { FC } from "react";
 import { getPage } from "utils/apiHelpers";
 import { dessertQueries } from "..";
 import useTableHeader from "../hooks/useTableHeaders";
+import { useTranslation } from "react-i18next";
+import { transformFiled } from "utils/transforms";
 type Props = {};
 export const Table: FC<Props> = ({}) => {
+  const { t: tCommon } = useTranslation();
   const search = useQuerySearchParam();
   const page = usePageNumberSearchParam();
   const { edit, remove } = useEventSearchParams();
@@ -59,8 +62,10 @@ export const Table: FC<Props> = ({}) => {
       <TableBody>
         {currentPage.map((row) => (
           <TableRowStriped key={row.id}>
-            <TableCell>{row.name}</TableCell>
-            <TableCell sx={{ textAlign: "center" }}>{row.type}</TableCell>
+            <TableCell>{transformFiled(row.name)}</TableCell>
+            <TableCell sx={{ textAlign: "center" }}>
+              {tCommon(row.type)}
+            </TableCell>
             <TableCell sx={{ textAlign: "center" }}>{row.price}</TableCell>
             <TableCell>
               <ButtonsStack>

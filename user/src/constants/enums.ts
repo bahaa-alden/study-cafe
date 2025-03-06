@@ -21,6 +21,11 @@ export enum DessertType {
   meal = "meal",
 }
 
+export enum DessertTypeAr {
+  مشروب = "drink",
+  وجبة = "meal",
+}
+
 export enum PlanDuration {
   month = "month",
   year = "year",
@@ -48,4 +53,9 @@ export enum PaymentStatus {
   failed = "failed",
   pending = "pending",
   success = "success",
+}
+
+export enum LanguageCode {
+  ar = "ar",
+  en = "en",
 }

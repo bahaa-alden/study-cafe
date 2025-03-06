@@ -9,7 +9,8 @@
     "type": "Type"
   },
   "form": {
-    "name": "Name",
+    "name_ar": "Name in arabic",
+    "name_en": "Name in english",
     "price": "Price",
     "type": "Type"
   },

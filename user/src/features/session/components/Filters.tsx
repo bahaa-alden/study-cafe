@@ -7,6 +7,7 @@ import { SessionStatus } from "constants/enums";
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import { FilterList as FilterListIcon } from "@mui/icons-material";
 import { Dayjs } from "dayjs";
+import { useTranslation } from "react-i18next";
 
 export type Props = {
   dateFrom?: Dayjs;
@@ -26,7 +27,7 @@ export const Filters: FC<Props> = ({
   dateTo,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
-
+  const { t: tCommon } = useTranslation();
   const clearFilters = () => {
     setStatus("" as SessionStatus);
     setDateFrom(undefined);
@@ -68,7 +69,7 @@ export const Filters: FC<Props> = ({
                 <TextField
                   select
                   fullWidth
-                  label="Status"
+                  label={tCommon("Status")}
                   value={status}
                   onChange={(e) => setStatus(e.target.value as SessionStatus)}
                 >
@@ -80,7 +81,7 @@ export const Filters: FC<Props> = ({
 
               <Grid item xs={12}>
                 <DatePicker
-                  label="Date From"
+                  label={tCommon("Date From")}
                   value={dateFrom || null}
                   onChange={(newValue) => setDateFrom(newValue || undefined)}
                   slotProps={{ textField: { fullWidth: true } }}
@@ -89,14 +90,14 @@ export const Filters: FC<Props> = ({
 
               <Grid item xs={12}>
                 <DatePicker
-                  label="Date To"
+                  label={tCommon("Date To")}
                   value={dateTo || null}
                   onChange={(newValue) => setDateTo(newValue || undefined)}
                   slotProps={{ textField: { fullWidth: true } }}
                 />
               </Grid>
             </Grid>
-            <Button onClick={clearFilters}>Clear filters</Button>
+            <Button onClick={clearFilters}>{tCommon("Clear filters")}</Button>
           </Stack>
         </Stack>
       )}

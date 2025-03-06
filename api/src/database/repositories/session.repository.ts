@@ -22,7 +22,11 @@ export interface SessionFilterOptions {
 
 interface OrganizationStatistics {
   totalSessions: number;
-  sessionsByStatus: Record<string, number>;
+  totalRevenue: number;
+  sessionsByStatus: Array<{
+    _id: string;
+    count: number;
+  }>;
   revenueByDay: Array<{
     date: string;
     totalRevenue: number;
@@ -119,7 +123,7 @@ export class SessionRepository extends BaseRepository<ISession> {
     organizationId: string,
     fromDate?: Date,
     toDate?: Date,
-  ) {
+  ): Promise<OrganizationStatistics> {
     const now = new Date();
     fromDate = fromDate ? startOfDay(fromDate) : startOfDay(subDays(now, 7));
     toDate = toDate ? endOfDay(toDate) : endOfDay(now);

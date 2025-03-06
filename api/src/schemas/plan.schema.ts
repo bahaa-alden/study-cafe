@@ -1,7 +1,5 @@
 import { stringToDate } from './common';
 
-import { stringToDate } from './common';
-
 import { localString } from './common';
 
 import { PlanDuration } from './../utils/enum';
@@ -27,9 +25,6 @@ const planAllSchema = object({
   orderColumn,
   orderDirection,
   search: string().optional(),
-  dateFrom: stringToDate.optional(),
-  dateTo: stringToDate.optional(),
-
   dateFrom: stringToDate.optional(),
   dateTo: stringToDate.optional(),
 });

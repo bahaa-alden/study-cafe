@@ -46,7 +46,10 @@ export class DessertRepository extends BaseRepository<IDessert> {
     }
 
     if (search) {
-      query.$or = [{ name: { $regex: new RegExp(search, 'i') } }];
+      query.$or = [
+        { 'name.ar': { $regex: new RegExp(search, 'i') } },
+        { 'name.en': { $regex: new RegExp(search, 'i') } },
+      ];
     }
 
     const total = await this.model.where(query).countDocuments();

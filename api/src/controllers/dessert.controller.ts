@@ -92,7 +92,8 @@ export class DessertController {
 
       existRecord(
         await dessertRepository.findOneBy({
-          name: newDessert.name,
+          'name.en': newDessert.name.en,
+          'name.ar': newDessert.name.ar,
           type: newDessert.type,
           organizationId: req.valid.headers['organization-id'],
         }),

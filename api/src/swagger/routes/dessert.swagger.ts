@@ -248,7 +248,13 @@ export const Dessert = {
   properties: {
     id: { type: 'string' },
     // property
-    name: { type: 'string' },
+    name: {
+      type: 'object',
+      properties: {
+        ar: { type: 'string' },
+        en: { type: 'string' },
+      },
+    },
     organization: { type: 'string' },
     type: { type: 'string', enum: ['drink', 'meal'] },
     price: { type: 'number' },
@@ -256,8 +262,10 @@ export const Dessert = {
   example: {
     id: '5ebac534954b54139806c112',
     // property example
-    name: 'milk',
-
+    name: {
+      ar: 'حليب',
+      en: 'milk',
+    },
     organizationId: '673c40cd59e293827f79e398',
 
     type: 'drink',
@@ -272,20 +280,29 @@ export const createDessert = {
   type: 'object',
   properties: {
     // create property
-    name: { type: 'string' },
+    name: {
+      type: 'object',
+      properties: {
+        ar: { type: 'string' },
+        en: { type: 'string' },
+      },
+    },
     type: { type: 'string', enum: ['drink', 'meal'] },
     price: { type: 'number' },
   },
   example: {
     // create property example
-    name: 'milk',
-
+    name: {
+      ar: 'حليب',
+      en: 'milk',
+    },
     type: 'drink',
 
     price: 2000,
   },
   required: [
     // required property
+
     'name',
 
     'organization',
@@ -297,14 +314,22 @@ export const updateDessert = {
   type: 'object',
   properties: {
     // update property
-    name: { type: 'string' },
+    name: {
+      type: 'object',
+      properties: {
+        ar: { type: 'string' },
+        en: { type: 'string' },
+      },
+    },
     type: { type: 'string', enum: ['drink', 'meal'] },
     price: { type: 'number' },
   },
   example: {
     // update property example
-    name: 'milk',
-
+    name: {
+      ar: 'حليب',
+      en: 'milk',
+    },
     type: 'drink',
 
     price: 2000,

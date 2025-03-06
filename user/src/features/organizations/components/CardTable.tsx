@@ -9,6 +9,7 @@ import { CardTable } from "components/tables/CardTable";
 import { isThereNext, isTherePrev } from "constants/apiList";
 import AddFab from "components/buttons/AddFab";
 import { OrganizationCard } from "./Card";
+import { useTranslation } from "react-i18next";
 
 type Props = {};
 
@@ -18,6 +19,7 @@ export const OrganizationCardTable: FC<Props> = () => {
   const { add } = useEventSearchParams();
   const query = organizationQueries.useAll({ search, page });
   const { data } = query;
+  const { t: tCommon } = useTranslation();
 
   const currentPage = getPage(data, page);
 
@@ -38,7 +40,7 @@ export const OrganizationCardTable: FC<Props> = () => {
     <>
       <AddFab hideOnScroll onClick={() => add()} />
       <CardTable
-        title="Organization Subscriptions"
+        title={tCommon("organizations")}
         pageData={dataCard || []}
         CardContent={OrganizationCard}
         infiniteQuery={query}

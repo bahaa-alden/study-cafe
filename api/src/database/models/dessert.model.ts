@@ -1,3 +1,5 @@
+import { type ILocalString, localStringSchema } from './../../utils/types';
+
 import { IOrganization } from './organization.model';
 
 import mongoose from 'mongoose';
@@ -10,8 +12,7 @@ import { omit } from 'lodash';
 export interface IDessert extends MongooseDocument {
   id: string;
   // <creating-property-interface />
-  name: string;
-
+  name: ILocalString;
   organizationId?: IOrganization['_id'];
   organization?: IOrganization;
 
@@ -28,8 +29,8 @@ const dessertSchema: Schema = new Schema<IDessert>(
   {
     // <creating-property-schema />
     name: {
-      type: String,
-      index: 'text',
+      type: localStringSchema,
+      of: String,
     },
     organizationId: {
       type: mongoose.Schema.Types.ObjectId,

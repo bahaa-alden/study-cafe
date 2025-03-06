@@ -1,15 +1,15 @@
 import { DessertType } from "constants/enums";
-import { APIListParams, Payload } from "types/api";
+import { APIListParams, LocalString, Payload } from "types/api";
 
 export type DessertAction = {
-  name: string;
+  name: LocalString;
   price: number;
   type: DessertType;
 };
 
 export type Dessert = {
   id: string;
-  name: string;
+  name: LocalString;
   price: number;
   type: DessertType;
   createdAt: string;

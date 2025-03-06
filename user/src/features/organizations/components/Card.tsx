@@ -20,6 +20,7 @@ import useEventSearchParams from "hooks/useEventSearchParams";
 import { useQueryClient } from "@tanstack/react-query";
 import { queryStore } from "features/shared";
 import RouterLink from "components/links/RouterLink";
+import { useTranslation } from "react-i18next";
 
 export const OrganizationCard: FC<{ item: any }> = ({ item }) => {
   const { edit } = useEventSearchParams();
@@ -35,6 +36,7 @@ export const OrganizationCard: FC<{ item: any }> = ({ item }) => {
       item
     );
   };
+  const { t: tCommon } = useTranslation();
 
   return (
     <CardContent>
@@ -74,8 +76,10 @@ export const OrganizationCard: FC<{ item: any }> = ({ item }) => {
         </Tooltip>
         <Typography variant="body2" color="text.secondary" fontSize={16}>
           {subscriptionExpired
-            ? "Subscription Expired"
-            : `Expires in ${diffInDays(item.expiresDate)} day(s)`}
+            ? tCommon("Subscription Expired")
+            : `${tCommon("Expires in")} ${diffInDays(
+                item.expiresDate
+              )} ${tCommon("day(s)")}`}
         </Typography>
       </Stack>
 
@@ -83,7 +87,7 @@ export const OrganizationCard: FC<{ item: any }> = ({ item }) => {
       <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 1 }}>
         <AccessTimeIcon sx={{ color: pink[500], fontSize: 20 }} />
         <Typography variant="body2" color="text.secondary">
-          {item.sessionHourlyRate} LSI/hour
+          {item.sessionHourlyRate} {tCommon("SYP/hour")}
         </Typography>
       </Stack>
 

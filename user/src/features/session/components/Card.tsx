@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { teal } from "@mui/material/colors";
 import { useState, FC, useEffect } from "react";
-import { getCurrencySign } from "utils/transforms";
+import { priceFormatter } from "utils/transforms";
 import { DessertAddForm } from "./DessertAddForm";
 import { EndForm } from "./EndForm";
 import { useTranslation } from "react-i18next";
@@ -19,8 +19,8 @@ export const SessionCard: FC<{ item: any }> = ({ item }) => {
   const [activeDessertSession, setActiveDessertSession] = useState<
     string | null
   >(null);
-
   const theme = useTheme();
+  const { t: tCommon } = useTranslation();
   const { t } = useTranslation("session");
   const [elapsedTime, setElapsedTime] = useState("");
 
@@ -47,36 +47,37 @@ export const SessionCard: FC<{ item: any }> = ({ item }) => {
         {item.name}
       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-        Start: <strong>{formatDate(item.startTime)}</strong>
+        {tCommon("Start")}: <strong>{formatDate(item.startTime)}</strong>
       </Typography>
       <Typography variant="body2" color="text.secondary">
-        End: End:{" "}
+        {tCommon("End")}:
         <strong>
           {item.endTime !== "Ongoing" ? formatDate(item.endTime) : elapsedTime}
         </strong>
       </Typography>
 
       <Typography variant="body2" color="text.secondary">
-        Desserts: <strong>{item.desserts}</strong>
+        {tCommon("Desserts")}: <strong>{item.desserts}</strong>
       </Typography>
       <Divider sx={{ mt: 1 }} />
       <Typography
         variant="body1"
         sx={{ fontWeight: "bold", mt: 1, color: teal[700] }}
       >
-        Subtotal: {item.subtotal} {getCurrencySign("SYP")}
+        {tCommon("Subtotal")}: {priceFormatter.format(item.subtotal)}
       </Typography>
       <Typography
         variant="body1"
         sx={{ fontWeight: "bold", mt: 1, color: teal[700] }}
       >
-        Additional Cost: {item.additionalCost} {getCurrencySign("SYP")}
+        {tCommon("Additional Cost")}:{" "}
+        {priceFormatter.format(item.additionalCost)}
       </Typography>
       <Typography
         variant="body1"
         sx={{ fontWeight: "bold", mt: 1, color: teal[700] }}
       >
-        Total Price: {item.price} {getCurrencySign("SYP")}
+        {tCommon("Total Price")}: {priceFormatter.format(item.price)}
       </Typography>
       <Divider sx={{ mt: 1 }} />
       <Stack

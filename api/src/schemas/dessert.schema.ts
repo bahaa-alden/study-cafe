@@ -1,3 +1,5 @@
+import { localString } from './common';
+
 import { objectId } from './common';
 
 import { DessertType } from './../utils/enum';
@@ -24,7 +26,7 @@ export type IDessertAllSchema = TypeOf<typeof dessertAllSchema>;
 
 const dessertCreateSchema = object({
   // <creating-property-create-schema />
-  name: z.string(),
+  name: localString,
 
   type: z.nativeEnum(DessertType),
 
@@ -35,7 +37,7 @@ export type IDessertCreateSchema = TypeOf<typeof dessertCreateSchema>;
 
 const dessertUpdateSchema = object({
   // <creating-property-update-schema />
-  name: z.string().optional(),
+  name: localString.optional(),
 
   type: z.nativeEnum(DessertType).optional(),
 

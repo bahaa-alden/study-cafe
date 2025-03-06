@@ -24,6 +24,7 @@ export enum Env {
 }
 
 // <creating-enum-type />
+
 export enum SubscriptionOrderStatus {
   approved = 'approved',
   refused = 'refused',

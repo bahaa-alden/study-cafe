@@ -15,7 +15,9 @@ import { useTranslation } from "react-i18next";
 import { parseResponseError } from "utils/apiHelpers";
 import { dessertDefaultForm, dessertSchema } from "./validation";
 import { Select } from "components/selects/Select";
-import { DessertType } from "constants/enums";
+import { DessertType, DessertTypeAr } from "constants/enums";
+import i18n from "lib/i18next";
+import { transformFiled } from "utils/transforms";
 export type EditFormProps = {};
 export const EditForm: FC<EditFormProps> = ({}) => {
   const { isActive, clearEditParams, id = "" } = useEditSearchParams();
@@ -61,7 +63,8 @@ export const EditForm: FC<EditFormProps> = ({}) => {
           color="primary"
           skeleton={query.isLoading}
         >
-          {query.isSuccess && t("edit", { name: query.data.name })}
+          {query.isSuccess &&
+            t("edit", { name: transformFiled(query.data.name) })}
         </DialogTitle>
       </Fade>
       <DialogContent>
@@ -71,8 +74,17 @@ export const EditForm: FC<EditFormProps> = ({}) => {
               <Grid item xs={12}>
                 <TextField
                   control={control}
-                  name="name"
-                  label={t(`form.name`)}
+                  name="name.ar"
+                  label={t(`form.name_ar`)}
+                  required
+                />
+              </Grid>
+              {/* English Title */}
+              <Grid item xs={12}>
+                <TextField
+                  control={control}
+                  name="name.en"
+                  label={t(`form.name_en`)}
                   required
                 />
               </Grid>
@@ -85,7 +97,11 @@ export const EditForm: FC<EditFormProps> = ({}) => {
                       value={field.value ?? ""}
                       onChange={(e) => field.onChange(e.target.value)}
                       onClear={() => field.onChange("")}
-                      options={DessertType}
+                      options={
+                        (i18n.language === "en"
+                          ? DessertType
+                          : DessertTypeAr) as unknown as Record<string, string>
+                      }
                       label={t(`form.type`)}
                       required
                     />

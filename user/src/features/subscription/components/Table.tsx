@@ -13,6 +13,7 @@ import useTableHeader from "../hooks/useTableHeaders";
 import { Role } from "constants/enums";
 import { storage } from "utils/storage";
 import { diffInDays, transformFiled } from "utils/transforms";
+import { useTranslation } from "react-i18next";
 
 type Props = {};
 export const Table: FC<Props> = ({}) => {
@@ -29,7 +30,7 @@ export const Table: FC<Props> = ({}) => {
           search,
           page,
         });
-
+  const { t: tCommon } = useTranslation();
   const { data } = query;
   const tableHeaders = useTableHeader();
   const currentPage = getPage(data, page);
@@ -71,14 +72,16 @@ export const Table: FC<Props> = ({}) => {
             <TableCell sx={{ textAlign: "center" }}>
               {transformFiled(row.plan.title)}
             </TableCell>
-            <TableCell sx={{ textAlign: "center" }}>{row.status}</TableCell>
+            <TableCell sx={{ textAlign: "center" }}>
+              {tCommon(row.status)}
+            </TableCell>
             <TableCell sx={{ textAlign: "center" }}>
               {row.payment.amount}
             </TableCell>
             <TableCell sx={{ textAlign: "center" }}>
               {!row.expiresDate || diffInDays(row.expiresDate) <= 0
                 ? "Subscription Expired"
-                : `${diffInDays(row.expiresDate)} day(s)`}
+                : `${diffInDays(row.expiresDate)} ${tCommon("day(s)")}`}
             </TableCell>
           </TableRowStriped>
         ))}

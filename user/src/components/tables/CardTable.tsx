@@ -14,6 +14,7 @@ import NoData from "components/feedback/NoData";
 import { APIList } from "types/api";
 import { FC } from "react";
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 
 type CardTableProps<T> = {
   title?: string;
@@ -34,6 +35,7 @@ export const CardTable = <T,>({
   isThereNext,
   isTherePrev,
 }: CardTableProps<T>) => {
+  const { t: tCommon } = useTranslation();
   const {
     fetchNextPage,
     fetchPreviousPage,
@@ -139,7 +141,7 @@ export const CardTable = <T,>({
         }}
       >
         {/* Previous Button */}
-        <Tooltip title="Previous Page">
+        <Tooltip title={tCommon("Previous Page")}>
           <span>
             <IconButton
               onClick={() => handlePageChange(null, pageNumber - 1)}
@@ -168,7 +170,7 @@ export const CardTable = <T,>({
         </Tooltip>
 
         {/* Next Button */}
-        <Tooltip title="Next Page">
+        <Tooltip title={tCommon("Next Page")}>
           <span>
             <IconButton
               onClick={() => handlePageChange(null, pageNumber + 1)}

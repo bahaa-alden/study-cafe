@@ -21,6 +21,7 @@ export function getCurrencySign(locale: string) {
   const currencySign = parts.find((part) => part.type === "currency")?.value;
   return currencySign ?? "SYP";
 }
+
 export const priceFormatter = new Intl.NumberFormat(i18n.language, {
   style: "currency",
   currency: "SYP",
@@ -31,4 +32,8 @@ export const diffInDays = (date: string) =>
 
 export const transformFiled = (item: LocalString) => {
   return item[`${i18n.language as keyof LocalString}`] as string;
+};
+
+export const transformKey = (key: string) => {
+  return `${key}.${i18n.language}`;
 };

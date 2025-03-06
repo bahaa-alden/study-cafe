@@ -26,6 +26,7 @@ import { transformFiled } from "utils/transforms";
 type Props = {};
 export const Table: FC<Props> = ({}) => {
   const { t } = useTranslation("subscription-order");
+  const { t: tCommon } = useTranslation();
   const search = useQuerySearchParam();
   const page = usePageNumberSearchParam();
   const queryClient = useQueryClient();
@@ -125,7 +126,9 @@ export const Table: FC<Props> = ({}) => {
             <TableCell sx={{ textAlign: "center" }}>
               {transformFiled(row.plan.title)}
             </TableCell>
-            <TableCell sx={{ textAlign: "center" }}>{row.status}</TableCell>
+            <TableCell sx={{ textAlign: "center" }}>
+              {tCommon(row.status as string)}
+            </TableCell>
             <TableCell sx={{ textAlign: "center" }}>{row.plan.price}</TableCell>
             {role === Role.admin && (
               <TableCell>
