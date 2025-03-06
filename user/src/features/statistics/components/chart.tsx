@@ -13,14 +13,14 @@ import {
 } from "recharts";
 import { statisticsQueries } from "..";
 import { Dayjs } from "dayjs";
-import { useState } from "react";
+import { FC } from "react";
 
 const colors = ["#8884d8", "#82ca9d", "#ffc658"];
 
-export function StatisticsChart() {
-  const [fromDate, setFromDate] = useState<Dayjs>();
-  const [toDate, setToDate] = useState<Dayjs>();
-
+export const StatisticsChart: FC<{ fromDate?: Dayjs; toDate?: Dayjs }> = ({
+  fromDate,
+  toDate,
+}) => {
   const query = statisticsQueries.useStatistics({
     fromDate,
     toDate,
@@ -33,7 +33,7 @@ export function StatisticsChart() {
         display: "grid",
         gap: "20px",
         padding: "20px",
-        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+        gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
       }}
     >
       <Card>
@@ -139,4 +139,4 @@ export function StatisticsChart() {
       </Card>
     </div>
   );
-}
+};

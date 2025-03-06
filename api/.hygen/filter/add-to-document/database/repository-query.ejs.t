@@ -12,10 +12,10 @@ after:  const query
     if (filter?.dateFrom ?? filter?.dateTo) {
       query.createdAt = {}
       if (filter.dateFrom) {
-        query.createdAt.$gte = filter.dateFrom
+        query.createdAt.$gte = startOfDay(filter.dateFrom);
       }
       if (filter.dateTo) {
-        query.createdAt.$lte = filter.dateTo
+        query.createdAt.$lte = endOfDay(filter.dateTo);
       }
     }
 <% } else { -%>

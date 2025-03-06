@@ -16,7 +16,7 @@ import { FC } from "react";
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 
 type CardTableProps<T> = {
-  title: string;
+  title?: string;
   infiniteQuery: UseInfiniteQueryResult<APIList<unknown>, unknown>;
   CardContent: FC<{ item: any }>;
   pageData: Array<T & { id: string }>;
@@ -52,17 +52,19 @@ export const CardTable = <T,>({
   const theme = useTheme();
   return (
     <Box sx={{ p: 4, width: "100%", fontFamily: "MontserratArabic" }}>
-      <Typography
-        variant="h4"
-        sx={{
-          mb: 3,
-          textAlign: "center",
-          fontWeight: "bold",
-          color: "#5E3B3B",
-        }}
-      >
-        {title}
-      </Typography>
+      {title && (
+        <Typography
+          variant="h4"
+          sx={{
+            mb: 3,
+            textAlign: "center",
+            fontWeight: "bold",
+            color: "#5E3B3B",
+          }}
+        >
+          {title}
+        </Typography>
+      )}
       {noData && (
         <Box sx={{ mx: "auto", my: 2 }}>
           <NoData />

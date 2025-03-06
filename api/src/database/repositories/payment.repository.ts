@@ -3,6 +3,7 @@ import { type PaginatedList } from '../../utils/pagination';
 import { OrderDirection, type OrderOptions } from '../../utils/order';
 import { BaseRepository, type FindOptions } from './base.repository';
 import Payment, { type IPayment } from '../models/payment.model';
+import { endOfDay, startOfDay } from 'date-fns';
 
 export interface PaymentFilterOptions {
   //filters
@@ -36,10 +37,10 @@ export class PaymentRepository extends BaseRepository<IPayment> {
     if (filter?.dateFrom ?? filter?.dateTo) {
       query.createdAt = {};
       if (filter.dateFrom) {
-        query.createdAt.$gte = filter.dateFrom;
+        query.createdAt.$gte = startOfDay(filter.dateFrom);
       }
       if (filter.dateTo) {
-        query.createdAt.$lte = filter.dateTo;
+        query.createdAt.$lte = endOfDay(filter.dateTo);
       }
     }
 

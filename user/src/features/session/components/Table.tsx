@@ -59,7 +59,7 @@ export const SessionTable: FC<Props> = ({ filters }) => {
     <>
       <Stack spacing={0} width={"100%"}>
         <CardTable
-          title="Study Café Sessions"
+          // title="Study Café Sessions"
           pageData={dataCard || []}
           CardContent={SessionCard}
           infiniteQuery={query}

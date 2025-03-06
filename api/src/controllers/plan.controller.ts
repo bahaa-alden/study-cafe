@@ -27,6 +27,11 @@ export class PlanController {
       const options: PlanFindOptions = {
         filter: {
           // filters
+          dateFrom: req.valid.query.dateFrom,
+          dateTo: req.valid.query.dateTo,
+
+          dateFrom: req.valid.query.dateFrom,
+          dateTo: req.valid.query.dateTo,
         },
         search: req.valid.query.search,
         order: defaultOrderParams(

@@ -146,9 +146,7 @@ export class SubscriptionController {
           req.valid.query.pageSize,
         ),
       };
-      const subscriptions = await subscriptionRepository.findForAdmin(
-        options,
-      );
+      const subscriptions = await subscriptionRepository.findForAdmin(options);
 
       res.ok({ message: 'success', data: subscriptions });
     },

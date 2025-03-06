@@ -139,7 +139,10 @@ export class FailureMsgResponse extends ApiResponse {
 }
 
 export class SuccessResponse<T> extends ApiResponse {
-  constructor(message: string, private data: T) {
+  constructor(
+    message: string,
+    private data: T,
+  ) {
     super(StatusCode.SUCCESS, ResponseStatus.SUCCESS, message);
   }
 
@@ -149,7 +152,10 @@ export class SuccessResponse<T> extends ApiResponse {
 }
 
 export class CreatedResponse<T> extends ApiResponse {
-  constructor(message: string, private data: T) {
+  constructor(
+    message: string,
+    private data: T,
+  ) {
     super(StatusCode.CREATED, ResponseStatus.CREATED, message);
   }
 

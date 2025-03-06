@@ -42,9 +42,8 @@ export class SubscriptionOrderController {
           req.valid.query.pageSize,
         ),
       };
-      const subscriptionOrders = await subscriptionOrderRepository.findForAdmin(
-        options,
-      );
+      const subscriptionOrders =
+        await subscriptionOrderRepository.findForAdmin(options);
 
       res.ok({ message: 'success', data: subscriptionOrders });
     },
@@ -76,9 +75,8 @@ export class SubscriptionOrderController {
           req.valid.query.pageSize,
         ),
       };
-      const subscriptionOrders = await subscriptionOrderRepository.findForAdmin(
-        options,
-      );
+      const subscriptionOrders =
+        await subscriptionOrderRepository.findForAdmin(options);
 
       res.ok({ message: 'success', data: subscriptionOrders });
     },
@@ -107,9 +105,8 @@ export class SubscriptionOrderController {
       next: NextFunction,
     ): Promise<void> => {
       const newSubscriptionOrder = req.valid.body;
-      const subscriptionOrder = await subscriptionOrderRepository.insert(
-        newSubscriptionOrder,
-      );
+      const subscriptionOrder =
+        await subscriptionOrderRepository.insert(newSubscriptionOrder);
       if (subscriptionOrder === null) {
         throw new InternalError();
       }
