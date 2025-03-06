@@ -1,9 +1,13 @@
 import ax from "axios";
-import { API_BASE_URL } from "constants/domain";
+import {
+  API_BASE_URL,
+  DEVELOPMENT_API_BASE_URL,
+  NODE_ENV,
+} from "constants/domain";
 import i18n from "lib/i18next";
 let token = localStorage.getItem("token");
 const axios = ax.create({
-  baseURL: API_BASE_URL,
+  baseURL: NODE_ENV === "development" ? DEVELOPMENT_API_BASE_URL : API_BASE_URL,
 });
 axios.interceptors.request.use(
   (config) => {
