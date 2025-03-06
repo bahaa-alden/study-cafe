@@ -55,7 +55,11 @@ const options = {
     },
     servers: [
       {
-        url: `${env_vars.apiUrl}:${env_vars.port}/api/v1`,
+        url: `${
+          env_vars.env === 'development'
+            ? `http://localhost:${env_vars.port}`
+            : env_vars.apiUrl
+        }/api/v1`,
         description: 'Development server',
       },
     ],
