@@ -76,7 +76,6 @@ let API_ROUTES = {
     RESET_PASSWORD: "resetPassword",
     UPDATE_MY_PASSWORD: "updateMyPassword",
     ME: "me",
-    FAVORITES: "favorites",
   },
   CITIES: {
     root: "cities",

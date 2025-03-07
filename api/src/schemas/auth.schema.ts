@@ -34,9 +34,8 @@ export type IForgotPasswordSchema = TypeOf<typeof forgotPasswordSchema>;
 
 const resetPasswordSchema = z
   .object({
-    email: z.string().email(),
     password: z.string(),
-    resetToken: z.string().max(6).min(6),
+    token: z.string().max(6).min(6),
   })
   .strict();
 

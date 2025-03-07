@@ -8,6 +8,11 @@
     "statistics": "الإحصائيات",
     "my-organizations": "المنظمات",
     "plans": "الباقات",
-    "offers": "العروض"
+    "offers": "العروض",
+    "profile": "المعلومات الشخصية",
+    "settings": "الإعدادات",
+    "edit": "تحديث المعلومات الشخصية",
+    "password-change": "تغيير كلمة المرور",
+    "password-forgot": "نسيت كلمة المرور"
   }
 }

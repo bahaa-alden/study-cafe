@@ -13,7 +13,9 @@ import { UserForgotPasswordBody } from "../../api/type";
 import EmailInput from "../EmailInput";
 import forgotPasswordSchema, { forgotPasswordDefault } from "./validation";
 export const ForgotPasswordForm = () => {
-  const { control, handleSubmit, setError } = useForm<z.infer<typeof forgotPasswordSchema>>({
+  const { control, handleSubmit, setError } = useForm<
+    z.infer<typeof forgotPasswordSchema>
+  >({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: forgotPasswordDefault,
   });
@@ -26,7 +28,7 @@ export const ForgotPasswordForm = () => {
       onSuccess: () => {
         navigate("/reset-password");
       },
-      onError: parseResponseError({ setFormError: setError, snackbar }),
+      onError: parseResponseError({ setError, snackbar }),
     });
   };
   return (

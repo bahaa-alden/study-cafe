@@ -1,20 +1,23 @@
-import AddIcon from "@mui/icons-material/Add";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Fab, FabProps, Tooltip } from "@mui/material";
 import OptionalWrap from "components/layout/OptionalWrap";
 import { HideOnScroll } from "features/layout";
 import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useSearchParams } from "react-router-dom";
+
 type Props = FabProps & { hideOnScroll?: boolean };
-const AddFab: FC<Props> = ({ hideOnScroll = false, ...props }) => {
+
+const BackFab: FC<Props> = ({ hideOnScroll = false, ...props }) => {
   const { t } = useTranslation();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+
   const handleClick = () => {
-    searchParams.set("mode", "add");
-    setSearchParams(searchParams);
+    navigate(-1); // Navigate back to the previous route
   };
+
   return (
-    <Tooltip title={t("add")}>
+    <Tooltip title={t("back")}>
       <span>
         <OptionalWrap
           Element={HideOnScroll}
@@ -22,16 +25,17 @@ const AddFab: FC<Props> = ({ hideOnScroll = false, ...props }) => {
           ElementProps={{}}
         >
           <Fab
-            color="primary"
+            color="secondary"
             onClick={handleClick}
-            sx={{ position: "fixed", bottom: 16, right: 80 }}
+            sx={{ position: "fixed", bottom: 16, right: 16 }}
             {...props}
           >
-            <AddIcon sx={{ color: "white" }} />
+            <ArrowBackIcon sx={{ color: "white" }} />
           </Fab>
         </OptionalWrap>
       </span>
     </Tooltip>
   );
 };
-export default AddFab;
+
+export default BackFab;

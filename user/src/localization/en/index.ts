@@ -16,6 +16,7 @@ import subscription from "./subscription.json";
 import subscriptionOrder from "./subscription-order.json";
 import warehouse from "./warehouse.json";
 import plan from "./plan.json";
+import account from "./account.json";
 
 const language = {
   common,
@@ -35,6 +36,7 @@ const language = {
   dessert,
   subscription,
   plan,
+  account,
   "subscription-order": subscriptionOrder,
 } as const;
 export default language;

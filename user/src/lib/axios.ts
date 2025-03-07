@@ -16,7 +16,7 @@ axios.interceptors.request.use(
         ...config.headers,
         "accept-language": i18n.language,
         Authorization: `Bearer ${token}`,
-      };
+      } as any;
     }
 
     return config;

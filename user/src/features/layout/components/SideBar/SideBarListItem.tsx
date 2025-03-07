@@ -7,6 +7,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { Stack } from "@mui/system";
 import RouterLink from "components/links/RouterLink";
+import { Role } from "constants/enums";
 import { SideBarItem } from "constants/sideBarItems";
 import { FC, Fragment } from "react";
 import { useTranslation } from "react-i18next";
@@ -41,6 +42,7 @@ export const SideBarListItem: FC<SideBarListItemProps> = ({
   const pathname = useLocation().pathname.slice(1);
   const { t } = useTranslation("layout");
   const indent = 2.5 + level * Number(sideBarIsOpen) * 1.5;
+  const to = storage.getRole() === Role.user ? `/my-organizations/` : "";
   return (
     <Fragment key={data.href}>
       <RouterLink
@@ -49,7 +51,11 @@ export const SideBarListItem: FC<SideBarListItemProps> = ({
           color: "#000",
           "&:hover": { color: "primary.main" },
         }}
-        to={data.withId ? `${storage.getOrg()}/${data.href}` : `/${data.href}`}
+        to={
+          data.withId
+            ? `${to}${storage.getOrg()}/${data.href}`
+            : `/${data.href}`
+        }
       >
         <Tooltip
           title={

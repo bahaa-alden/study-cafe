@@ -4,7 +4,11 @@ import { FC } from "react";
 type Props = CircularProgressProps & { stackProps?: StackProps; in?: boolean };
 const Loading: FC<Props> = ({ stackProps, in: show = true, ...props }) => {
   return show ? (
-    <Stack alignItems={"center"} justifyContent="center" {...stackProps}>
+    <Stack
+      alignItems={"center"}
+      justifyContent="center"
+      {...(stackProps as any)}
+    >
       <CircularProgress {...props} />
     </Stack>
   ) : (

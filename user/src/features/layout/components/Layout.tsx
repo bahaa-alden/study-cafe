@@ -5,6 +5,7 @@ import { TopBarProgressIndicator } from "../../../Wrapper/TopBarProgressProvider
 import AppBar from "./AppBar";
 import Main from "./Main";
 import Sidebar from "./SideBar";
+import BackFab from "components/buttons/BackFab";
 export const drawerWidth = 240;
 
 const Layout: FC = () => {
@@ -27,6 +28,7 @@ const Layout: FC = () => {
 
   return (
     <Box>
+      <BackFab hideOnScroll />
       <AppBar
         open={open}
         onDrawerOpen={handleDrawerOpen}

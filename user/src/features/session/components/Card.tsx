@@ -9,11 +9,11 @@ import {
 } from "@mui/material";
 import { teal } from "@mui/material/colors";
 import { useState, FC, useEffect } from "react";
-import { priceFormatter } from "utils/transforms";
 import { DessertAddForm } from "./DessertAddForm";
 import { EndForm } from "./EndForm";
 import { useTranslation } from "react-i18next";
 import CakeIcon from "@mui/icons-material/Cake";
+import usePriceFormatter from "hooks/usePriceFormatter";
 
 export const SessionCard: FC<{ item: any }> = ({ item }) => {
   const [activeDessertSession, setActiveDessertSession] = useState<
@@ -23,6 +23,7 @@ export const SessionCard: FC<{ item: any }> = ({ item }) => {
   const { t: tCommon } = useTranslation();
   const { t } = useTranslation("session");
   const [elapsedTime, setElapsedTime] = useState("");
+  const priceFormatter = usePriceFormatter();
 
   useEffect(() => {
     if (item.startTime && item.endTime === "Ongoing") {
@@ -70,7 +71,7 @@ export const SessionCard: FC<{ item: any }> = ({ item }) => {
         variant="body1"
         sx={{ fontWeight: "bold", mt: 1, color: teal[700] }}
       >
-        {tCommon("Additional Cost")}:{" "}
+        {tCommon("Additional Cost")}:
         {priceFormatter.format(item.additionalCost)}
       </Typography>
       <Typography
@@ -90,28 +91,30 @@ export const SessionCard: FC<{ item: any }> = ({ item }) => {
           <EndForm id={item.id} status={item.status} />
         </div>
         <Tooltip title={t("addDessert")}>
-          <Button
-            variant="contained"
-            sx={{
-              width: "110px",
-              height: "40px",
-              fontSize: "14px",
-              fontWeight: "bold",
-              textTransform: "none",
-              borderRadius: "20px",
-              backgroundColor: theme.palette.grey[600],
-              "&:hover": { backgroundColor: theme.palette.grey[800] },
-            }}
-            onClick={() =>
-              setActiveDessertSession(
-                activeDessertSession === item.id ? null : item.id
-              )
-            }
-            startIcon={<CakeIcon sx={{ color: "white" }} />}
-            disabled={item.status === "ended"}
-          >
-            {t("form.dessert")}
-          </Button>
+          <span>
+            <Button
+              variant="contained"
+              sx={{
+                width: "110px",
+                height: "40px",
+                fontSize: "14px",
+                fontWeight: "bold",
+                textTransform: "none",
+                borderRadius: "20px",
+                backgroundColor: theme.palette.grey[600],
+                "&:hover": { backgroundColor: theme.palette.grey[800] },
+              }}
+              onClick={() =>
+                setActiveDessertSession(
+                  activeDessertSession === item.id ? null : item.id
+                )
+              }
+              startIcon={<CakeIcon sx={{ color: "white" }} />}
+              disabled={item.status === "ended"}
+            >
+              {t("form.dessert")}
+            </Button>
+          </span>
         </Tooltip>
         {activeDessertSession === item.id && (
           <DessertAddForm

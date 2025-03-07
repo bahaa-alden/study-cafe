@@ -36,6 +36,8 @@ export const SignupForm = () => {
     signup.mutate(body, {
       onSuccess: (data) => {
         storage.setToken(data.data.token);
+        storage.setRole(data.data.user.role);
+
         queryClient.setQueryData(
           queryStore.account.profile.queryKey,
           data.data.user

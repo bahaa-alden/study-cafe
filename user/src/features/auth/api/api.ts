@@ -33,7 +33,7 @@ const API = {
       API_ROUTES.USERS.RESET_PASSWORD,
       body
     );
-    return data;
+    return data.data;
   },
   updatePassword: async (body: UserUpdatePasswordBody) => {
     const { data } = await axios.patch<UserUpdatePassword>(

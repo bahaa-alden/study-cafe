@@ -9,8 +9,11 @@ export const keys = createQueryKeys("account", {
   },
 });
 export const queries = {
-  useProfile: () => useQuery({ ...keys.profile, staleTime: Infinity, refetchOnWindowFocus: false }),
-
+  useProfile: () =>
+    useQuery({
+      ...keys.profile,
+      staleTime: Infinity,
+      refetchOnWindowFocus: false,
+    }),
   useEdit: () => useMutation(API.edit),
-  useUpdateFavorite: () => useMutation(API.updateFavorite),
 };

@@ -3,7 +3,6 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import EditIconButton from "components/buttons/EditIconButton";
-import RemoveIconButton from "components/buttons/RemoveIconButton";
 import ButtonsStack from "components/layout/ButtonsStack";
 import PaginationTable from "components/tables/PaginationTable";
 import TableRowStriped from "components/tables/PaginationTable/TableRowStriped";
@@ -21,7 +20,7 @@ export const Table: FC<Props> = ({}) => {
   const { t: tCommon } = useTranslation();
   const search = useQuerySearchParam();
   const page = usePageNumberSearchParam();
-  const { edit, remove } = useEventSearchParams();
+  const { edit } = useEventSearchParams();
   const query = dessertQueries.useAll({
     search,
     page,
@@ -70,7 +69,7 @@ export const Table: FC<Props> = ({}) => {
             <TableCell>
               <ButtonsStack>
                 <EditIconButton onClick={() => edit(row.id)} />
-                <RemoveIconButton onClick={() => remove(row.id)} />
+                {/* <RemoveIconButton onClick={() => remove(row.id)} /> */}
               </ButtonsStack>
             </TableCell>
           </TableRowStriped>

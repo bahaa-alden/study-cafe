@@ -10,7 +10,7 @@ const numericIdRegex = /^\d+$/u;
 const envVarsSchema = object({
   API_URL: string({ message: 'API_URL is required' }),
   APP_NAME: string({ message: 'APP NAME is required' }),
-  EMAIL_FROM: string({ message: 'EMAIL FROM  is required' }),
+  EMAIL_FROM: string({ message: 'EMAIL FROM is required' }),
   EMAIL_API_KEY: string({ message: 'EMAIL API KEY is required' }),
   NODE_ENV: nativeEnum(Env).default(Env.development),
   LOG_DIR: string(),
@@ -20,6 +20,15 @@ const envVarsSchema = object({
   JWT_ACCESS_EXPIRATION: string().describe(
     'minutes after which access tokens expire',
   ),
+  SMTP_HOST: string({ message: 'SMTP_HOST is required' }),
+  SMTP_PORT: string().regex(numericIdRegex, {
+    message: 'SMTP_PORT must be a number',
+  }),
+  SMTP_USER: string({ message: 'SMTP_USER is required' }),
+  SMTP_PASS: string({ message: 'SMTP_PASS is required' }),
+  SMTP_SECURE: string()
+    .transform((data: string) => data === 'true')
+    .default('false'),
 }).passthrough();
 
 const envVars = envVarsSchema.parse(process.env);
@@ -38,5 +47,12 @@ export const env_vars = {
   jwt: {
     secret: envVars.JWT_SECRET,
     accessExpiration: envVars.JWT_ACCESS_EXPIRATION,
+  },
+  smtp: {
+    host: envVars.SMTP_HOST,
+    port: Number(envVars.SMTP_PORT),
+    user: envVars.SMTP_USER,
+    pass: envVars.SMTP_PASS,
+    secure: envVars.SMTP_SECURE,
   },
 };

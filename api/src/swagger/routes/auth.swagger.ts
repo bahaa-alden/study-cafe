@@ -126,7 +126,6 @@
  *     patch:
  *       summary: reset password
  *       tags: [Auth]
- *       parameters:
  *       requestBody:
  *         required: true
  *         content:
@@ -134,9 +133,7 @@
  *             schema:
  *               type: object
  *               properties:
- *                 email:
- *                   type: string
- *                 resetToken:
+ *                 token:
  *                   type: string
  *                 password:
  *                   type: string

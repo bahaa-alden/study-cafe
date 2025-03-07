@@ -17,8 +17,11 @@ import { storage } from "utils/storage";
 import { UserResetPasswordBody } from "../../api/type";
 import PasswordInput from "../PasswordInput";
 import resetPasswordSchema, { resetPasswordDefault } from "./validation";
+import { Role } from "constants/enums";
 export const ResetPasswordForm = ({
-  navToOnSuccess = "/",
+  navToOnSuccess = storage.getRole() === Role.admin
+    ? "/organizations"
+    : "/my-organizations",
 }: {
   navToOnSuccess?: string;
 }) => {
@@ -37,6 +40,7 @@ export const ResetPasswordForm = ({
     resetPassword.mutate(body, {
       onSuccess: (data) => {
         storage.setToken(data.token);
+        storage.setRole(data.user.role);
         queryClient.setQueryData(
           queryStore.account.profile.queryKey,
           data.user

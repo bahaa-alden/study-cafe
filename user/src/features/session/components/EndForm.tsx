@@ -1,4 +1,4 @@
-import { Button, Grid, Tooltip, useTheme } from "@mui/material";
+import { Box, Grid, Tooltip, useTheme } from "@mui/material";
 import { useQueryClient } from "@tanstack/react-query";
 import { useSnackbar } from "context/snackbarContext";
 import { queryStore } from "features/shared";
@@ -44,29 +44,37 @@ export const EndForm: FC<EndFormProps> = ({ id, status }) => {
       <Grid>
         <Grid>
           <Tooltip title={t("endSession")}>
-            <Submit
-              variant="contained"
-              sx={{
-                width: "100px",
-                height: "40px",
-                fontSize: "14px",
-                fontWeight: "bold",
-                textTransform: "none",
-                borderRadius: "20px",
-                backgroundColor: theme.palette.primary.main,
-                "&:hover": { backgroundColor: purple[800] },
-                color: "white",
-              }}
-              isSubmitting={mutation.isLoading}
-              disabled={status === SessionStatus.ended}
-            >
-              <Button
-                sx={{ display: "flex", gap: "5px", color: "inherit" }}
-                startIcon={<StopCircle sx={{ fontSize: 20, color: "white" }} />}
+            <span>
+              <Submit
+                variant="contained"
+                sx={{
+                  width: "100px",
+                  height: "40px",
+                  fontSize: "14px",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  borderRadius: "20px",
+                  backgroundColor: theme.palette.primary.main,
+                  "&:hover": { backgroundColor: purple[800] },
+                  color: "white",
+                }}
+                isSubmitting={mutation.isLoading}
+                disabled={status === SessionStatus.ended}
               >
-                {t("form.end")}
-              </Button>
-            </Submit>
+                <Box
+                  sx={{
+                    display: "flex",
+                    gap: "5px",
+                    color: "inherit",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <StopCircle sx={{ fontSize: 20, color: "white" }} />
+                  {t("form.end")}
+                </Box>
+              </Submit>
+            </span>
           </Tooltip>
         </Grid>
       </Grid>

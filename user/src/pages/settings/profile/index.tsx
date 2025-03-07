@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import { ProfileBasicInformation, WalletDisplay } from "features/account";
+import { ProfileBasicInformation } from "features/account";
 import { FC } from "react";
 export type ProfilePageProps = {};
 export const ProfilePage: FC<ProfilePageProps> = ({}) => {
@@ -11,7 +11,6 @@ export const ProfilePage: FC<ProfilePageProps> = ({}) => {
       }}
     >
       <ProfileBasicInformation />
-      <WalletDisplay />
     </Stack>
   );
 };

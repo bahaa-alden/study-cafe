@@ -1,4 +1,5 @@
 import { Dayjs } from "dayjs";
+import { LocalString } from "types/api";
 
 interface SessionStatus {
   _id: string;
@@ -13,12 +14,12 @@ interface RevenueByTime {
 }
 
 interface DessertData {
-  name: string;
+  name: LocalString;
   count: number;
   revenue: number;
 }
 
-interface DessertsByTime {
+export interface DessertsByTime {
   _id: string;
   data: DessertData[];
 }

@@ -37,4 +37,9 @@ export const storage = {
   clearRole() {
     localStorage.setItem("role", "");
   },
+  clearAll() {
+    storage.clearOrg();
+    storage.clearRole();
+    storage.clearToken();
+  },
 };

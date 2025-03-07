@@ -6,6 +6,4 @@ export * from "./components/ProfileBasicInformation";
 export * from "./components/ProfileEditForm";
 export * from "./components/ProfilePhoto";
 export * from "./components/SettingsTabs";
-export * from "./components/Wallet";
-export * from "./components/PreferenceForm"
 export * from "./hooks/useIsMe";

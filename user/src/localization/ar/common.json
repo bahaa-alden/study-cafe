@@ -50,6 +50,13 @@
   "Subscription Plans": "الباقات",
   "Back to My Organizations": "العود إالى المنظمات",
   "Purchase": "شراء",
+  "Total Sessions and Revenue": "عدد الجلسات الكلي والأرباح",
+  "Total Sessions": "عدد الجلسات الكلي",
+  "Total Revenue": "الوارد الكلي",
+  "Desserts by Day": "مبيعات المشروبات و الوجبات اليومية",
+  "Revenue": "الأرباح",
+  "Count": "العدد",
+  "Name": "الاسم",
   "input": {
     "email": "البريد الإلكتروني",
     "password": "كلمة المرور"

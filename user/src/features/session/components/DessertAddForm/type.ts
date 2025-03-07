@@ -1,9 +1,9 @@
-import { Payload } from "types/api";
+import { LocalString, Payload } from "types/api";
 
 export type SessionDessertAction = {
   dessert: {
     id: string;
-    name: string;
+    name: LocalString;
   } | null;
   count: number;
 };

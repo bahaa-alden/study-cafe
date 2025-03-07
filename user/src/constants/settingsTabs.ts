@@ -1,13 +1,8 @@
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
-import TuneIcon from "@mui/icons-material/Tune";
 export const settingsTabs = [
   {
     href: "account",
     Icon: PermIdentityIcon,
-  },
-  {
-    href: "preferences",
-    Icon: TuneIcon,
   },
 ] as const;
 
@@ -31,6 +26,8 @@ export const accountLists: {
   },
   {
     title: "account",
-    items: [{ href: "/settings/logout", name: "profile-logout", color: "error.main" }],
+    items: [
+      { href: "/settings/logout", name: "profile-logout", color: "error.main" },
+    ],
   },
 ];

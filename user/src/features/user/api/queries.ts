@@ -16,5 +16,4 @@ export const queries = {
   useAll: (params: UserAllParams) => useInfiniteQuery(keys.all(params)),
   useDetails: (id: string) => useQuery({ ...keys.details(id), enabled: !!id }),
   useRemove: () => useMutation(API.remove),
-  useDeposit: () => useMutation(API.deposit),
 };

@@ -1,11 +1,19 @@
 import CloseIcon from "@mui/icons-material/Close";
-import { DialogTitleProps, IconButton, DialogTitle as MuiDialogTitle } from "@mui/material";
+import {
+  DialogTitleProps,
+  IconButton,
+  DialogTitle as MuiDialogTitle,
+} from "@mui/material";
 import Skeleton from "components/feedback/Skeleton";
-import { FC, forwardRef } from "react";
+import { forwardRef, Ref } from "react";
+
+// Define the props for DialogTitle
 type Props = { onClose?: () => void; skeleton?: boolean } & DialogTitleProps;
-const DialogTitle: FC<Props> = forwardRef(function fr(
+
+// Use forwardRef with an explicit type for ref
+const DialogTitle = forwardRef<HTMLSpanElement, Props>(function DialogTitle(
   { skeleton, children, onClose, ...props }: Props,
-  ref
+  ref: Ref<HTMLSpanElement>
 ) {
   return (
     <MuiDialogTitle {...props} sx={{ m: 0, p: 2, ...props.sx }} ref={ref}>
@@ -27,4 +35,5 @@ const DialogTitle: FC<Props> = forwardRef(function fr(
     </MuiDialogTitle>
   );
 });
+
 export default DialogTitle;

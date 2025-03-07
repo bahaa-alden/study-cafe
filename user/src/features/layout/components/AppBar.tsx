@@ -1,6 +1,5 @@
-import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
-import { MenuItem, Select, SelectChangeEvent, Tooltip } from "@mui/material";
+import { MenuItem, Select, SelectChangeEvent, Stack } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,8 +9,11 @@ import globalLanguageContext from "context/languageContext";
 import { availableLanguages } from "lib/i18next";
 import { FC, useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { drawerWidth } from "./Layout";
+import { useIsDesktop } from "hooks/useIsDesktop";
+import RouterLink from "components/links/RouterLink";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
@@ -51,14 +53,10 @@ export const AppBar: FC<Props> = ({
     ];
   pageTitle = pageTitle ? pageTitle : "organizations";
   const { lang, setLang } = useContext(globalLanguageContext);
-  const navigate = useNavigate();
   const handleChangeLanguage = (e: SelectChangeEvent) => {
     setLang(e.target.value);
   };
-  const handleLogout = () => {
-    navigate("/login");
-    localStorage.removeItem("token");
-  };
+  const isDesktop = useIsDesktop();
 
   return (
     <AppBarStyled position="fixed" open={open} key={pageTitle}>
@@ -92,11 +90,15 @@ export const AppBar: FC<Props> = ({
             </MenuItem>
           ))}
         </Select>
-        <Tooltip title={t("logout")}>
-          <IconButton onClick={handleLogout}>
-            <LogoutIcon sx={{ color: "white" }} />
-          </IconButton>
-        </Tooltip>
+        {/* {!isDesktop && ( */}
+        <Stack alignItems={"end"} justifyContent={"center"}>
+          <RouterLink to="/settings">
+            <IconButton sx={{ svg: { height: 30, width: 30 } }}>
+              <AccountCircleIcon sx={{ fontSize: 30, color: "white" }} />
+            </IconButton>
+          </RouterLink>
+        </Stack>
+        {/* )} */}
       </Toolbar>
     </AppBarStyled>
   );

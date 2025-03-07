@@ -12,6 +12,11 @@ import PlansPage from "pages/plans";
 import { RegistrationPage } from "pages/registration";
 import { ResetPasswordPage } from "pages/reset-password";
 import SessionsPage from "pages/sessions";
+import { SettingsPage } from "pages/settings";
+import { PasswordChangePage } from "pages/settings/password-change";
+import { PasswordForgotPage } from "pages/settings/password-forgot";
+import { ProfilePage } from "pages/settings/profile";
+import { ProfileEditPage } from "pages/settings/profile/edit";
 import { SignupPage } from "pages/signup";
 import { StatisticsPage } from "pages/statistics";
 import { SubscriptionOrdersPage } from "pages/subscription-orders";
@@ -52,8 +57,19 @@ export default createBrowserRouter(
             />
             <Route path=":id/statistics" element={<StatisticsPage />} />
           </Route>
-          <Route path="/offers" element={<Layout />}>
-            <Route path="" element={<PlansPage />} />
+          <Route path="" element={<Layout />}>
+            <Route path="/offers" element={<PlansPage />} />
+            <Route path="settings/profile" element={<ProfilePage />} />
+            <Route path="settings/profile/edit" element={<ProfileEditPage />} />
+            <Route
+              path="settings/password-change"
+              element={<PasswordChangePage />}
+            />
+            <Route
+              path="settings/password-forgot"
+              element={<PasswordForgotPage />}
+            />
+            <Route path="settings/*" element={<SettingsPage />} />
           </Route>
         </Route>
         <Route element={<AdminRoute />}>

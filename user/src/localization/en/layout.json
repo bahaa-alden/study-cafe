@@ -8,6 +8,11 @@
     "desserts": "desserts",
     "statistics": "statistics",
     "plans": "plans",
-    "offers": "offers"
+    "offers": "offers",
+    "profile": "profile",
+    "settings": "settings",
+    "edit": "change personal info",
+    "password-change": "change password",
+    "password-forgot": "forgot password"
   }
 }

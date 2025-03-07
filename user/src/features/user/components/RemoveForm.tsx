@@ -1,7 +1,5 @@
-import { useQueryClient } from "@tanstack/react-query";
 import RemoveDialog from "components/forms/RemoveDialog";
 import { useSnackbar } from "context/snackbarContext";
-import { queryStore } from "features/shared";
 import useRemoveSearchParams from "hooks/useRemoveSearchParams";
 import useSuccessSnackbar from "hooks/useSuccessSnackbar";
 import { FC } from "react";
@@ -11,7 +9,6 @@ import { userQueries } from "..";
 type Props = {};
 export const RemoveForm: FC<Props> = ({}) => {
   const { t } = useTranslation("user");
-  const queryClient = useQueryClient();
   const { id, isActive, clearRemoveParams } = useRemoveSearchParams();
   const snackbar = useSnackbar();
   const successSnackbar = useSuccessSnackbar();
@@ -24,7 +21,6 @@ export const RemoveForm: FC<Props> = ({}) => {
   const handleRemove = () => {
     remove.mutate(id ?? "", {
       onSuccess: () => {
-        queryClient.invalidateQueries(queryStore.category.all._def);
         successSnackbar(t(`message.success.remove`));
         handleClose();
       },

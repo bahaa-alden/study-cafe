@@ -11,6 +11,7 @@ import { SessionCard } from "./Card";
 import { SessionStatus } from "constants/enums";
 import { Dayjs } from "dayjs";
 import { useTranslation } from "react-i18next";
+import { transformFiled } from "utils/transforms";
 
 type Props = {
   filters: {
@@ -53,7 +54,7 @@ export const SessionTable: FC<Props> = ({ filters }) => {
         organization: session.organization?.name,
         desserts:
           session.desserts
-            ?.map((d) => `${d.dessert.name} x${d.count}`)
+            ?.map((d) => `${transformFiled(d.dessert.name)} x${d.count}`)
             .join(", ") || tCommon("None"),
       })) || [],
     [currentPage, tCommon]

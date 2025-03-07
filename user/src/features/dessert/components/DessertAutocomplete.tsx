@@ -7,6 +7,7 @@ import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { dessertQueries } from "..";
 import { DessertSelect } from "../api/type";
+import { transformFiled } from "utils/transforms";
 type Props = Omit<
   AutocompleteProps<DessertSelect, boolean, boolean, false>,
   "options" | "renderInput"
@@ -27,11 +28,11 @@ export const DessertAutocomplete: FC<Props> = ({
         {...props}
         loading={isLoading}
         options={data ?? []}
-        getOptionLabel={(option) => option.name}
+        getOptionLabel={(option) => transformFiled(option.name)}
         renderInput={() => null}
         renderOption={(props, option) => (
           <li {...props} key={option.id}>
-            {option.name}
+            {transformFiled(option.name)}
           </li>
         )}
         loadingText={<Loading />}

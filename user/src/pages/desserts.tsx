@@ -6,7 +6,6 @@ import {
   DessertsTable,
   DessertAddForm,
   DessertEditForm,
-  DessertRemoveForm,
 } from "features/dessert";
 import { FC } from "react";
 export const DessertsPage: FC<{}> = ({}) => {
@@ -21,7 +20,7 @@ export const DessertsPage: FC<{}> = ({}) => {
       <AddFab />
       <DessertEditForm />
       <DessertAddForm />
-      <DessertRemoveForm />
+      {/* <DessertRemoveForm /> */}
     </Stack>
   );
 };

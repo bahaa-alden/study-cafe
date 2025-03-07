@@ -2,7 +2,7 @@ import { DessertType, SessionStatus } from "constants/enums";
 import { Dayjs } from "dayjs";
 import { Organization } from "features/organizations";
 import { User } from "features/user";
-import { APIListParams, Payload } from "types/api";
+import { APIListParams, LocalString, Payload } from "types/api";
 
 export type Session = {
   id: string;
@@ -45,7 +45,7 @@ export type SessionSelect = Pick<Session, "id" | "username">;
 
 export type Dessert = {
   id: string;
-  name: string;
+  name: LocalString;
   type: DessertType;
   price: number;
   createdAt: Date;
