@@ -1,0 +1,1 @@
+{"version":3,"file":"restrict.js","sourceRoot":"","sources":["../../src/middlewares/restrict.ts"],"names":[],"mappings":";;AAGA,kBAAe,CAAC,GAAG,SAAqB,EAAE,EAAE,CAC1C,CAAC,GAAkB,EAAE,GAAa,EAAE,IAAkB,EAAE,EAAE;IACxD,GAAG,CAAC,gBAAgB,GAAG,SAAS,CAAC;IACjC,IAAI,EAAE,CAAC;AACT,CAAC,CAAC"}
