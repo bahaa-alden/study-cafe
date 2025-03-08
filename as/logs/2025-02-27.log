@@ -1,0 +1,9 @@
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-02-26T23:02:27.391Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-02-26T23:02:27.393Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-02-26T23:02:27.413Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-02-27T00:19:34.323Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-02-27T00:19:34.324Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-02-27T00:19:34.339Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-02-27T14:16:11.304Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-02-27T14:16:11.304Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-02-27T14:16:11.331Z"}

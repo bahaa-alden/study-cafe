@@ -1,0 +1,3 @@
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-02-23T01:07:26.059Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-02-23T01:07:26.060Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-02-23T01:07:26.077Z"}

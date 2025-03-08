@@ -1,0 +1,101 @@
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-02-27T23:13:38.131Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-02-27T23:13:38.132Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-02-27T23:13:38.147Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-02-28T12:29:06.593Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-02-28T12:29:06.594Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-02-28T12:29:06.615Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-02-28T12:33:21.786Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-02-28T12:33:21.787Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-02-28T12:33:21.800Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-02-28T12:33:50.181Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-02-28T12:33:50.182Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-02-28T12:33:50.194Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-02-28T12:39:34.952Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-02-28T12:39:34.954Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-02-28T12:39:34.968Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:35:02.138Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:35:02.139Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:35:03.153Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:35:03.153Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:35:05.168Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:35:05.169Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:35:47.519Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:35:47.520Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:35:49.097Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:35:49.098Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:35:51.671Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:35:51.671Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:35:56.246Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:35:56.247Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:36:54.723Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:36:54.723Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:36:56.302Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:36:56.303Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:36:58.875Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:36:58.876Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:37:03.454Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:37:03.455Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:38:20.551Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:38:20.551Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:39:08.549Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:39:08.552Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:39:10.122Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:39:10.122Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:39:12.698Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:39:12.699Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:39:17.283Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:39:17.283Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:39:59.980Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:39:59.981Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:40:01.553Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:40:01.554Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:40:04.131Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:40:04.131Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:40:08.713Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:40:08.713Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:40:14.059Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:40:14.059Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:40:15.635Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:40:15.635Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:40:18.211Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:40:18.211Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:40:22.795Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:40:22.795Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:40:59.152Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:40:59.153Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:41:33.849Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:41:33.850Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:41:35.424Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:41:35.424Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:41:37.999Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:41:37.999Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:41:42.576Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:41:42.576Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:42:04.953Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:42:04.954Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:42:06.522Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:42:06.523Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:42:09.096Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:42:09.096Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:42:13.673Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:42:13.674Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:42:40.003Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:42:40.007Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:42:41.572Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:42:41.572Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:53:01.356Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:53:01.356Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:53:02.929Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:53:02.929Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:53:05.505Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:53:05.505Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:54:11.057Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:54:11.057Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:54:12.635Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:54:12.636Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:54:15.209Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:54:15.210Z"}
+{"level":"error","message":"500 - BSON field 'skip' value must be >= 0, actual value '-1' - /api/v1/organizations/?pageSize=1&search=&page=0 - GET - ::1","timestamp":"2025-02-28T13:54:19.789Z"}
+{"code":2,"codeName":"BadValue","errorResponse":{"code":2,"codeName":"BadValue","errmsg":"BSON field 'skip' value must be >= 0, actual value '-1'","ok":0},"level":"error","ok":0,"timestamp":"2025-02-28T13:54:19.790Z"}
+{"level":"info","message":"Mongo Connection Disconnected","timestamp":"2025-02-28T15:42:21.238Z"}
+{"level":"info","message":"Trying to reconnect to Mongo ...","timestamp":"2025-02-28T15:42:21.239Z"}

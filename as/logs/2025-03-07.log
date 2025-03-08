@@ -1,0 +1,193 @@
+{"level":"error","message":"500 - Unauthorized - /api/v1/sessions/?pageSize=10&search=&page=2 - GET - ::1","timestamp":"2025-03-07T03:39:14.829Z"}
+{"level":"error","message":"Unauthorized","name":"AuthenticationError","status":401,"timestamp":"2025-03-07T03:39:14.833Z"}
+{"level":"error","message":"500 - Unauthorized - /api/v1/sessions/?pageSize=10&search=&page=2 - GET - ::1","timestamp":"2025-03-07T03:39:15.846Z"}
+{"level":"error","message":"Unauthorized","name":"AuthenticationError","status":401,"timestamp":"2025-03-07T03:39:15.847Z"}
+{"level":"error","message":"500 - Unauthorized - /api/v1/sessions/?pageSize=10&search=&page=2 - GET - ::1","timestamp":"2025-03-07T03:39:18.574Z"}
+{"level":"error","message":"Unauthorized","name":"AuthenticationError","status":401,"timestamp":"2025-03-07T03:39:18.574Z"}
+{"level":"error","message":"500 - Unauthorized - /api/v1/sessions/?pageSize=10&search=&page=2 - GET - ::1","timestamp":"2025-03-07T03:39:19.660Z"}
+{"level":"error","message":"Unauthorized","name":"AuthenticationError","status":401,"timestamp":"2025-03-07T03:39:19.660Z"}
+{"level":"error","message":"500 - Unauthorized - /api/v1/sessions/?pageSize=10&search=&page=1 - GET - ::1","timestamp":"2025-03-07T03:39:20.430Z"}
+{"level":"error","message":"Unauthorized","name":"AuthenticationError","status":401,"timestamp":"2025-03-07T03:39:20.431Z"}
+{"level":"error","message":"500 - Unauthorized - /api/v1/sessions/?pageSize=10&search=&page=1 - GET - ::1","timestamp":"2025-03-07T03:39:21.442Z"}
+{"level":"error","message":"Unauthorized","name":"AuthenticationError","status":401,"timestamp":"2025-03-07T03:39:21.443Z"}
+{"level":"error","message":"500 - Unauthorized - /api/v1/sessions/?pageSize=10&search=&page=1 - GET - ::1","timestamp":"2025-03-07T03:39:24.434Z"}
+{"level":"error","message":"Unauthorized","name":"AuthenticationError","status":401,"timestamp":"2025-03-07T03:39:24.434Z"}
+{"level":"error","message":"500 - Unauthorized - /api/v1/sessions/?pageSize=10&search=&page=1 - GET - ::1","timestamp":"2025-03-07T03:39:25.497Z"}
+{"level":"error","message":"Unauthorized","name":"AuthenticationError","status":401,"timestamp":"2025-03-07T03:39:25.498Z"}
+{"level":"info","message":"Mongo Connection Disconnected","timestamp":"2025-03-07T03:39:26.203Z"}
+{"level":"info","message":"Trying to reconnect to Mongo ...","timestamp":"2025-03-07T03:39:26.203Z"}
+{"level":"error","message":"500 - Unauthorized - /api/v1/sessions/?pageSize=10&search=&page=1 - GET - ::1","timestamp":"2025-03-07T03:39:27.507Z"}
+{"level":"error","message":"Unauthorized","name":"AuthenticationError","status":401,"timestamp":"2025-03-07T03:39:27.508Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T03:39:29.211Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T03:39:38.480Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T03:39:38.481Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T03:39:38.492Z"}
+{"level":"error","message":"500 - Unauthorized - /api/v1/sessions/?pageSize=10&search=&page=1 - GET - ::1","timestamp":"2025-03-07T03:39:40.810Z"}
+{"level":"error","message":"Unauthorized","name":"AuthenticationError","status":401,"timestamp":"2025-03-07T03:39:40.811Z"}
+{"level":"error","message":"500 - Unauthorized - /api/v1/sessions/?pageSize=10&search=&page=1 - GET - ::1","timestamp":"2025-03-07T03:39:42.054Z"}
+{"level":"error","message":"Unauthorized","name":"AuthenticationError","status":401,"timestamp":"2025-03-07T03:39:42.054Z"}
+{"level":"error","message":"500 - Unauthorized - /api/v1/sessions/?pageSize=10&search=&page=1 - GET - ::1","timestamp":"2025-03-07T03:39:43.923Z"}
+{"level":"error","message":"Unauthorized","name":"AuthenticationError","status":401,"timestamp":"2025-03-07T03:39:43.924Z"}
+{"level":"error","message":"500 - Unauthorized - /api/v1/sessions/?pageSize=10&search=&page=1 - GET - ::1","timestamp":"2025-03-07T03:39:44.986Z"}
+{"level":"error","message":"Unauthorized","name":"AuthenticationError","status":401,"timestamp":"2025-03-07T03:39:44.987Z"}
+{"level":"error","message":"500 - Unauthorized - /api/v1/sessions/?pageSize=10&search=&page=1 - GET - ::1","timestamp":"2025-03-07T03:39:47.000Z"}
+{"level":"error","message":"Unauthorized","name":"AuthenticationError","status":401,"timestamp":"2025-03-07T03:39:47.001Z"}
+{"level":"error","message":"500 - Unauthorized - /api/v1/sessions/?pageSize=10&search=&page=1 - GET - ::1","timestamp":"2025-03-07T03:39:51.011Z"}
+{"level":"error","message":"Unauthorized","name":"AuthenticationError","status":401,"timestamp":"2025-03-07T03:39:51.012Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T03:40:08.218Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T03:40:08.219Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T03:40:08.230Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T03:42:25.429Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T03:42:25.430Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T03:42:25.440Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T04:10:41.221Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T04:10:41.222Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T04:10:41.234Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T12:52:29.144Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T12:52:29.145Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T12:52:29.160Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T13:15:07.077Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T13:15:07.078Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T13:15:07.091Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T13:15:55.976Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T13:15:55.977Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T13:15:55.988Z"}
+{"level":"error","message":"500 - PlanExecutor error during aggregation :: caused by :: $arrayToObject requires an object with keys 'k' and 'v', where the value of 'k' must be of type string. Found type: object - /api/v1/organizations/statistics - GET - ::1","timestamp":"2025-03-07T13:15:57.123Z"}
+{"code":40394,"codeName":"Location40394","errorResponse":{"code":40394,"codeName":"Location40394","errmsg":"PlanExecutor error during aggregation :: caused by :: $arrayToObject requires an object with keys 'k' and 'v', where the value of 'k' must be of type string. Found type: object","ok":0},"level":"error","ok":0,"timestamp":"2025-03-07T13:15:57.124Z"}
+{"level":"error","message":"500 - PlanExecutor error during aggregation :: caused by :: $arrayToObject requires an object with keys 'k' and 'v', where the value of 'k' must be of type string. Found type: object - /api/v1/organizations/statistics - GET - ::1","timestamp":"2025-03-07T13:15:58.163Z"}
+{"code":40394,"codeName":"Location40394","errorResponse":{"code":40394,"codeName":"Location40394","errmsg":"PlanExecutor error during aggregation :: caused by :: $arrayToObject requires an object with keys 'k' and 'v', where the value of 'k' must be of type string. Found type: object","ok":0},"level":"error","ok":0,"timestamp":"2025-03-07T13:15:58.163Z"}
+{"level":"error","message":"500 - PlanExecutor error during aggregation :: caused by :: $arrayToObject requires an object with keys 'k' and 'v', where the value of 'k' must be of type string. Found type: object - /api/v1/organizations/statistics - GET - ::1","timestamp":"2025-03-07T13:16:02.039Z"}
+{"code":40394,"codeName":"Location40394","errorResponse":{"code":40394,"codeName":"Location40394","errmsg":"PlanExecutor error during aggregation :: caused by :: $arrayToObject requires an object with keys 'k' and 'v', where the value of 'k' must be of type string. Found type: object","ok":0},"level":"error","ok":0,"timestamp":"2025-03-07T13:16:02.040Z"}
+{"level":"error","message":"500 - PlanExecutor error during aggregation :: caused by :: $arrayToObject requires an object with keys 'k' and 'v', where the value of 'k' must be of type string. Found type: object - /api/v1/organizations/statistics - GET - ::1","timestamp":"2025-03-07T13:16:29.064Z"}
+{"code":40394,"codeName":"Location40394","errorResponse":{"code":40394,"codeName":"Location40394","errmsg":"PlanExecutor error during aggregation :: caused by :: $arrayToObject requires an object with keys 'k' and 'v', where the value of 'k' must be of type string. Found type: object","ok":0},"level":"error","ok":0,"timestamp":"2025-03-07T13:16:29.065Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T13:17:29.056Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T13:17:29.057Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T13:17:29.067Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T13:18:11.790Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T13:18:11.791Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T13:18:11.803Z"}
+{"level":"error","message":"500 - PlanExecutor error during aggregation :: caused by :: $arrayToObject requires an object with keys 'k' and 'v', where the value of 'k' must be of type string. Found type: int - /api/v1/organizations/statistics - GET - ::1","timestamp":"2025-03-07T13:18:13.167Z"}
+{"code":40394,"codeName":"Location40394","errorResponse":{"code":40394,"codeName":"Location40394","errmsg":"PlanExecutor error during aggregation :: caused by :: $arrayToObject requires an object with keys 'k' and 'v', where the value of 'k' must be of type string. Found type: int","ok":0},"level":"error","ok":0,"timestamp":"2025-03-07T13:18:13.168Z"}
+{"level":"error","message":"500 - PlanExecutor error during aggregation :: caused by :: $arrayToObject requires an object with keys 'k' and 'v', where the value of 'k' must be of type string. Found type: int - /api/v1/organizations/statistics - GET - ::1","timestamp":"2025-03-07T13:18:27.475Z"}
+{"code":40394,"codeName":"Location40394","errorResponse":{"code":40394,"codeName":"Location40394","errmsg":"PlanExecutor error during aggregation :: caused by :: $arrayToObject requires an object with keys 'k' and 'v', where the value of 'k' must be of type string. Found type: int","ok":0},"level":"error","ok":0,"timestamp":"2025-03-07T13:18:27.476Z"}
+{"level":"error","message":"500 - PlanExecutor error during aggregation :: caused by :: $arrayToObject requires an object with keys 'k' and 'v', where the value of 'k' must be of type string. Found type: int - /api/v1/organizations/statistics - GET - ::1","timestamp":"2025-03-07T13:18:28.529Z"}
+{"code":40394,"codeName":"Location40394","errorResponse":{"code":40394,"codeName":"Location40394","errmsg":"PlanExecutor error during aggregation :: caused by :: $arrayToObject requires an object with keys 'k' and 'v', where the value of 'k' must be of type string. Found type: int","ok":0},"level":"error","ok":0,"timestamp":"2025-03-07T13:18:28.530Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T13:18:29.514Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T13:18:29.515Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T13:18:29.526Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T13:20:34.782Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T13:20:34.783Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T13:20:34.794Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T13:20:38.852Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T13:20:38.853Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T13:20:38.864Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T13:21:28.475Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T13:21:28.476Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T13:21:28.487Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T13:23:13.258Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T13:23:13.259Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T13:23:13.269Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T13:41:39.313Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T13:41:39.314Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T13:41:39.325Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T13:43:23.734Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T13:43:23.735Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T13:43:23.750Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T13:48:11.433Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T13:48:11.435Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T13:48:11.448Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T14:33:29.339Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T14:33:29.340Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T14:33:29.353Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T15:04:10.044Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T15:04:10.045Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T15:04:10.058Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:04:06.575Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:04:06.576Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:04:06.587Z"}
+{"level":"error","message":"500 - Internal error - /api/v1/users/forgotPassword - POST - ::1","timestamp":"2025-03-07T18:20:10.135Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:29:23.812Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:29:23.813Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:29:23.830Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:29:25.156Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:29:25.157Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:29:25.169Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:34:19.202Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:34:19.203Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:34:19.217Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:34:21.140Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:34:21.142Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:34:21.156Z"}
+{"level":"error","message":"500 - Internal error - /api/v1/users/forgotPassword - POST - ::1","timestamp":"2025-03-07T18:34:32.259Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:35:18.169Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:35:18.169Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:35:18.181Z"}
+{"level":"error","message":"500 - Internal error - /api/v1/users/forgotPassword - POST - ::1","timestamp":"2025-03-07T18:35:20.809Z"}
+{"date":"Fri Mar 07 2025 21:35:38 GMT+0300 (GMT+03:00)","error":{},"exception":true,"level":"error","message":"uncaughtException: from is not defined\nReferenceError: from is not defined\n    at Object.<anonymous> (/home/debian/repos/personal/study-cafe/api/dist/config/email-node.js:3:1)\n    at Module._compile (node:internal/modules/cjs/loader:1469:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)\n    at Module.load (node:internal/modules/cjs/loader:1288:32)\n    at Module._load (node:internal/modules/cjs/loader:1104:12)\n    at Module.require (node:internal/modules/cjs/loader:1311:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/debian/repos/personal/study-cafe/api/dist/controllers/auth.controller.js:13:22)\n    at Module._compile (node:internal/modules/cjs/loader:1469:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)","os":{"loadavg":[1.02,0.88,0.76],"uptime":21503.6},"process":{"argv":["/usr/local/bin/node","/home/debian/repos/personal/study-cafe/api/dist/server.js"],"cwd":"/home/debian/repos/personal/study-cafe/api","execPath":"/usr/local/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":36088267,"external":38294679,"heapTotal":59445248,"heapUsed":30547520,"rss":93171712},"pid":58939,"uid":1000,"version":"v20.17.0"},"stack":"ReferenceError: from is not defined\n    at Object.<anonymous> (/home/debian/repos/personal/study-cafe/api/dist/config/email-node.js:3:1)\n    at Module._compile (node:internal/modules/cjs/loader:1469:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)\n    at Module.load (node:internal/modules/cjs/loader:1288:32)\n    at Module._load (node:internal/modules/cjs/loader:1104:12)\n    at Module.require (node:internal/modules/cjs/loader:1311:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/debian/repos/personal/study-cafe/api/dist/controllers/auth.controller.js:13:22)\n    at Module._compile (node:internal/modules/cjs/loader:1469:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)","timestamp":"2025-03-07T18:35:38.886Z","trace":[{"column":1,"file":"/home/debian/repos/personal/study-cafe/api/dist/config/email-node.js","function":null,"line":3,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1469,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1548,"method":".js","native":false},{"column":32,"file":"node:internal/modules/cjs/loader","function":"Module.load","line":1288,"method":"load","native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module._load","line":1104,"method":"_load","native":false},{"column":19,"file":"node:internal/modules/cjs/loader","function":"Module.require","line":1311,"method":"require","native":false},{"column":18,"file":"node:internal/modules/helpers","function":"require","line":179,"method":null,"native":false},{"column":22,"file":"/home/debian/repos/personal/study-cafe/api/dist/controllers/auth.controller.js","function":null,"line":13,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1469,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1548,"method":".js","native":false}]}
+{"date":"Fri Mar 07 2025 21:35:38 GMT+0300 (GMT+03:00)","error":{},"exception":true,"level":"error","message":"uncaughtException: from is not defined\nReferenceError: from is not defined\n    at Object.<anonymous> (/home/debian/repos/personal/study-cafe/api/dist/config/email-node.js:3:1)\n    at Module._compile (node:internal/modules/cjs/loader:1469:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)\n    at Module.load (node:internal/modules/cjs/loader:1288:32)\n    at Module._load (node:internal/modules/cjs/loader:1104:12)\n    at Module.require (node:internal/modules/cjs/loader:1311:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/debian/repos/personal/study-cafe/api/dist/controllers/auth.controller.js:13:22)\n    at Module._compile (node:internal/modules/cjs/loader:1469:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)","os":{"loadavg":[1.02,0.88,0.76],"uptime":21503.6},"process":{"argv":["/usr/local/bin/node","/home/debian/repos/personal/study-cafe/api/dist/server.js"],"cwd":"/home/debian/repos/personal/study-cafe/api","execPath":"/usr/local/bin/node","gid":1000,"memoryUsage":{"arrayBuffers":36088267,"external":38294679,"heapTotal":59445248,"heapUsed":30547520,"rss":93171712},"pid":58939,"uid":1000,"version":"v20.17.0"},"stack":"ReferenceError: from is not defined\n    at Object.<anonymous> (/home/debian/repos/personal/study-cafe/api/dist/config/email-node.js:3:1)\n    at Module._compile (node:internal/modules/cjs/loader:1469:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)\n    at Module.load (node:internal/modules/cjs/loader:1288:32)\n    at Module._load (node:internal/modules/cjs/loader:1104:12)\n    at Module.require (node:internal/modules/cjs/loader:1311:19)\n    at require (node:internal/modules/helpers:179:18)\n    at Object.<anonymous> (/home/debian/repos/personal/study-cafe/api/dist/controllers/auth.controller.js:13:22)\n    at Module._compile (node:internal/modules/cjs/loader:1469:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)","trace":[{"column":1,"file":"/home/debian/repos/personal/study-cafe/api/dist/config/email-node.js","function":null,"line":3,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1469,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1548,"method":".js","native":false},{"column":32,"file":"node:internal/modules/cjs/loader","function":"Module.load","line":1288,"method":"load","native":false},{"column":12,"file":"node:internal/modules/cjs/loader","function":"Module._load","line":1104,"method":"_load","native":false},{"column":19,"file":"node:internal/modules/cjs/loader","function":"Module.require","line":1311,"method":"require","native":false},{"column":18,"file":"node:internal/modules/helpers","function":"require","line":179,"method":null,"native":false},{"column":22,"file":"/home/debian/repos/personal/study-cafe/api/dist/controllers/auth.controller.js","function":null,"line":13,"method":null,"native":false},{"column":14,"file":"node:internal/modules/cjs/loader","function":"Module._compile","line":1469,"method":"_compile","native":false},{"column":10,"file":"node:internal/modules/cjs/loader","function":"Module._extensions..js","line":1548,"method":".js","native":false}]}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:35:40.767Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:35:40.768Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:35:40.780Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:38:10.011Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:38:10.012Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:38:10.023Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:39:24.367Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:39:24.368Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:39:24.378Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:40:35.346Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:40:35.347Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:40:35.359Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:40:43.044Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:40:43.045Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:40:43.056Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:41:52.609Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:41:52.610Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:41:52.626Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:43:25.405Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:43:25.406Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:43:25.421Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:45:20.263Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:45:20.264Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:45:20.275Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:45:25.146Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:45:25.147Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:45:25.157Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:45:55.261Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:45:55.262Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:45:55.273Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:46:11.048Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:46:11.050Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:46:11.065Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:49:16.414Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:49:16.415Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:49:16.425Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:52:27.159Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:52:27.160Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:52:27.171Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:52:43.151Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:52:43.152Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:52:43.162Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:52:59.000Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:52:59.001Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:52:59.011Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:53:08.187Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:53:08.188Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:53:08.202Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:53:16.122Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:53:16.123Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:53:16.138Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:53:25.965Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:53:25.966Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:53:25.979Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:53:54.355Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:53:54.356Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:53:54.368Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:54:06.294Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:54:06.295Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:54:06.310Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:54:19.553Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:54:19.554Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:54:19.565Z"}
+{"level":"info","message":"API is running at http://localhost:3000","timestamp":"2025-03-07T18:54:27.225Z"}
+{"level":"info","message":"swagger is running at http://localhost:3000/docs","timestamp":"2025-03-07T18:54:27.226Z"}
+{"level":"info","message":"Mongo Connection Established","timestamp":"2025-03-07T18:54:27.236Z"}
